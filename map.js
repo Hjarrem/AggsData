@@ -388,19 +388,58 @@ function updateMarkersAndLabels() {
     var zoomDiff = currentZoom - initialZoom;
     var zoomMultiplier = Math.pow(1.5, zoomDiff);
     
-    // Update marker sizes
+    // Get current map bounds
+    var bounds = map.getBounds();
+    
+    // Calculate top producers in current view
+    var producerTotals = {};
+    markerData.forEach(function(data) {
+        if (bounds.contains([data.lat, data.lon])) {
+            if (!producerTotals[data.producer]) {
+                producerTotals[data.producer] = 0;
+            }
+            producerTotals[data.producer] += data.production;
+        }
+    });
+    
+    // Sort and get top 15 in current view
+    var topProducersInView = Object.keys(producerTotals)
+        .sort(function(a, b) {
+            return producerTotals[b] - producerTotals[a];
+        })
+        .slice(0, 15);
+    
+    // Create a temporary color map for current view
+    var viewColorMap = {};
+    topProducersInView.forEach(function(producer) {
+        viewColorMap[producer] = PRODUCER_COLORS[producer] || null;
+    });
+    
+    // Update marker colors and sizes
     markerData.forEach(function(data) {
         var newSize = data.baseSize * zoomMultiplier;
         data.marker.setRadius(newSize);
+        
+        // Update color based on current view ranking
+        var newColor;
+        if (topProducersInView.includes(data.producer)) {
+            // Use their assigned color if they have one, otherwise assign from available colors
+            newColor = PRODUCER_COLORS[data.producer] || OTHER_PRODUCER_COLOR;
+        } else {
+            newColor = OTHER_PRODUCER_COLOR;
+        }
+        
+        data.marker.setStyle({
+            fillColor: newColor,
+            color: newColor
+        });
     });
     
     // Clear existing labels
     labelPane.innerHTML = '';
     
     // Show labels at regional zoom (zoom 8+)
-    if (currentZoom >= 10) {
-        var bounds = map.getBounds();
-        
+    if (currentZoom >= 8) {
         // Filter to only show markers in current view with significant production
         var visibleMarkers = markerData.filter(function(data) {
             return bounds.contains([data.lat, data.lon]) && 

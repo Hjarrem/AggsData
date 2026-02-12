@@ -26,7 +26,7 @@ const PRODUCER_COLORS = {
 const OTHER_PRODUCER_COLOR = '#cccccc';
 
 // Symbol size range (in pixels)
-const MIN_SIZE = 4;
+const MIN_SIZE = 2;
 const MAX_SIZE = 16;
 
 // Data field mapping - Update these if your data uses different field names

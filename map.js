@@ -26,8 +26,8 @@ const PRODUCER_COLORS = {
 const OTHER_PRODUCER_COLOR = '#cccccc';
 
 // Symbol size range (in pixels)
-const MIN_SIZE = 3;
-const MAX_SIZE = 24;
+const MIN_SIZE = 2;
+const MAX_SIZE = 40;
 
 // Size scaling method: 'sqrt' (gentle), 'log' (moderate), 'power' (dramatic)
 const SIZE_SCALE_METHOD = 'power';

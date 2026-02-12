@@ -192,7 +192,9 @@ producerData.forEach(function(point) {
     var production = point[DATA_FIELDS.production];
     var name = point[DATA_FIELDS.name];
     
-    var size = calculateSize(production, minProduction, maxProduction);
+    var baseSize = calculateSize(production, minProduction, maxProduction);
+    var zoomFactor = map.getZoom() / INITIAL_VIEW.zoom; // Scale with zoom
+    var size = baseSize * zoomFactor;
     var color = getProducerColor(producer);
     
     var marker = new CustomCanvasMarker([lat, lon], {

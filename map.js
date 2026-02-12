@@ -183,6 +183,7 @@ console.log('Total points:', producerData.length);
 // ============================================
 
 var markers = [];
+var markerData = [];
 
 producerData.forEach(function(point) {
     var lat = point[DATA_FIELDS.lat];
@@ -199,7 +200,8 @@ producerData.forEach(function(point) {
     
     var marker = new CustomCanvasMarker([lat, lon], {
         renderer: canvasRenderer,
-        size: size,
+        size: baseSize,
+        baseSize: baseSize,
         geology: geology,
         color: color,
         weight: 1,
@@ -230,6 +232,15 @@ producerData.forEach(function(point) {
     marker.bindPopup(popupContent);
     marker.addTo(map);
     markers.push(marker);
+    markerData.push({
+        marker: marker,
+        producer: producer,
+        name: name,
+        production: production,
+        lat: lat,
+        lon: lon,
+        baseSize: baseSize
+    });
 });
 
 console.log('Added', markers.length, 'markers to map');
@@ -354,5 +365,77 @@ legend.onAdd = function(map) {
 };
 
 legend.addTo(map);
+// ============================================
+// ZOOM-BASED SIZE SCALING AND LABELS
+// ============================================
 
+// Create label pane for producer names
+var labelPane = L.DomUtil.create('div', 'label-pane');
+labelPane.style.position = 'absolute';
+labelPane.style.top = '0';
+labelPane.style.left = '0';
+labelPane.style.width = '100%';
+labelPane.style.height = '100%';
+labelPane.style.pointerEvents = 'none';
+labelPane.style.zIndex = '650';
+map.getContainer().appendChild(labelPane);
+
+function updateMarkersAndLabels() {
+    var currentZoom = map.getZoom();
+    var initialZoom = INITIAL_VIEW.zoom;
+    
+    // More aggressive zoom scaling - exponential growth
+    var zoomDiff = currentZoom - initialZoom;
+    var zoomMultiplier = Math.pow(1.5, zoomDiff);
+    
+    // Update marker sizes
+    markerData.forEach(function(data) {
+        var newSize = data.baseSize * zoomMultiplier;
+        data.marker.setRadius(newSize);
+    });
+    
+    // Clear existing labels
+    labelPane.innerHTML = '';
+    
+    // Show labels at regional zoom (zoom 8+)
+    if (currentZoom >= 8) {
+        var bounds = map.getBounds();
+        
+        // Filter to only show markers in current view with significant production
+        var visibleMarkers = markerData.filter(function(data) {
+            return bounds.contains([data.lat, data.lon]) && 
+                   data.production > 100000; // Only show labels for 100K+ tons
+        });
+        
+        // Limit labels to prevent overcrowding
+        var maxLabels = currentZoom >= 10 ? 100 : 50;
+        
+        // Sort by production and take top N
+        visibleMarkers.sort(function(a, b) {
+            return b.production - a.production;
+        });
+        
+        visibleMarkers.slice(0, maxLabels).forEach(function(data) {
+            var point = map.latLngToContainerPoint([data.lat, data.lon]);
+            
+            var label = L.DomUtil.create('div', 'marker-label', labelPane);
+            label.style.position = 'absolute';
+            label.style.left = (point.x + 8) + 'px';
+            label.style.top = (point.y - 6) + 'px';
+            label.style.fontSize = '11px';
+            label.style.fontWeight = '600';
+            label.style.color = '#333';
+            label.style.textShadow = '1px 1px 2px white, -1px -1px 2px white, 1px -1px 2px white, -1px 1px 2px white';
+            label.style.whiteSpace = 'nowrap';
+            label.textContent = data.producer;
+        });
+    }
+}
+
+// Update on zoom
+map.on('zoomend', updateMarkersAndLabels);
+map.on('moveend', updateMarkersAndLabels);
+
+// Initial update
+updateMarkersAndLabels();
 console.log('Map initialized successfully');

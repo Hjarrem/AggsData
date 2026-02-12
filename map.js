@@ -30,7 +30,7 @@ const MIN_SIZE = 3;
 const MAX_SIZE = 24;
 
 // Size scaling method: 'sqrt' (gentle), 'log' (moderate), 'power' (dramatic)
-const SIZE_SCALE_METHOD = 'log';
+const SIZE_SCALE_METHOD = 'power';
 
 // Data field mapping - Update these if your data uses different field names
 const DATA_FIELDS = {

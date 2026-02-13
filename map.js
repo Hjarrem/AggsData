@@ -104,23 +104,6 @@ var CustomCanvasMarker = L.CircleMarker.extend({
     }
 });
 
-// Custom marker class
-var CustomCanvasMarker = L.CircleMarker.extend({
-    options: {
-        renderer: null,
-        size: 5,
-        geology: 'limestone',
-        color: '#3388ff',
-        weight: 1,
-        stroke: '#333',
-        opacity: 0.8
-    },
-    
-    _updatePath: function() {
-        this._renderer._updateCustomLayer(this);
-    }
-});
-
 // ============================================
 // MAP INITIALIZATION
 // ============================================
@@ -247,6 +230,7 @@ producerData.forEach(function(point) {
     }
     
     popupContent += '<div><b>Geology:</b> ' + geologyDisplay + '</div>' +
+        '<div><b>Production:</b> ' + formatNumber(production) + ' tons/year</div>';
     
     // Add SIC if available
     if (point[DATA_FIELDS.sic]) {

@@ -25,13 +25,6 @@ const PRODUCER_COLORS = {
 // Fallback color for producers not in the list above
 const OTHER_PRODUCER_COLOR = '#cccccc';
 
-// Symbol size range (in pixels)
-const MIN_SIZE = 2;
-const MAX_SIZE = 40;
-
-// Size scaling method: 'sqrt' (gentle), 'log' (moderate), 'power' (dramatic)
-const SIZE_SCALE_METHOD = 'power';
-
 // Data field mapping - Update these if your data uses different field names
 const DATA_FIELDS = {
     name: 'name',           // Facility name
@@ -151,27 +144,35 @@ function getProducerColor(producerName) {
     return PRODUCER_COLORS[producerName] || OTHER_PRODUCER_COLOR;
 }
 
+// Size bucket definitions - CUSTOMIZE THESE
+const SIZE_BUCKETS = [
+    { threshold: 0,       size: 3 },   // Very small: <100k
+    { threshold: 100000,  size: 6 },   // Small: 100-250k
+    { threshold: 250000,  size: 10 },  // Medium: 250k-500k
+    { threshold: 500000,  size: 16 },  // Large: 500k-1.5M
+    { threshold: 1500000, size: 24 }   // Very large: >1.5M
+];
+
 function calculateSize(production, minProd, maxProd) {
-    // Avoid issues with zero or very small values
-    if (production <= 0) return MIN_SIZE;
+    if (production <= 0) return SIZE_BUCKETS[0].size;
     
-    var normalized;
-    
-    if (SIZE_SCALE_METHOD === 'log') {
-        // Logarithmic scale - good for wide ranges, more dramatic than sqrt
-        // Add 1 to avoid log(0)
-        normalized = Math.log(production + 1) / Math.log(maxProd + 1);
-    } else if (SIZE_SCALE_METHOD === 'power') {
-        // Power scale (exponent 0.4) - very dramatic differences
-        normalized = Math.pow(production / maxProd, 0.4);
-    } else {
-        // Square root scale - default, more gentle
-        normalized = Math.sqrt(production) / Math.sqrt(maxProd);
+    // Find which bucket range we're in
+    for (var i = 0; i < SIZE_BUCKETS.length - 1; i++) {
+        var lower = SIZE_BUCKETS[i];
+        var upper = SIZE_BUCKETS[i + 1];
+        
+        if (production >= lower.threshold && production < upper.threshold) {
+            // Interpolate between lower and upper bucket sizes
+            var range = upper.threshold - lower.threshold;
+            var position = (production - lower.threshold) / range;
+            var sizeRange = upper.size - lower.size;
+            return lower.size + (position * sizeRange);
+        }
     }
     
-    return MIN_SIZE + (normalized * (MAX_SIZE - MIN_SIZE));
+    // If production exceeds highest threshold, return max size
+    return SIZE_BUCKETS[SIZE_BUCKETS.length - 1].size;
 }
-
 function formatNumber(num) {
     if (num >= 1000000) {
         return (num / 1000000).toFixed(1) + 'M';
@@ -262,13 +263,23 @@ producerData.forEach(function(point) {
 console.log('Added', markers.length, 'markers to map');
 
 // ============================================
-// LEGEND
+// LEGEND WITH TOGGLE
 // ============================================
 
 var legend = L.control({position: 'topright'});
 
 legend.onAdd = function(map) {
-    var div = L.DomUtil.create('div', 'legend');
+    var container = L.DomUtil.create('div', 'legend-container');
+    
+    // Create toggle button
+    var toggleBtn = L.DomUtil.create('button', 'legend-toggle', container);
+    toggleBtn.innerHTML = '☰ Legend';
+    toggleBtn.style.cssText = 'background: white; border: 2px solid rgba(0,0,0,0.2); border-radius: 4px; padding: 8px 12px; cursor: pointer; font-size: 14px; font-weight: 600; box-shadow: 0 1px 5px rgba(0,0,0,0.4);';
+    
+    // Create legend content (hidden by default)
+    var div = L.DomUtil.create('div', 'legend', container);
+    div.style.display = 'none'; // Hidden by default
+    div.style.marginTop = '8px';
     
     // Helper function to draw symbol on canvas
     function drawSymbol(geology, color, size) {
@@ -287,12 +298,12 @@ legend.onAdd = function(map) {
         if (geology === 'limestone') {
             ctx.arc(centerX, centerY, size, 0, Math.PI * 2);
         } else if (geology === 'hard_rock') {
+            ctx.rect(centerX - size * 0.7, centerY - size * 0.7, size * 1.4, size * 1.4);
+        } else if (geology === 'sand_gravel') {
             ctx.moveTo(centerX, centerY - size);
             ctx.lineTo(centerX - size * 0.866, centerY + size * 0.5);
             ctx.lineTo(centerX + size * 0.866, centerY + size * 0.5);
             ctx.closePath();
-        } else if (geology === 'sand_gravel') {
-            ctx.rect(centerX - size * 0.7, centerY - size * 0.7, size * 1.4, size * 1.4);
         }
         ctx.fill();
         ctx.stroke();
@@ -317,14 +328,16 @@ legend.onAdd = function(map) {
     
     html += '</div><h4>Production Size</h4><div class="legend-section">';
     
+    // Use size buckets for legend
     var sizeExamples = [
-        {label: 'Small', value: minProduction},
-        {label: 'Medium', value: (minProduction + maxProduction) / 2},
-        {label: 'Large', value: maxProduction}
+        {label: 'Very Small', value: 50000, size: SIZE_BUCKETS[0].size},
+        {label: 'Small', value: 175000, size: SIZE_BUCKETS[1].size},
+        {label: 'Medium', value: 375000, size: SIZE_BUCKETS[2].size},
+        {label: 'Large', value: 1000000, size: SIZE_BUCKETS[3].size},
+        {label: 'Very Large', value: 2000000, size: SIZE_BUCKETS[4].size}
     ];
     
     sizeExamples.forEach(function(ex) {
-        var size = calculateSize(ex.value, minProduction, maxProduction);
         html += '<div class="legend-item">' +
             '<span class="legend-symbol"></span>' +
             '<span>' + ex.label + ' (' + formatNumber(ex.value) + ')</span>' +
@@ -349,6 +362,17 @@ legend.onAdd = function(map) {
     
     div.innerHTML = html;
     
+    // Add toggle functionality
+    toggleBtn.onclick = function() {
+        if (div.style.display === 'none') {
+            div.style.display = 'block';
+            toggleBtn.innerHTML = '✕ Legend';
+        } else {
+            div.style.display = 'none';
+            toggleBtn.innerHTML = '☰ Legend';
+        }
+    };
+    
     // Add actual canvas symbols after DOM is created
     setTimeout(function() {
         var symbols = div.querySelectorAll('.legend-symbol');
@@ -362,8 +386,7 @@ legend.onAdd = function(map) {
         
         // Size symbols
         sizeExamples.forEach(function(ex) {
-            var size = calculateSize(ex.value, minProduction, maxProduction);
-            symbols[idx].appendChild(drawSymbol('limestone', '#666', size));
+            symbols[idx].appendChild(drawSymbol('limestone', '#666', ex.size));
             idx++;
         });
         
@@ -377,7 +400,7 @@ legend.onAdd = function(map) {
         symbols[idx].appendChild(drawSymbol('limestone', OTHER_PRODUCER_COLOR, 6));
     }, 0);
     
-    return div;
+    return container;
 };
 
 legend.addTo(map);

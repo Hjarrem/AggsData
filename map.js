@@ -478,7 +478,7 @@ function updateMarkersAndLabels() {
     labelPane.innerHTML = '';
     
     // Show labels at regional zoom (zoom 8+)
-    if (currentZoom >= 8) {
+    if (currentZoom >= 9) {
         // Filter to only show markers in current view with significant production
         var visibleMarkers = markerData.filter(function(data) {
             return bounds.contains([data.lat, data.lon]) && 

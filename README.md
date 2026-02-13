@@ -7,8 +7,8 @@ A custom Leaflet map for visualizing aggregate producer facilities across the Un
 - **Custom Canvas Rendering** - Efficient rendering of 5,000+ points without DOM overhead
 - **Geology-Based Symbols**
   - Limestone: Circles
-  - Hard Rock: Triangles
-  - Sand & Gravel: Squares
+  - Hard Rock: Squares
+  - Sand & Gravel: Triangles
 - **Production-Scaled Sizing** - Symbol size reflects production volume using square root scaling
 - **Color-Coded Producers** - Top producers get unique colors, others are grey
 - **Interactive Popups** - Click any point for detailed facility information

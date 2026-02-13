@@ -236,8 +236,17 @@ producerData.forEach(function(point) {
         popupContent += '<div><b>Operator:</b> ' + point[DATA_FIELDS.operator] + '</div>';
     }
     
-    popupContent += '<div><b>Geology:</b> ' + geology.replace('_', ' & ') + '</div>' +
-        '<div><b>Production:</b> ' + formatNumber(production) + ' tons/year</div>';
+    // Format geology name properly
+    var geologyDisplay = geology;
+    if (geology === 'hard_rock') {
+        geologyDisplay = 'Hard Rock';
+    } else if (geology === 'sand_gravel') {
+        geologyDisplay = 'Sand & Gravel';
+    } else if (geology === 'limestone') {
+        geologyDisplay = 'Limestone';
+    }
+    
+    popupContent += '<div><b>Geology:</b> ' + geologyDisplay + '</div>' +
     
     // Add SIC if available
     if (point[DATA_FIELDS.sic]) {
@@ -416,7 +425,7 @@ labelPane.style.left = '0';
 labelPane.style.width = '100%';
 labelPane.style.height = '100%';
 labelPane.style.pointerEvents = 'none';
-labelPane.style.zIndex = '650';
+labelPane.style.zIndex = '400';
 map.getContainer().appendChild(labelPane);
 
 function updateMarkersAndLabels() {

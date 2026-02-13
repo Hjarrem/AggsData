@@ -76,22 +76,38 @@ L.Canvas.include({
             // Circle
             ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
         } else if (geology === 'hard_rock') {
+            // Square
+            ctx.rect(p.x - size * 0.7, p.y - size * 0.7, size * 1.4, size * 1.4);
+        } else if (geology === 'sand_gravel') {
             // Triangle
             ctx.moveTo(p.x, p.y - size);
             ctx.lineTo(p.x - size * 0.866, p.y + size * 0.5);
             ctx.lineTo(p.x + size * 0.866, p.y + size * 0.5);
             ctx.closePath();
-        } else if (geology === 'sand_gravel') {
-            // Square
-            ctx.rect(p.x - size * 0.7, p.y - size * 0.7, size * 1.4, size * 1.4);
         } else {
-            // Default to circle if geology type not recognized
+            // Default to circle
             ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
         }
         
         ctx.fill();
         ctx.stroke();
         ctx.globalAlpha = 1;
+    }
+});
+
+// Custom marker class
+var CustomCanvasMarker = L.CircleMarker.extend({
+    options: {
+        size: 5,
+        geology: 'limestone',
+        color: '#3388ff',
+        weight: 1,
+        stroke: '#333',
+        opacity: 0.8
+    },
+    
+    _updatePath: function() {
+        this._renderer._updateCustomLayer(this);
     }
 });
 

@@ -24,6 +24,7 @@
             height: 100vh;
         }
         
+        /* ── Legend ── */
         .legend {
             background: white;
             padding: 15px;
@@ -64,8 +65,28 @@
             vertical-align: middle;
         }
 
+        .legend-container {
+            background: transparent;
+            padding: 0;
+        }
+        
+        .legend-toggle {
+            display: block;
+            width: 100%;
+        }
+        
+        .legend-toggle:hover {
+            background: #f4f4f4 !important;
+        }
+
+        /* ── Facility labels ── */
+        /* Reset Leaflet's default divIcon box, then style the text */
         .marker-label {
-            pointer-events:none;
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            pointer-events: none;
             user-select: none;
             white-space: nowrap;
             font-size: 11px;
@@ -81,7 +102,8 @@
                  0   -2px 3px #fff,
                  0    2px 3px #fff;
         }
-        
+
+        /* ── Popups ── */
         .popup-content {
             font-size: 13px;
             line-height: 1.6;
@@ -95,23 +117,6 @@
         
         .popup-content div {
             margin: 3px 0;
-        }
-        .marker-label {
-            pointer-events: none;
-            user-select: none;
-        }
-        .legend-container {
-            background: transparent;
-            padding: 0;
-        }
-        
-        .legend-toggle {
-            display: block;
-            width: 100%;
-        }
-        
-        .legend-toggle:hover {
-            background: #f4f4f4 !important;
         }
     </style>
 </head>

@@ -66,7 +66,7 @@ const INITIAL_VIEW = {
 };
 
 // Labels appear at this zoom level and above
-const LABEL_MIN_ZOOM = 10;
+const LABEL_MIN_ZOOM = 11;
 // Minimum production (tons) for a label to appear
 const LABEL_MIN_PROD = 100000;
 // Max labels shown at zoom 9 / zoom 10+
@@ -253,9 +253,10 @@ function initMarkers(features) {
 // ZOOM-RESPONSIVE SIZING & LABELS
 // ============================================================
 
-var labelPane = L.DomUtil.create('div');
-labelPane.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:400;';
-map.getContainer().appendChild(labelPane);
+// NEW — use a real Leaflet pane so CSS transforms keep labels in sync during pan
+map.createPane('labelsPane');
+map.getPane('labelsPane').style.pointerEvents = 'none';
+var labelPane = map.getPane('labelsPane');
 
 function updateMarkersAndLabels() {
     if (!markerData.length) return;
@@ -289,27 +290,29 @@ function updateMarkersAndLabels() {
     });
 
     // Labels — only rendered when zoomed in close enough
-    labelPane.innerHTML = '';
+    if (window._labelMarkers) {
+        window._labelMarkers.forEach(function(m) { m.remove(); });
+    }
+    window._labelMarkers = [];
     if (zoom < LABEL_MIN_ZOOM) return;
 
-    var maxLabels = zoom >= 10 ? LABEL_LIMITS.detailed : LABEL_LIMITS.default;
+    var maxLabels = zoom >= 12 ? LABEL_LIMITS.detailed : LABEL_LIMITS.default;
 
     var visible = markerData.filter(function(d) {
         return bounds.contains([d.lat, d.lon]) && d.production >= LABEL_MIN_PROD;
     });
     visible.sort(function(a, b) { return b.production - a.production; });
     visible.slice(0, maxLabels).forEach(function(d) {
-        var pt  = map.latLngToContainerPoint([d.lat, d.lon]);
-        var lbl = document.createElement('div');
-        lbl.className   = 'marker-label';
-        lbl.textContent = d.producer;
-        lbl.style.cssText =
-            'position:absolute;' +
-            'left:' + (pt.x + 8) + 'px;' +
-            'top:'  + (pt.y - 6) + 'px;' +
-            'font-size:11px;font-weight:600;color:#222;white-space:nowrap;pointer-events:none;' +
-            'text-shadow:1px 1px 2px #fff,-1px -1px 2px #fff,1px -1px 2px #fff,-1px 1px 2px #fff;';
-        labelPane.appendChild(lbl);
+    var lbl = L.marker([d.lat, d.lon], {
+        pane: 'labelsPane',
+        interactive: false,
+        icon: L.divIcon({
+            className: 'marker-label',
+            html: d.producer,
+            iconAnchor: [-8, 6]   // offset: 8px right, 6px up from the point
+        })
+    }).addTo(map);
+    window._labelMarkers.push(lbl);
     });
 }
 

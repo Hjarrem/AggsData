@@ -1,3 +1,13 @@
+fetch('AggsData.geojson')
+    .then(res => res.json())
+    .then(AggsData => {
+        initMap(AggsData);
+    })
+    .catch(err => console.error('Failed to load AggsData.geojson:', err));
+
+function initMap(AggsData) {
+    const features = AggsData.features;
+
 // ============================================
 // CONFIGURATION - CUSTOMIZE THESE VALUES
 // ============================================
@@ -510,3 +520,6 @@ map.on('moveend', updateMarkersAndLabels);
 // Initial update
 updateMarkersAndLabels();
 console.log('Map initialized successfully');
+
+    // ... rest of your existing map.js code goes inside here
+}

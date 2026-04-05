@@ -82,15 +82,13 @@
         /* ── Facility labels ── */
         /* Reset Leaflet's default divIcon box, then style the text */
         .marker-label {
-            position:   'absolute',
-                left:       `${pt.x + 8}px`,
-                top:        `${pt.y - 6}px`,
-                fontSize:   '11px',
-                fontWeight: '600',
-                color:      '#222',
-                textShadow: '1px 1px 2px #fff,-1px -1px 2px #fff,1px -1px 2px #fff,-1px 1px 2px #fff',
-                whiteSpace: 'nowrap',
-                pointerEvents: 'none'
+            position:   absolute;
+            fontSize:   11px;
+            fontWeight: 600;
+            color:      #222;
+            textShadow: '1px 1px 2px #fff,-1px -1px 2px #fff,1px -1px 2px #fff,-1px 1px 2px #fff';
+            whiteSpace: nowrap;
+            pointerEvents: none;
         }
 
         /* ── Popups ── */

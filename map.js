@@ -307,9 +307,6 @@ function updateMarkersAndLabels() {
         pane: 'labelsPane',
         interactive: false,
         icon: L.divIcon({
-            className: 'marker-label',
-            html: d.producer,
-            iconAnchor: [-8, 6]   // offset: 8px right, 6px up from the point
         })
     }).addTo(map);
     window._labelMarkers.push(lbl);

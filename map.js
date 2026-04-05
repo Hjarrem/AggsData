@@ -262,7 +262,7 @@ function updateMarkersAndLabels() {
     if (!markerData.length) return;
 
     var zoom   = map.getZoom();
-    var scale  = Math.pow(1, zoom - INITIAL_VIEW.zoom);
+    var scale  = Math.pow(1.2, zoom - INITIAL_VIEW.zoom);
     var bounds = map.getBounds();
 
     // Find top 15 producers visible in current viewport by production volume

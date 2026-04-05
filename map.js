@@ -1,14 +1,3 @@
-fetch('AggsData.geojson')
-    .then(res => res.json())
-    .then(AggsData => {
-        initMap(AggsData);
-    })
-    .catch(err => console.error('Failed to load AggsData.geojson:', err));
-
-function initMap(AggsData) {
-    const features = AggsData.features;
- 
-
 // ============================================================
 // CONFIGURATION
 // ============================================================
@@ -25,7 +14,7 @@ const FIELDS = {
     lon:        'LONGITUDE'
 };
 
-// Map PRIMARY_SIC strings to internal geology keys used for symbol shapes
+// Maps PRIMARY_SIC strings to internal geology keys (controls symbol shape)
 // Add new SIC values here as your data grows
 const SIC_TO_GEOLOGY = {
     'Crushed, Broken Limestone NEC': 'limestone',
@@ -40,10 +29,10 @@ const SIC_TO_GEOLOGY = {
     'Construction Sand and Gravel':  'sand_gravel'
 };
 
-// Top 15 producers by total production — colors assigned per company
+// Top 15 producers by total production — one color per company
 const PRODUCER_COLORS = {
-    'Vulcan Materials Company':     '#e41a1c',
-    'CRH PLC':                      '#377eb8',
+    'Vulcan Materials Company':      '#e41a1c',
+    'CRH PLC':                       '#377eb8',
     'Martin Marietta Materials Inc': '#4daf4a',
     'Heidelberg Materials AG':       '#984ea3',
     'Amrize Ltd':                    '#ff7f00',
@@ -61,12 +50,12 @@ const PRODUCER_COLORS = {
 const OTHER_COLOR = '#bbbbbb';
 
 // Symbol size buckets by annual production (tons)
-// Each entry: minimum threshold → pixel radius at default zoom
+// Format: minimum threshold -> pixel radius at default zoom
 const SIZE_BUCKETS = [
     { min: 0,        size: 3  },  // < 100K tons
-    { min: 100000,   size: 6  },  // 100K – 250K
-    { min: 250000,   size: 10 },  // 250K – 500K
-    { min: 500000,   size: 16 },  // 500K – 1.5M
+    { min: 100000,   size: 6  },  // 100K - 250K
+    { min: 250000,   size: 10 },  // 250K - 500K
+    { min: 500000,   size: 16 },  // 500K - 1.5M
     { min: 1500000,  size: 24 }   // > 1.5M
 ];
 
@@ -77,14 +66,14 @@ const INITIAL_VIEW = {
 };
 
 // Labels appear at this zoom level and above
-const LABEL_MIN_ZOOM     = 9;
+const LABEL_MIN_ZOOM = 9;
 // Minimum production (tons) for a label to appear
-const LABEL_MIN_PROD     = 100000;
+const LABEL_MIN_PROD = 100000;
 // Max labels shown at zoom 9 / zoom 10+
-const LABEL_LIMITS       = { default: 50, detailed: 100 };
+const LABEL_LIMITS   = { default: 50, detailed: 100 };
 
 // ============================================================
-// GEOLOGY HELPERS
+// HELPERS
 // ============================================================
 
 const GEOLOGY_LABELS = {
@@ -102,14 +91,12 @@ function getProducerColor(name) {
 }
 
 function getBaseSize(production) {
-    // Walk buckets from largest to smallest and return matching size
-    for (let i = SIZE_BUCKETS.length - 1; i >= 0; i--) {
+    for (var i = SIZE_BUCKETS.length - 1; i >= 0; i--) {
         if (production >= SIZE_BUCKETS[i].min) {
-            // Interpolate to next bucket if one exists
-            const lower = SIZE_BUCKETS[i];
-            const upper = SIZE_BUCKETS[i + 1];
+            var lower = SIZE_BUCKETS[i];
+            var upper = SIZE_BUCKETS[i + 1];
             if (!upper) return lower.size;
-            const t = (production - lower.min) / (upper.min - lower.min);
+            var t = (production - lower.min) / (upper.min - lower.min);
             return lower.size + t * (upper.size - lower.size);
         }
     }
@@ -117,8 +104,8 @@ function getBaseSize(production) {
 }
 
 function formatTons(num) {
-    if (num >= 1_000_000) return (num / 1_000_000).toFixed(1) + 'M';
-    if (num >= 1_000)     return (num / 1_000).toFixed(0) + 'K';
+    if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+    if (num >= 1000)    return Math.round(num / 1000) + 'K';
     return num.toLocaleString();
 }
 
@@ -127,39 +114,39 @@ function formatTons(num) {
 // ============================================================
 
 L.Canvas.include({
-    _drawAggsMarker(layer) {
+    _drawAggsMarker: function(layer) {
         if (!this._drawing || layer._empty()) return;
 
-        const { x, y } = layer._point;
-        const ctx      = this._ctx;
-        const size     = layer.options.radius || 5;
-        const geology  = layer.options.geology;
-        const color    = layer.options.fillColor || '#999';
+        var p     = layer._point;
+        var ctx   = this._ctx;
+        var size  = layer.options.radius || 5;
+        var geo   = layer.options.geology;
+        var color = layer.options.fillColor || '#999';
 
-        ctx.globalAlpha = layer.options.fillOpacity ?? 0.85;
+        ctx.globalAlpha = layer.options.fillOpacity || 0.85;
         ctx.fillStyle   = color;
         ctx.strokeStyle = 'rgba(0,0,0,0.45)';
         ctx.lineWidth   = 0.8;
 
         ctx.beginPath();
 
-        if (geology === 'limestone') {
+        if (geo === 'limestone') {
             // Circle
-            ctx.arc(x, y, size, 0, Math.PI * 2);
+            ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
 
-        } else if (geology === 'hard_rock') {
-            // Diamond (rotated square)
-            ctx.moveTo(x,          y - size);
-            ctx.lineTo(x + size,   y);
-            ctx.lineTo(x,          y + size);
-            ctx.lineTo(x - size,   y);
+        } else if (geo === 'hard_rock') {
+            // Diamond
+            ctx.moveTo(p.x,        p.y - size);
+            ctx.lineTo(p.x + size, p.y);
+            ctx.lineTo(p.x,        p.y + size);
+            ctx.lineTo(p.x - size, p.y);
             ctx.closePath();
 
         } else {
-            // Triangle (sand & gravel + fallback)
-            ctx.moveTo(x,                   y - size);
-            ctx.lineTo(x + size * 0.866,    y + size * 0.5);
-            ctx.lineTo(x - size * 0.866,    y + size * 0.5);
+            // Triangle — sand & gravel + fallback
+            ctx.moveTo(p.x,                p.y - size);
+            ctx.lineTo(p.x + size * 0.866, p.y + size * 0.5);
+            ctx.lineTo(p.x - size * 0.866, p.y + size * 0.5);
             ctx.closePath();
         }
 
@@ -169,8 +156,8 @@ L.Canvas.include({
     }
 });
 
-const AggsMarker = L.CircleMarker.extend({
-    _updatePath() {
+var AggsMarker = L.CircleMarker.extend({
+    _updatePath: function() {
         this._renderer._drawAggsMarker(this);
     }
 });
@@ -179,7 +166,7 @@ const AggsMarker = L.CircleMarker.extend({
 // MAP SETUP
 // ============================================================
 
-const map = L.map('map', { preferCanvas: true })
+var map = L.map('map', { preferCanvas: true })
     .setView(INITIAL_VIEW.center, INITIAL_VIEW.zoom);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -187,147 +174,156 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 18
 }).addTo(map);
 
-const renderer = L.canvas({ padding: 0.5 });
+var renderer = L.canvas({ padding: 0.5 });
 
 // ============================================================
-// DATA LOADING & MARKER CREATION
+// DATA FETCH & MARKER CREATION
 // ============================================================
-// AggsData is the global variable injected by AggsData.geojson
 
-const features   = AggsData.features;
-const markerData = [];           // flat array used by update loop
+var markerData = [];
 
-console.log(`Loading ${features.length} features from AggsData.geojson`);
+fetch('AggsData.geojson')
+    .then(function(res) { return res.json(); })
+    .then(function(geojson) { initMarkers(geojson.features); })
+    .catch(function(err) { console.error('Failed to load AggsData.geojson:', err); });
 
-features.forEach(feature => {
-    const props      = feature.properties;
-    const [lon, lat] = feature.geometry.coordinates;
+function initMarkers(features) {
+    console.log('Loading ' + features.length + ' features from AggsData.geojson');
 
-    const name       = props[FIELDS.name];
-    const producer   = props[FIELDS.producer];
-    const operator   = props[FIELDS.operator];
-    const sic        = props[FIELDS.sic];
-    const production = props[FIELDS.production] ?? 0;
-    const geology    = getGeology(props);
-    const baseSize   = getBaseSize(production);
-    const color      = getProducerColor(producer);
+    features.forEach(function(feature) {
+        var props      = feature.properties;
+        var coords     = feature.geometry.coordinates;
+        var lon        = coords[0];
+        var lat        = coords[1];
 
-    const marker = new AggsMarker([lat, lon], {
-        renderer,
-        radius:      baseSize,
-        fillColor:   color,
-        fillOpacity: 0.85,
-        geology,
-        // stroke handled directly in _drawAggsMarker
-        stroke: false
+        var name       = props[FIELDS.name];
+        var producer   = props[FIELDS.producer];
+        var operator   = props[FIELDS.operator];
+        var sic        = props[FIELDS.sic];
+        var production = props[FIELDS.production] || 0;
+        var geology    = getGeology(props);
+        var baseSize   = getBaseSize(production);
+        var color      = getProducerColor(producer);
+
+        var marker = new AggsMarker([lat, lon], {
+            renderer:    renderer,
+            radius:      baseSize,
+            fillColor:   color,
+            fillOpacity: 0.85,
+            geology:     geology,
+            stroke:      false
+        });
+
+        var geologyLabel = GEOLOGY_LABELS[geology] || geology;
+        var operatorLine = (operator && operator !== producer)
+            ? '<div><b>Operator:</b> ' + operator + '</div>' : '';
+
+        marker.bindPopup(
+            '<div class="popup-content">' +
+                '<strong>' + name + '</strong>' +
+                '<div><b>Producer:</b> ' + producer + '</div>' +
+                operatorLine +
+                '<div><b>Geology:</b> ' + geologyLabel + '</div>' +
+                '<div><b>Type:</b> ' + sic + '</div>' +
+                '<div><b>Production:</b> ' + formatTons(production) + ' tons/yr</div>' +
+            '</div>',
+            { maxWidth: 280 }
+        );
+
+        marker.addTo(map);
+
+        markerData.push({
+            marker:     marker,
+            producer:   producer,
+            production: production,
+            lat:        lat,
+            lon:        lon,
+            baseSize:   baseSize
+        });
     });
 
-    // Build popup once at creation time (not on every click)
-    const geologyLabel = GEOLOGY_LABELS[geology] ?? geology;
-    const operatorLine = (operator && operator !== producer)
-        ? `<div><b>Operator:</b> ${operator}</div>` : '';
-
-    marker.bindPopup(
-        `<div class="popup-content">
-            <strong>${name}</strong>
-            <div><b>Producer:</b> ${producer}</div>
-            ${operatorLine}
-            <div><b>Geology:</b> ${geologyLabel}</div>
-            <div><b>Type:</b> ${sic}</div>
-            <div><b>Production:</b> ${formatTons(production)} tons/yr</div>
-        </div>`,
-        { maxWidth: 280 }
-    );
-
-    marker.addTo(map);
-
-    // Store lightweight reference for the update loop
-    markerData.push({ marker, producer, production, lat, lon, baseSize });
-});
-
-console.log(`Placed ${markerData.length} markers`);
+    console.log('Placed ' + markerData.length + ' markers');
+    buildLegend();
+    updateMarkersAndLabels();
+}
 
 // ============================================================
 // ZOOM-RESPONSIVE SIZING & LABELS
 // ============================================================
 
-// Label overlay div — sits above the Leaflet canvas, pointer-events off
-const labelPane = Object.assign(L.DomUtil.create('div'), {
-    style: 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:400;'
-});
+var labelPane = L.DomUtil.create('div');
+labelPane.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:400;';
 map.getContainer().appendChild(labelPane);
 
 function updateMarkersAndLabels() {
-    const zoom     = map.getZoom();
-    const zoomDiff = zoom - INITIAL_VIEW.zoom;
-    const scale    = Math.pow(1.5, zoomDiff);   // exponential growth with zoom
-    const bounds   = map.getBounds();
+    if (!markerData.length) return;
 
-    // Recolor: find which named producers are visible in the current viewport
-    const viewTotals = {};
-    markerData.forEach(({ producer, production, lat, lon }) => {
-        if (bounds.contains([lat, lon])) {
-            viewTotals[producer] = (viewTotals[producer] ?? 0) + production;
+    var zoom   = map.getZoom();
+    var scale  = Math.pow(1.5, zoom - INITIAL_VIEW.zoom);
+    var bounds = map.getBounds();
+
+    // Find top 15 producers visible in current viewport by production volume
+    var viewTotals = {};
+    markerData.forEach(function(d) {
+        if (bounds.contains([d.lat, d.lon])) {
+            viewTotals[d.producer] = (viewTotals[d.producer] || 0) + d.production;
         }
     });
-    const topInView = new Set(
-        Object.entries(viewTotals)
-            .sort((a, b) => b[1] - a[1])
-            .slice(0, 15)
-            .map(([name]) => name)
-    );
 
-    // Apply new size and color to every marker
-    markerData.forEach(({ marker, producer, baseSize }) => {
-        marker.setRadius(baseSize * scale);
-        const color = (PRODUCER_COLORS[producer] && topInView.has(producer))
-            ? PRODUCER_COLORS[producer]
+    var topInView = Object.keys(viewTotals)
+        .sort(function(a, b) { return viewTotals[b] - viewTotals[a]; })
+        .slice(0, 15);
+
+    var topSet = {};
+    topInView.forEach(function(name) { topSet[name] = true; });
+
+    // Resize and recolor every marker
+    markerData.forEach(function(d) {
+        d.marker.setRadius(d.baseSize * scale);
+        var color = (PRODUCER_COLORS[d.producer] && topSet[d.producer])
+            ? PRODUCER_COLORS[d.producer]
             : OTHER_COLOR;
-        marker.setStyle({ fillColor: color });
+        d.marker.setStyle({ fillColor: color });
     });
 
-    // Labels — only rendered when zoomed in
+    // Labels — only rendered when zoomed in close enough
     labelPane.innerHTML = '';
     if (zoom < LABEL_MIN_ZOOM) return;
 
-    const maxLabels = zoom >= 10 ? LABEL_LIMITS.detailed : LABEL_LIMITS.default;
+    var maxLabels = zoom >= 10 ? LABEL_LIMITS.detailed : LABEL_LIMITS.default;
 
-    markerData
-        .filter(d => bounds.contains([d.lat, d.lon]) && d.production >= LABEL_MIN_PROD)
-        .sort((a, b) => b.production - a.production)
-        .slice(0, maxLabels)
-        .forEach(({ lat, lon, producer }) => {
-            const pt  = map.latLngToContainerPoint([lat, lon]);
-            const lbl = document.createElement('div');
-            lbl.className   = 'marker-label';
-            lbl.textContent = producer;
-            Object.assign(lbl.style, {
-                position:   'absolute',
-                left:       `${pt.x + 8}px`,
-                top:        `${pt.y - 6}px`,
-                fontSize:   '11px',
-                fontWeight: '600',
-                color:      '#222',
-                textShadow: '1px 1px 2px #fff,-1px -1px 2px #fff,1px -1px 2px #fff,-1px 1px 2px #fff',
-                whiteSpace: 'nowrap',
-                pointerEvents: 'none'
-            });
-            labelPane.appendChild(lbl);
-        });
+    var visible = markerData.filter(function(d) {
+        return bounds.contains([d.lat, d.lon]) && d.production >= LABEL_MIN_PROD;
+    });
+    visible.sort(function(a, b) { return b.production - a.production; });
+    visible.slice(0, maxLabels).forEach(function(d) {
+        var pt  = map.latLngToContainerPoint([d.lat, d.lon]);
+        var lbl = document.createElement('div');
+        lbl.className   = 'marker-label';
+        lbl.textContent = d.producer;
+        lbl.style.cssText =
+            'position:absolute;' +
+            'left:' + (pt.x + 8) + 'px;' +
+            'top:'  + (pt.y - 6) + 'px;' +
+            'font-size:11px;font-weight:600;color:#222;white-space:nowrap;pointer-events:none;' +
+            'text-shadow:1px 1px 2px #fff,-1px -1px 2px #fff,1px -1px 2px #fff,-1px 1px 2px #fff;';
+        labelPane.appendChild(lbl);
+    });
 }
 
-map.on('zoomend moveend', updateMarkersAndLabels);
-updateMarkersAndLabels();
+map.on('zoomend', updateMarkersAndLabels);
+map.on('moveend', updateMarkersAndLabels);
 
 // ============================================================
 // LEGEND
 // ============================================================
 
-function makeSymbolCanvas(geology, color, size = 7) {
-    const canvas = document.createElement('canvas');
+function makeSymbolCanvas(geology, color, size) {
+    size = size || 7;
+    var canvas = document.createElement('canvas');
     canvas.width = canvas.height = 28;
-    const ctx = canvas.getContext('2d');
-    const cx = 14, cy = 14;
+    var ctx = canvas.getContext('2d');
+    var cx = 14, cy = 14;
 
     ctx.fillStyle   = color;
     ctx.strokeStyle = 'rgba(0,0,0,0.4)';
@@ -343,9 +339,9 @@ function makeSymbolCanvas(geology, color, size = 7) {
         ctx.lineTo(cx - size, cy);
         ctx.closePath();
     } else {
-        ctx.moveTo(cx,                 cy - size);
-        ctx.lineTo(cx + size * 0.866,  cy + size * 0.5);
-        ctx.lineTo(cx - size * 0.866,  cy + size * 0.5);
+        ctx.moveTo(cx,                cy - size);
+        ctx.lineTo(cx + size * 0.866, cy + size * 0.5);
+        ctx.lineTo(cx - size * 0.866, cy + size * 0.5);
         ctx.closePath();
     }
 
@@ -355,98 +351,90 @@ function makeSymbolCanvas(geology, color, size = 7) {
 }
 
 function legendRow(canvas, label) {
-    const row = document.createElement('div');
+    var row = document.createElement('div');
     row.className = 'legend-item';
-    const sym = document.createElement('span');
+    var sym = document.createElement('span');
     sym.className = 'legend-symbol';
     sym.appendChild(canvas);
-    const txt = document.createElement('span');
+    var txt = document.createElement('span');
     txt.textContent = label;
-    row.append(sym, txt);
+    row.appendChild(sym);
+    row.appendChild(txt);
     return row;
 }
 
-const legend = L.control({ position: 'topright' });
+function buildLegend() {
+    var legend = L.control({ position: 'topright' });
 
-legend.onAdd = function () {
-    const container = L.DomUtil.create('div', 'legend-container');
+    legend.onAdd = function() {
+        var container = L.DomUtil.create('div', 'legend-container');
 
-    // Toggle button
-    const btn = L.DomUtil.create('button', 'legend-toggle', container);
-    btn.innerHTML = '☰ Legend';
-    btn.style.cssText = [
-        'background:white', 'border:2px solid rgba(0,0,0,0.2)',
-        'border-radius:4px', 'padding:8px 12px', 'cursor:pointer',
-        'font-size:14px', 'font-weight:600', 'box-shadow:0 1px 5px rgba(0,0,0,0.4)',
-        'display:block', 'width:100%'
-    ].join(';');
+        var btn = L.DomUtil.create('button', 'legend-toggle', container);
+        btn.innerHTML = '☰ Legend';
+        btn.style.cssText =
+            'background:white;border:2px solid rgba(0,0,0,0.2);border-radius:4px;' +
+            'padding:8px 12px;cursor:pointer;font-size:14px;font-weight:600;' +
+            'box-shadow:0 1px 5px rgba(0,0,0,0.4);display:block;width:100%;';
 
-    // Content panel
-    const panel = L.DomUtil.create('div', 'legend', container);
-    panel.style.display = 'none';
+        var panel = L.DomUtil.create('div', 'legend', container);
+        panel.style.display = 'none';
 
-    // --- Geology types ---
-    const h1 = document.createElement('h4');
-    h1.textContent = 'Geology Type';
-    panel.appendChild(h1);
+        // Geology types
+        var h1 = document.createElement('h4');
+        h1.textContent = 'Geology Type';
+        panel.appendChild(h1);
+        var sec1 = document.createElement('div');
+        sec1.className = 'legend-section';
+        [
+            { geology: 'limestone',   label: 'Limestone'     },
+            { geology: 'hard_rock',   label: 'Hard Rock'     },
+            { geology: 'sand_gravel', label: 'Sand & Gravel' }
+        ].forEach(function(g) {
+            sec1.appendChild(legendRow(makeSymbolCanvas(g.geology, '#666'), g.label));
+        });
+        panel.appendChild(sec1);
 
-    const sec1 = document.createElement('div');
-    sec1.className = 'legend-section';
-    [
-        { geology: 'limestone',   label: 'Limestone'     },
-        { geology: 'hard_rock',   label: 'Hard Rock'     },
-        { geology: 'sand_gravel', label: 'Sand & Gravel' }
-    ].forEach(({ geology, label }) => {
-        sec1.appendChild(legendRow(makeSymbolCanvas(geology, '#666'), label));
-    });
-    panel.appendChild(sec1);
+        // Production sizes
+        var h2 = document.createElement('h4');
+        h2.textContent = 'Annual Production';
+        h2.style.marginTop = '10px';
+        panel.appendChild(h2);
+        var sec2 = document.createElement('div');
+        sec2.className = 'legend-section';
+        [
+            { label: '< 100K tons',      size: SIZE_BUCKETS[0].size },
+            { label: '100K - 250K tons', size: SIZE_BUCKETS[1].size },
+            { label: '250K - 500K tons', size: SIZE_BUCKETS[2].size },
+            { label: '500K - 1.5M tons', size: SIZE_BUCKETS[3].size },
+            { label: '> 1.5M tons',      size: SIZE_BUCKETS[4].size }
+        ].forEach(function(s) {
+            sec2.appendChild(legendRow(makeSymbolCanvas('limestone', '#666', s.size * 0.65), s.label));
+        });
+        panel.appendChild(sec2);
 
-    // --- Production sizes ---
-    const h2 = document.createElement('h4');
-    h2.textContent = 'Annual Production';
-    h2.style.marginTop = '10px';
-    panel.appendChild(h2);
+        // Top producers
+        var h3 = document.createElement('h4');
+        h3.textContent = 'Top Producers';
+        h3.style.marginTop = '10px';
+        panel.appendChild(h3);
+        var sec3 = document.createElement('div');
+        sec3.className = 'legend-section';
+        Object.keys(PRODUCER_COLORS).forEach(function(name) {
+            sec3.appendChild(legendRow(makeSymbolCanvas('limestone', PRODUCER_COLORS[name]), name));
+        });
+        sec3.appendChild(legendRow(makeSymbolCanvas('limestone', OTHER_COLOR), 'All Other Producers'));
+        panel.appendChild(sec3);
 
-    const sec2 = document.createElement('div');
-    sec2.className = 'legend-section';
-    [
-        { label: '< 100K tons',      size: SIZE_BUCKETS[0].size },
-        { label: '100K – 250K tons', size: SIZE_BUCKETS[1].size },
-        { label: '250K – 500K tons', size: SIZE_BUCKETS[2].size },
-        { label: '500K – 1.5M tons', size: SIZE_BUCKETS[3].size },
-        { label: '> 1.5M tons',      size: SIZE_BUCKETS[4].size }
-    ].forEach(({ label, size }) => {
-        sec2.appendChild(legendRow(makeSymbolCanvas('limestone', '#666', size * 0.65), label));
-    });
-    panel.appendChild(sec2);
+        btn.addEventListener('click', function() {
+            var hidden = panel.style.display === 'none';
+            panel.style.display = hidden ? 'block' : 'none';
+            btn.innerHTML = hidden ? '✕ Legend' : '☰ Legend';
+        });
 
-    // --- Top producers ---
-    const h3 = document.createElement('h4');
-    h3.textContent = 'Top Producers';
-    h3.style.marginTop = '10px';
-    panel.appendChild(h3);
+        return container;
+    };
 
-    const sec3 = document.createElement('div');
-    sec3.className = 'legend-section';
-    Object.entries(PRODUCER_COLORS).forEach(([name, color]) => {
-        sec3.appendChild(legendRow(makeSymbolCanvas('limestone', color), name));
-    });
-    sec3.appendChild(legendRow(makeSymbolCanvas('limestone', OTHER_COLOR), 'All Other Producers'));
-    panel.appendChild(sec3);
-
-    // Toggle
-    btn.addEventListener('click', () => {
-        const hidden = panel.style.display === 'none';
-        panel.style.display = hidden ? 'block' : 'none';
-        btn.innerHTML = hidden ? '✕ Legend' : '☰ Legend';
-    });
-
-    return container;
-};
-
-legend.addTo(map);
-
-console.log('Map initialized successfully');
-
-   // ... rest of your existing map.js code goes inside here
+    legend.addTo(map);
 }
+
+console.log('Map script loaded — waiting for GeoJSON...');

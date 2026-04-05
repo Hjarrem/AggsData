@@ -8,14 +8,13 @@ const FIELDS = {
     producer:   'CURRENT_CONTROLLER_NAME',
     operator:   'CURRENT_OPERATOR_NAME',
     sic:        'PRIMARY_SIC',
-    canvass:    'PRIMARY_CANVASS',   // 'Stone' | 'SandAndGravel'
+    canvass:    'PRIMARY_CANVASS',
     production: 'Tons 2025',
     lat:        'LATITUDE',
     lon:        'LONGITUDE'
 };
 
 // Maps PRIMARY_SIC strings to internal geology keys (controls symbol shape)
-// Add new SIC values here as your data grows
 const SIC_TO_GEOLOGY = {
     'Crushed, Broken Limestone NEC': 'limestone',
     'Crushed, Broken Marble':        'limestone',
@@ -50,13 +49,12 @@ const PRODUCER_COLORS = {
 const OTHER_COLOR = '#bbbbbb';
 
 // Symbol size buckets by annual production (tons)
-// Format: minimum threshold -> pixel radius at default zoom
 const SIZE_BUCKETS = [
     { min: 0,        size: 3  },  // < 100K tons
     { min: 100000,   size: 6  },  // 100K - 250K
-    { min: 250000,   size: 8 },  // 250K - 500K
-    { min: 500000,   size: 12 },  // 500K - 1.5M
-    { min: 1500000,  size: 26 }   // > 1.5M
+    { min: 250000,   size: 10 },  // 250K - 500K
+    { min: 500000,   size: 16 },  // 500K - 1.5M
+    { min: 1500000,  size: 24 }   // > 1.5M
 ];
 
 // Map starting position and zoom
@@ -65,12 +63,13 @@ const INITIAL_VIEW = {
     zoom: 5
 };
 
-// Labels appear at this zoom level and above
-const LABEL_MIN_ZOOM = 11;
-// Minimum production (tons) for a label to appear
+// Label settings
+const LABEL_MIN_ZOOM = 9;
 const LABEL_MIN_PROD = 100000;
-// Max labels shown at zoom 9 / zoom 10+
-const LABEL_LIMITS   = { default: 25, detailed: 50 };
+const LABEL_LIMITS   = { default: 50, detailed: 100 };
+
+// Selection settings
+const MAX_SELECTION = 100;
 
 // ============================================================
 // HELPERS
@@ -109,6 +108,19 @@ function formatTons(num) {
     return num.toLocaleString();
 }
 
+// Point-in-polygon test (ray casting)
+function pointInPolygon(lat, lon, polygonLatLngs) {
+    var x = lon, y = lat;
+    var inside = false;
+    for (var i = 0, j = polygonLatLngs.length - 1; i < polygonLatLngs.length; j = i++) {
+        var xi = polygonLatLngs[i].lng, yi = polygonLatLngs[i].lat;
+        var xj = polygonLatLngs[j].lng, yj = polygonLatLngs[j].lat;
+        var intersect = ((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+        if (intersect) inside = !inside;
+    }
+    return inside;
+}
+
 // ============================================================
 // CANVAS RENDERER — custom shapes per geology type
 // ============================================================
@@ -125,25 +137,20 @@ L.Canvas.include({
 
         ctx.globalAlpha = layer.options.fillOpacity || 0.85;
         ctx.fillStyle   = color;
-        ctx.strokeStyle = 'rgba(0,0,0,0.45)';
-        ctx.lineWidth   = 0.8;
+        ctx.strokeStyle = layer.options.selected ? '#FFD700' : 'rgba(0,0,0,0.45)';
+        ctx.lineWidth   = layer.options.selected ? 2.5 : 0.8;
 
         ctx.beginPath();
 
         if (geo === 'limestone') {
-            // Circle
             ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
-
         } else if (geo === 'hard_rock') {
-            // Diamond
             ctx.moveTo(p.x,        p.y - size);
             ctx.lineTo(p.x + size, p.y);
             ctx.lineTo(p.x,        p.y + size);
             ctx.lineTo(p.x - size, p.y);
             ctx.closePath();
-
         } else {
-            // Triangle — sand & gravel + fallback
             ctx.moveTo(p.x,                p.y - size);
             ctx.lineTo(p.x + size * 0.866, p.y + size * 0.5);
             ctx.lineTo(p.x - size * 0.866, p.y + size * 0.5);
@@ -176,6 +183,10 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 var renderer = L.canvas({ padding: 0.5 });
 
+// Label pane — Leaflet transforms this automatically during pan
+map.createPane('labelsPane');
+map.getPane('labelsPane').style.pointerEvents = 'none';
+
 // ============================================================
 // DATA FETCH & MARKER CREATION
 // ============================================================
@@ -191,8 +202,8 @@ function initMarkers(features) {
     console.log('Loading ' + features.length + ' features from AggsData.geojson');
 
     features.forEach(function(feature) {
-        if(!feature.geometry || !feature.geometry.coordinates) return;  //skips null geometry
-        
+        if (!feature.geometry || !feature.geometry.coordinates) return;
+
         var props      = feature.properties;
         var coords     = feature.geometry.coordinates;
         var lon        = coords[0];
@@ -202,6 +213,7 @@ function initMarkers(features) {
         var producer   = props[FIELDS.producer];
         var operator   = props[FIELDS.operator];
         var sic        = props[FIELDS.sic];
+        var canvass    = props[FIELDS.canvass];
         var production = props[FIELDS.production] || 0;
         var geology    = getGeology(props);
         var baseSize   = getBaseSize(production);
@@ -213,6 +225,7 @@ function initMarkers(features) {
             fillColor:   color,
             fillOpacity: 0.85,
             geology:     geology,
+            selected:    false,
             stroke:      false
         });
 
@@ -236,7 +249,12 @@ function initMarkers(features) {
 
         markerData.push({
             marker:     marker,
+            name:       name,
             producer:   producer,
+            operator:   operator  || '',
+            sic:        sic       || '',
+            canvass:    canvass   || '',
+            geology:    geology,
             production: production,
             lat:        lat,
             lon:        lon,
@@ -246,6 +264,7 @@ function initMarkers(features) {
 
     console.log('Placed ' + markerData.length + ' markers');
     buildLegend();
+    buildSelectionControl();
     updateMarkersAndLabels();
 }
 
@@ -253,19 +272,16 @@ function initMarkers(features) {
 // ZOOM-RESPONSIVE SIZING & LABELS
 // ============================================================
 
-// NEW — use a real Leaflet pane so CSS transforms keep labels in sync during pan
-map.createPane('labelsPane');
-map.getPane('labelsPane').style.pointerEvents = 'none';
-var labelPane = map.getPane('labelsPane');
+var labelMarkers = [];
 
 function updateMarkersAndLabels() {
     if (!markerData.length) return;
 
     var zoom   = map.getZoom();
-    var scale  = Math.pow(1.2, zoom - INITIAL_VIEW.zoom);
+    var scale  = Math.pow(0.75, zoom - INITIAL_VIEW.zoom);
     var bounds = map.getBounds();
 
-    // Find top 15 producers visible in current viewport by production volume
+    // Find top 15 producers in current viewport by production volume
     var viewTotals = {};
     markerData.forEach(function(d) {
         if (bounds.contains([d.lat, d.lon])) {
@@ -289,36 +305,358 @@ function updateMarkersAndLabels() {
         d.marker.setStyle({ fillColor: color });
     });
 
-    // Labels — only rendered when zoomed in close enough
-    if (window._labelMarkers) {
-        window._labelMarkers.forEach(function(m) { m.remove(); });
-    }
-    window._labelMarkers = [];
+    // Remove old label markers
+    labelMarkers.forEach(function(m) { m.remove(); });
+    labelMarkers = [];
+
     if (zoom < LABEL_MIN_ZOOM) return;
 
-    var maxLabels = zoom >= 12 ? LABEL_LIMITS.detailed : LABEL_LIMITS.default;
+    var maxLabels = zoom >= 10 ? LABEL_LIMITS.detailed : LABEL_LIMITS.default;
 
     var visible = markerData.filter(function(d) {
         return bounds.contains([d.lat, d.lon]) && d.production >= LABEL_MIN_PROD;
     });
     visible.sort(function(a, b) { return b.production - a.production; });
     visible.slice(0, maxLabels).forEach(function(d) {
-    var lbl = L.marker([d.lat, d.lon], {
-        pane: 'labelsPane',
-        interactive: false,
-        icon: L.divIcon({
-            className: 'marker-label',
-            html: d.producer,
-            iconSize: null,
-            iconAnchor: [-8,6]
-        })
-    }).addTo(map);
-    window._labelMarkers.push(lbl);
+        var lbl = L.marker([d.lat, d.lon], {
+            pane:        'labelsPane',
+            interactive: false,
+            icon: L.divIcon({
+                className:  'marker-label',
+                html:       d.producer,
+                iconSize:   null,
+                iconAnchor: [-8, 6]
+            })
+        }).addTo(map);
+        labelMarkers.push(lbl);
     });
 }
 
 map.on('zoomend', updateMarkersAndLabels);
 map.on('moveend', updateMarkersAndLabels);
+
+// ============================================================
+// SELECTION TOOL
+// ============================================================
+
+var selectMode      = null;   // null | 'rect' | 'poly'
+var selectedData    = [];
+var rectStart       = null;
+var rectLayer       = null;
+var polyPoints      = [];
+var polyLayer       = null;
+var polyPreviewLine = null;
+
+// Status bar shown after a selection
+var selectionBar = document.createElement('div');
+selectionBar.id = 'selection-bar';
+selectionBar.style.cssText =
+    'display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);' +
+    'background:white;border:2px solid rgba(0,0,0,0.2);border-radius:6px;' +
+    'padding:10px 18px;box-shadow:0 2px 8px rgba(0,0,0,0.3);' +
+    'font-size:13px;font-family:inherit;z-index:1000;' +
+    'display:none;align-items:center;gap:12px;';
+document.body.appendChild(selectionBar);
+
+function updateSelectionBar() {
+    var count = selectedData.length;
+    if (count === 0) {
+        selectionBar.style.display = 'none';
+        return;
+    }
+
+    var overLimit = count > MAX_SELECTION;
+    selectionBar.style.display = 'flex';
+    selectionBar.innerHTML =
+        '<span id="sel-count">' +
+            (overLimit
+                ? '⚠️ ' + count + ' sites selected — max is ' + MAX_SELECTION + '. Refine your selection.'
+                : count + ' site' + (count === 1 ? '' : 's') + ' selected') +
+        '</span>';
+
+    if (!overLimit) {
+        var dlBtn = document.createElement('button');
+        dlBtn.textContent = '⬇ Download CSV';
+        dlBtn.style.cssText =
+            'background:#2c7bb6;color:white;border:none;border-radius:4px;' +
+            'padding:6px 12px;cursor:pointer;font-size:13px;font-weight:600;';
+        dlBtn.addEventListener('click', downloadCSV);
+        selectionBar.appendChild(dlBtn);
+    }
+
+    var clearBtn = document.createElement('button');
+    clearBtn.textContent = '✕ Clear';
+    clearBtn.style.cssText =
+        'background:#e0e0e0;color:#333;border:none;border-radius:4px;' +
+        'padding:6px 10px;cursor:pointer;font-size:13px;';
+    clearBtn.addEventListener('click', clearSelection);
+    selectionBar.appendChild(clearBtn);
+}
+
+function applySelectionFromShape(latLngs) {
+    // latLngs is an array of L.LatLng forming a closed polygon
+    clearSelectionHighlights();
+    selectedData = [];
+
+    markerData.forEach(function(d) {
+        if (pointInPolygon(d.lat, d.lon, latLngs)) {
+            selectedData.push(d);
+            d.marker.setStyle({ selected: true });
+            d.marker.redraw();
+        }
+    });
+
+    updateSelectionBar();
+}
+
+function clearSelectionHighlights() {
+    markerData.forEach(function(d) {
+        if (d.marker.options.selected) {
+            d.marker.setStyle({ selected: false });
+            d.marker.redraw();
+        }
+    });
+}
+
+function clearSelection() {
+    clearSelectionHighlights();
+    selectedData = [];
+    updateSelectionBar();
+    clearDrawing();
+}
+
+function clearDrawing() {
+    if (rectLayer)       { rectLayer.remove();       rectLayer = null; }
+    if (polyLayer)       { polyLayer.remove();        polyLayer = null; }
+    if (polyPreviewLine) { polyPreviewLine.remove();  polyPreviewLine = null; }
+    rectStart  = null;
+    polyPoints = [];
+}
+
+// ---- Rectangle selection ----
+
+function startRectMode() {
+    clearSelection();
+    selectMode = 'rect';
+    map.dragging.disable();
+    map.getContainer().style.cursor = 'crosshair';
+}
+
+map.on('mousedown', function(e) {
+    if (selectMode !== 'rect') return;
+    rectStart = e.latlng;
+    if (rectLayer) { rectLayer.remove(); rectLayer = null; }
+});
+
+map.on('mousemove', function(e) {
+    if (selectMode !== 'rect' || !rectStart) return;
+    if (rectLayer) rectLayer.remove();
+    rectLayer = L.rectangle([rectStart, e.latlng], {
+        color: '#2c7bb6', weight: 2, fillOpacity: 0.1, dashArray: '5,5'
+    }).addTo(map);
+});
+
+map.on('mouseup', function(e) {
+    if (selectMode !== 'rect' || !rectStart) return;
+
+    var bounds = L.latLngBounds(rectStart, e.latlng);
+    // Convert bounds to polygon corners for pointInPolygon
+    var corners = [
+        L.latLng(bounds.getNorth(), bounds.getWest()),
+        L.latLng(bounds.getNorth(), bounds.getEast()),
+        L.latLng(bounds.getSouth(), bounds.getEast()),
+        L.latLng(bounds.getSouth(), bounds.getWest())
+    ];
+    applySelectionFromShape(corners);
+
+    selectMode = null;
+    rectStart  = null;
+    map.dragging.enable();
+    map.getContainer().style.cursor = '';
+    setActiveButton(null);
+});
+
+// ---- Polygon selection ----
+
+function startPolyMode() {
+    clearSelection();
+    selectMode = 'poly';
+    polyPoints = [];
+    map.getContainer().style.cursor = 'crosshair';
+}
+
+map.on('click', function(e) {
+    if (selectMode !== 'poly') return;
+
+    polyPoints.push(e.latlng);
+
+    // Redraw the in-progress polygon outline
+    if (polyLayer) polyLayer.remove();
+    if (polyPoints.length > 1) {
+        polyLayer = L.polyline(polyPoints, {
+            color: '#e67e22', weight: 2, dashArray: '5,5'
+        }).addTo(map);
+    }
+});
+
+map.on('mousemove', function(e) {
+    if (selectMode !== 'poly' || polyPoints.length === 0) return;
+    if (polyPreviewLine) polyPreviewLine.remove();
+    polyPreviewLine = L.polyline([polyPoints[polyPoints.length - 1], e.latlng], {
+        color: '#e67e22', weight: 1.5, dashArray: '3,4', opacity: 0.7
+    }).addTo(map);
+});
+
+map.on('dblclick', function(e) {
+    if (selectMode !== 'poly' || polyPoints.length < 3) return;
+
+    // Close the polygon
+    if (polyLayer) polyLayer.remove();
+    polyLayer = L.polygon(polyPoints, {
+        color: '#e67e22', weight: 2, fillOpacity: 0.1
+    }).addTo(map);
+
+    applySelectionFromShape(polyPoints);
+
+    selectMode = null;
+    if (polyPreviewLine) { polyPreviewLine.remove(); polyPreviewLine = null; }
+    map.getContainer().style.cursor = '';
+    setActiveButton(null);
+});
+
+// ---- CSV download ----
+
+function downloadCSV() {
+    var headers = ['Name', 'Producer', 'Operator', 'SIC Type', 'Geology', 'Production (tons)', 'Latitude', 'Longitude'];
+
+    var rows = selectedData.map(function(d) {
+        return [
+            csvEscape(d.name),
+            csvEscape(d.producer),
+            csvEscape(d.operator),
+            csvEscape(d.sic),
+            csvEscape(GEOLOGY_LABELS[d.geology] || d.geology),
+            d.production,
+            d.lat,
+            d.lon
+        ].join(',');
+    });
+
+    var csv  = [headers.join(',')].concat(rows).join('\n');
+    var blob = new Blob([csv], { type: 'text/csv' });
+    var url  = URL.createObjectURL(blob);
+    var a    = document.createElement('a');
+    a.href     = url;
+    a.download = 'aggs_selection.csv';
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
+function csvEscape(val) {
+    if (val === null || val === undefined) return '';
+    var str = String(val);
+    // Wrap in quotes if value contains comma, quote, or newline
+    if (str.search(/[",\n]/) >= 0) return '"' + str.replace(/"/g, '""') + '"';
+    return str;
+}
+
+// ============================================================
+// SELECTION CONTROL BUTTON GROUP
+// ============================================================
+
+var activeSelectBtn = null;
+
+function setActiveButton(btn) {
+    if (activeSelectBtn) {
+        activeSelectBtn.style.background = 'white';
+        activeSelectBtn.style.color      = '#333';
+    }
+    activeSelectBtn = btn;
+    if (btn) {
+        btn.style.background = '#2c7bb6';
+        btn.style.color      = 'white';
+    }
+}
+
+function buildSelectionControl() {
+    var ctrl = L.control({ position: 'topleft' });
+
+    ctrl.onAdd = function() {
+        var container = L.DomUtil.create('div', 'leaflet-bar select-control');
+        container.style.cssText =
+            'background:white;border:2px solid rgba(0,0,0,0.2);border-radius:4px;' +
+            'box-shadow:0 1px 5px rgba(0,0,0,0.4);overflow:hidden;';
+
+        // Title bar
+        var title = document.createElement('div');
+        title.textContent = 'Select Sites';
+        title.style.cssText =
+            'padding:6px 10px;font-size:12px;font-weight:700;color:#555;' +
+            'border-bottom:1px solid #ddd;background:#f8f8f8;';
+        container.appendChild(title);
+
+        var btnStyle =
+            'display:block;width:100%;padding:7px 12px;border:none;border-bottom:1px solid #eee;' +
+            'background:white;color:#333;font-size:13px;cursor:pointer;text-align:left;font-family:inherit;';
+
+        // Rectangle button
+        var rectBtn = document.createElement('button');
+        rectBtn.innerHTML = '⬜ Rectangle';
+        rectBtn.style.cssText = btnStyle;
+        rectBtn.title = 'Click and drag to select sites';
+        rectBtn.addEventListener('click', function(e) {
+            L.DomEvent.stopPropagation(e);
+            if (selectMode === 'rect') {
+                selectMode = null;
+                map.dragging.enable();
+                map.getContainer().style.cursor = '';
+                setActiveButton(null);
+            } else {
+                startRectMode();
+                setActiveButton(rectBtn);
+            }
+        });
+        container.appendChild(rectBtn);
+
+        // Polygon button
+        var polyBtn = document.createElement('button');
+        polyBtn.innerHTML = '✏️ Polygon';
+        polyBtn.style.cssText = btnStyle;
+        polyBtn.title = 'Click to add vertices, double-click to close';
+        polyBtn.addEventListener('click', function(e) {
+            L.DomEvent.stopPropagation(e);
+            if (selectMode === 'poly') {
+                selectMode = null;
+                map.getContainer().style.cursor = '';
+                clearDrawing();
+                setActiveButton(null);
+            } else {
+                startPolyMode();
+                setActiveButton(polyBtn);
+            }
+        });
+        container.appendChild(polyBtn);
+
+        // Clear button
+        var clearBtn = document.createElement('button');
+        clearBtn.innerHTML = '✕ Clear';
+        clearBtn.style.cssText = btnStyle + 'border-bottom:none;color:#c0392b;';
+        clearBtn.addEventListener('click', function(e) {
+            L.DomEvent.stopPropagation(e);
+            clearSelection();
+            setActiveButton(null);
+        });
+        container.appendChild(clearBtn);
+
+        // Prevent map click-through on the control
+        L.DomEvent.disableClickPropagation(container);
+        L.DomEvent.disableScrollPropagation(container);
+
+        return container;
+    };
+
+    ctrl.addTo(map);
+}
 
 // ============================================================
 // LEGEND

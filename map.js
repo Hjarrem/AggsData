@@ -54,9 +54,9 @@ const OTHER_COLOR = '#bbbbbb';
 const SIZE_BUCKETS = [
     { min: 0,        size: 3  },  // < 100K tons
     { min: 100000,   size: 6  },  // 100K - 250K
-    { min: 250000,   size: 10 },  // 250K - 500K
-    { min: 500000,   size: 16 },  // 500K - 1.5M
-    { min: 1500000,  size: 24 }   // > 1.5M
+    { min: 250000,   size: 8 },  // 250K - 500K
+    { min: 500000,   size: 12 },  // 500K - 1.5M
+    { min: 1500000,  size: 26 }   // > 1.5M
 ];
 
 // Map starting position and zoom
@@ -66,11 +66,11 @@ const INITIAL_VIEW = {
 };
 
 // Labels appear at this zoom level and above
-const LABEL_MIN_ZOOM = 9;
+const LABEL_MIN_ZOOM = 10;
 // Minimum production (tons) for a label to appear
 const LABEL_MIN_PROD = 100000;
 // Max labels shown at zoom 9 / zoom 10+
-const LABEL_LIMITS   = { default: 50, detailed: 100 };
+const LABEL_LIMITS   = { default: 25, detailed: 50 };
 
 // ============================================================
 // HELPERS
@@ -261,7 +261,7 @@ function updateMarkersAndLabels() {
     if (!markerData.length) return;
 
     var zoom   = map.getZoom();
-    var scale  = Math.pow(1.5, zoom - INITIAL_VIEW.zoom);
+    var scale  = Math.pow(0.75, zoom - INITIAL_VIEW.zoom);
     var bounds = map.getBounds();
 
     // Find top 15 producers visible in current viewport by production volume

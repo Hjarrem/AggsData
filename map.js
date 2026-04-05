@@ -191,6 +191,8 @@ function initMarkers(features) {
     console.log('Loading ' + features.length + ' features from AggsData.geojson');
 
     features.forEach(function(feature) {
+        if(!feature.geometry || !feature.geometry.coordinates) return;  //skips null geometry
+        
         var props      = feature.properties;
         var coords     = feature.geometry.coordinates;
         var lon        = coords[0];

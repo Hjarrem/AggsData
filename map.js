@@ -307,7 +307,7 @@ function updateMarkersAndLabels() {
         pane: 'labelsPane',
         interactive: false,
         icon: L.divIcon({
-            classname: 'marker-label',
+            className: 'marker-label',
             html: d.producer,
             iconSize: null,
             iconAnchor: [-8,6]

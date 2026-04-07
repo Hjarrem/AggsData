@@ -64,9 +64,9 @@ const INITIAL_VIEW = {
 };
 
 // Label settings
-const LABEL_MIN_ZOOM = 9;
-const LABEL_MIN_PROD = 100000;
-const LABEL_LIMITS   = { default: 50, detailed: 100 };
+const LABEL_MIN_ZOOM = 11;
+const LABEL_MIN_PROD = 150000;
+const LABEL_LIMITS   = { default: 15, detailed: 100 };
 
 // Selection settings
 const MAX_SELECTION = 100;

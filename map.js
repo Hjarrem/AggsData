@@ -50,11 +50,11 @@ const OTHER_COLOR = '#bbbbbb';
 
 // Symbol size buckets by annual production (tons)
 const SIZE_BUCKETS = [
-    { min: 0,        size: 3  },  // < 100K tons
-    { min: 100000,   size: 6  },  // 100K - 250K
-    { min: 250000,   size: 10 },  // 250K - 500K
-    { min: 500000,   size: 16 },  // 500K - 1.5M
-    { min: 1500000,  size: 24 }   // > 1.5M
+    { min: 0,        size: 2  },  // < 100K tons
+    { min: 100000,   size: 4  },  // 100K - 250K
+    { min: 250000,   size: 8 },  // 250K - 500K
+    { min: 500000,   size: 12 },  // 500K - 1.5M
+    { min: 1500000,  size: 16 }   // > 1.5M
 ];
 
 // Map starting position and zoom
@@ -278,7 +278,7 @@ function updateMarkersAndLabels() {
     if (!markerData.length) return;
 
     var zoom   = map.getZoom();
-    var scale  = Math.pow(0.75, zoom - INITIAL_VIEW.zoom);
+    var scale  = Math.pow(1.2, zoom - INITIAL_VIEW.zoom);
     var bounds = map.getBounds();
 
     // Find top 15 producers in current viewport by production volume

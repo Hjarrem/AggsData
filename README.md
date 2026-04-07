@@ -13,13 +13,13 @@ A custom Leaflet map for visualizing aggregate producer facilities across the Un
 - **Color-Coded Producers** - Top producers get unique colors, others are grey
 - **Interactive Popups** - Click any point for detailed facility information
 - **Responsive Legend** - Shows geology types, size scale, and producer colors
-- **Exportable Data** - Select sites to export up to 100 at a time
+- **Exportable Data** - Select sites to export, up to 100 at a time
 
 ## Getting Started
 
 ### Quick Start
 
-1. Open `index.html` in a web browser - that's it!
+1. Open `index.html` or AggsData.com in a web browser - that's it!
 2. The map will load with sample data
 
 ### Adding Your Data

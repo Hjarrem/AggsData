@@ -1,0 +1,56 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-86.7816, 36.1627] },
+      "properties": {
+        "order_id":       "ORD-2024-00142",
+        "product":        "Crushed Limestone #57",
+        "quantity":       850,
+        "quantity_unit":  "tons",
+        "asp":            18.75,
+        "delivery_date":  "2024-03-14",
+        "source_plant":   "Brentwood Quarry",
+        "source_plant_id":"PLT-TN-0042",
+        "customer":       "Customer A",
+        "haul_dist_mi":   12.4,
+        "job_type":       "DOT Highway"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-86.5241, 35.9948] },
+      "properties": {
+        "order_id":       "ORD-2024-00187",
+        "product":        "Crushed Limestone #8",
+        "quantity":       320,
+        "quantity_unit":  "tons",
+        "asp":            22.10,
+        "delivery_date":  "2024-04-02",
+        "source_plant":   "Brentwood Quarry",
+        "source_plant_id":"PLT-TN-0042",
+        "customer":       "Customer B",
+        "haul_dist_mi":   21.0,
+        "job_type":       "Commercial Site"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-87.1022, 36.4310] },
+      "properties": {
+        "order_id":       "ORD-2024-00231",
+        "product":        "Dense Grade Aggregate",
+        "quantity":       1200,
+        "quantity_unit":  "tons",
+        "asp":            16.50,
+        "delivery_date":  "2024-05-18",
+        "source_plant":   "Clarksville Sand & Gravel",
+        "source_plant_id":"PLT-TN-0071",
+        "customer":       "Customer C",
+        "haul_dist_mi":   8.2,
+        "job_type":       "Subdivision"
+      }
+    }
+  ]
+}

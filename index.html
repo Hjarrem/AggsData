@@ -288,6 +288,9 @@
             btnProducers.setAttribute('aria-pressed', 'true');
             btnIntel.classList.remove('active');
             btnIntel.setAttribute('aria-pressed', 'false');
+
+            // 5. Restores producers data
+            map.addLayer(producersLayerGroup);
         }
 
         function setIntelMode() {
@@ -309,6 +312,13 @@
             // 4. Activate intel layer (lazy-loads data first time)
             if (window.DeliveryMode) {
                 DeliveryMode.activate(map);
+            
+            // 5. Removes producer data
+            map.removeLayer(producersLayerGroup);
+
+            //6. Remove any active labels
+            labelMarkers.forEach(m => m.remove());
+            labelMarkers = [];
             }
         }
 

@@ -438,6 +438,9 @@ const DeliveryMode = (() => {
 
   function onMapClick(e) {
     if (!_active) return;
+    // Don't fire the estimator if map.js selection tool is active
+    // (selectMode is a global set by the rect/poly selection handlers)
+    if (window.selectMode && window.selectMode !== null) return;
     openPricePopup(e.latlng, 'all', CONFIG.deliveryOrders.searchRadiusMi);
   }
 
@@ -454,7 +457,7 @@ const DeliveryMode = (() => {
     _active = true;
 
     // Show loading state
-    const toggle = document.getElementById('mode-toggle-intel');
+    const toggle = document.getElementById('mode-btn-intel');
     if (toggle) toggle.classList.add('loading');
 
     try {

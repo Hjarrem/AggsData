@@ -4,26 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>US Aggregate Producers Map</title>
-    
+
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    
+
+    <!-- Market Intel Mode styles -->
+    <link rel="stylesheet" href="delivery-mode.css">
+
+    <!-- DM Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
-        
+
+        /* Map fills the full viewport */
         #map {
             width: 100vw;
             height: 100vh;
+            position: relative; /* establish stacking context for toggle overlay */
         }
-        
+
+        /* ── Mode Toggle — floats over the map ── */
+        /*
+         * The toggle bar is positioned absolute inside #map so that
+         * "top: 12px; left: 50%" is relative to the map div, not the body.
+         * delivery-mode.css owns all the toggle visual styles;
+         * we just place it here.
+         */
+        .mode-toggle-bar {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;   /* above Leaflet tile layer (z ~200) but below popups (z ~700) */
+        }
+
         /* ── Legend ── */
         .legend {
             background: white;
@@ -34,33 +58,33 @@
             max-height: 80vh;
             overflow-y: auto;
         }
-        
+
         .legend h4 {
             margin: 0 0 10px 0;
             font-size: 14px;
             font-weight: 600;
         }
-        
+
         .legend-section {
             margin-bottom: 15px;
         }
-        
+
         .legend-section:last-child {
             margin-bottom: 0;
         }
-        
+
         .legend-item {
             margin: 5px 0;
             display: flex;
             align-items: center;
             font-size: 12px;
         }
-        
+
         .legend-symbol {
             margin-right: 8px;
             flex-shrink: 0;
         }
-        
+
         .legend-symbol canvas {
             vertical-align: middle;
         }
@@ -69,25 +93,22 @@
             background: transparent;
             padding: 0;
         }
-        
+
         .legend-toggle {
             display: block;
             width: 100%;
         }
-        
+
         .legend-toggle:hover {
             background: #f4f4f4 !important;
         }
 
         /* ── Facility labels ── */
-        /* Reset Leaflet's default divIcon box, then style the text */
         .marker-label {
-            /* Remove Leaflet's default divIcon white box */
             background: none !important;
             border: none !important;
             box-shadow: none !important;
             padding: 0 !important;
-            /* Label text styling */
             white-space: nowrap;
             font-size: 11px;
             font-weight: 600;
@@ -110,25 +131,214 @@
             font-size: 13px;
             line-height: 1.6;
         }
-        
+
         .popup-content strong {
             display: block;
             margin-bottom: 5px;
             font-size: 14px;
         }
-        
+
         .popup-content div {
             margin: 3px 0;
         }
     </style>
 </head>
 <body>
-    <div id="map"></div>
-    
+
+    <!-- #map is the positioning parent for the toggle overlay -->
+    <div id="map">
+
+        <!-- ── Mode Toggle — overlaid on map via position:absolute ── -->
+        <div class="mode-toggle-bar" id="mode-toggle-bar" role="group" aria-label="Map mode selector">
+
+            <button class="mode-btn active" id="mode-btn-producers"
+                    aria-pressed="true" title="Aggregate Producer Locations">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 22 22 2 22"/>
+                </svg>
+                Producers
+            </button>
+
+            <div class="mode-divider" aria-hidden="true"></div>
+
+            <button class="mode-btn intel-btn" id="mode-btn-intel"
+                    aria-pressed="false" title="Market Intel — Deliveries &amp; Pricing">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+                Market Intel
+            </button>
+
+        </div>
+        <!-- ── End Mode Toggle ── -->
+
+    </div><!-- #map -->
+
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    
-    <!-- Main map application -->
+
+    <!-- Main map application (defines window.map) -->
     <script src="map.js"></script>
+
+    <!-- Market Intel module (must load after map.js so window.map exists) -->
+    <script src="delivery-mode.js"></script>
+
+    <!-- ── Mode Toggle Controller ── -->
+    <script>
+    (function initModeToggle() {
+
+        var btnProducers = document.getElementById('mode-btn-producers');
+        var btnIntel     = document.getElementById('mode-btn-intel');
+
+        // ── References to the Producers-mode Leaflet controls ──────────────
+        // These are set by callbacks from map.js once the controls are built.
+        // We stash them on a small registry object so the toggle can show/hide them.
+        var producersControls = {
+            selectionCtrlEl: null,   // the DOM element of the selection control
+            legendCtrlEl:    null,   // the DOM element of the legend control
+            selectionBar:    null    // the fixed-position selection status bar
+        };
+
+        // map.js calls buildSelectionControl() and buildLegend() synchronously
+        // inside initMarkers(), which runs after the GeoJSON fetch.
+        // We poll briefly for the DOM elements rather than patching map.js.
+        // Both controls use standard Leaflet .leaflet-bar container elements
+        // with known child text content.
+        function findProducersControls() {
+            // Selection control: topleft, contains "Select Sites" text
+            document.querySelectorAll('.leaflet-top.leaflet-left .select-control').forEach(function(el) {
+                producersControls.selectionCtrlEl = el;
+            });
+            // Legend control: topright
+            document.querySelectorAll('.leaflet-top.leaflet-right .legend-container').forEach(function(el) {
+                producersControls.legendCtrlEl = el;
+            });
+            // Selection bar fixed div
+            producersControls.selectionBar = document.getElementById('selection-bar');
+        }
+
+        function showProducersControls(visible) {
+            findProducersControls(); // re-query in case they rendered after first call
+            var display = visible ? '' : 'none';
+            if (producersControls.selectionCtrlEl) producersControls.selectionCtrlEl.style.display = display;
+            if (producersControls.legendCtrlEl)    producersControls.legendCtrlEl.style.display    = display;
+            if (producersControls.selectionBar)    producersControls.selectionBar.style.display    = display;
+        }
+
+        // ── Intel Legend Leaflet Control ────────────────────────────────────
+        var intelLegendControl = null;
+
+        function buildIntelLegend() {
+            var ctrl = L.control({ position: 'bottomright' });
+
+            ctrl.onAdd = function() {
+                var el = L.DomUtil.create('div', 'intel-legend');
+                el.innerHTML =
+                    '<div class="intel-legend-title">Market Intel</div>' +
+
+                    '<div class="intel-legend-row"><div class="legend-dot" style="background:#e8a44a;border-color:#e8a44a"></div>Limestone / Calcite</div>' +
+                    '<div class="intel-legend-row"><div class="legend-dot" style="background:#7a6fa0;border-color:#7a6fa0"></div>Granite / Hard Rock</div>' +
+                    '<div class="intel-legend-row"><div class="legend-dot" style="background:#6baa75;border-color:#6baa75"></div>Sand &amp; Gravel</div>' +
+                    '<div class="intel-legend-row"><div class="legend-dot" style="background:#5b9cba;border-color:#5b9cba"></div>Recycled (RCA/RAP)</div>' +
+                    '<div class="intel-legend-row"><div class="legend-dot" style="background:#c26060;border-color:#c26060"></div>Basalt / Quartzite</div>' +
+
+                    '<div style="height:1px;background:rgba(255,255,255,0.1);margin:8px 0"></div>' +
+
+                    '<div class="intel-legend-row"><span style="color:#2a7fc1;font-size:11px;width:14px;text-align:center">▲</span>Own Plant</div>' +
+                    '<div class="intel-legend-row"><span style="color:#e05555;font-size:11px;width:14px;text-align:center">▲</span>Competitor Plant</div>' +
+
+                    '<div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.1);' +
+                         'font-size:10px;color:rgba(255,255,255,0.35);line-height:1.6">' +
+                         'Click anywhere on the map<br>to estimate delivered price</div>';
+
+                // Don't let clicks on the legend fall through to the map estimator
+                L.DomEvent.disableClickPropagation(el);
+                L.DomEvent.disableScrollPropagation(el);
+                return el;
+            };
+
+            return ctrl;
+        }
+
+        // ── Mode switchers ──────────────────────────────────────────────────
+
+        function setProducersMode() {
+            // 1. Deactivate intel layer
+            if (window.DeliveryMode && DeliveryMode.isActive()) {
+                DeliveryMode.deactivate();
+            }
+
+            // 2. Remove intel legend control
+            if (intelLegendControl) {
+                map.removeControl(intelLegendControl);
+                intelLegendControl = null;
+            }
+
+            // 3. Restore producers UI
+            showProducersControls(true);
+
+            // 4. Button states
+            btnProducers.classList.add('active');
+            btnProducers.setAttribute('aria-pressed', 'true');
+            btnIntel.classList.remove('active');
+            btnIntel.setAttribute('aria-pressed', 'false');
+        }
+
+        function setIntelMode() {
+            // 1. Hide producers-only UI
+            showProducersControls(false);
+
+            // 2. Button states
+            btnIntel.classList.add('active');
+            btnIntel.setAttribute('aria-pressed', 'true');
+            btnProducers.classList.remove('active');
+            btnProducers.setAttribute('aria-pressed', 'false');
+
+            // 3. Add intel legend control
+            if (!intelLegendControl) {
+                intelLegendControl = buildIntelLegend();
+            }
+            intelLegendControl.addTo(map);
+
+            // 4. Activate intel layer (lazy-loads data first time)
+            if (window.DeliveryMode) {
+                DeliveryMode.activate(map);
+            }
+        }
+
+        // ── Button click handlers ───────────────────────────────────────────
+
+        btnProducers.addEventListener('click', function() {
+            if (!btnProducers.classList.contains('active')) setProducersMode();
+        });
+
+        btnIntel.addEventListener('click', function() {
+            if (!btnIntel.classList.contains('active')) setIntelMode();
+        });
+
+        // Left/right arrow toggles between modes
+        document.getElementById('mode-toggle-bar').addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                e.preventDefault();
+                if (btnProducers.classList.contains('active')) setIntelMode();
+                else setProducersMode();
+            }
+        });
+
+        // Prevent toggle-bar clicks from reaching the map (otherwise a click
+        // on the Producers button would also fire the intel price estimator)
+        document.getElementById('mode-toggle-bar').addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+
+    })();
+    </script>
+
 </body>
 </html>

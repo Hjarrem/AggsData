@@ -266,21 +266,37 @@
             return ctrl;
         }
 
+        // ── Producers layer hide/show via pane visibility ───────────────────
+        // map.js renders all markers into 'overlayPane' (canvas) and labels
+        // into 'labelsPane'. Hiding these panes instantly hides all producer
+        // data without needing to remove/re-add tens of thousands of markers.
+        // Intel layers use their own L.canvas renderer but still go into
+        // overlayPane, so we re-show the pane after intel layers are added.
+
+        function setProducersLayerVisible(visible) {
+            var overlayPane = map.getPane('overlayPane');
+            var labelsPane  = map.getPane('labelsPane');
+            var display     = visible ? '' : 'none';
+            if (overlayPane) overlayPane.style.display = display;
+            if (labelsPane)  labelsPane.style.display  = display;
+        }
+
         // ── Mode switchers ──────────────────────────────────────────────────
 
         function setProducersMode() {
-            // 1. Deactivate intel layer
+            // 1. Deactivate intel (removes delivery/plant layers, restores label fn)
             if (window.DeliveryMode && DeliveryMode.isActive()) {
                 DeliveryMode.deactivate();
             }
 
-            // 2. Remove intel legend control
+            // 2. Remove intel legend
             if (intelLegendControl) {
                 map.removeControl(intelLegendControl);
                 intelLegendControl = null;
             }
 
-            // 3. Restore producers UI
+            // 3. Restore producer layers and controls
+            setProducersLayerVisible(true);
             showProducersControls(true);
 
             // 4. Button states
@@ -288,13 +304,11 @@
             btnProducers.setAttribute('aria-pressed', 'true');
             btnIntel.classList.remove('active');
             btnIntel.setAttribute('aria-pressed', 'false');
-
-            // 5. Restores producers data
-            map.addLayer(producersLayerGroup);
         }
 
         function setIntelMode() {
-            // 1. Hide producers-only UI
+            // 1. Hide producer layers (overlayPane) and controls
+            setProducersLayerVisible(false);
             showProducersControls(false);
 
             // 2. Button states
@@ -303,22 +317,16 @@
             btnProducers.classList.remove('active');
             btnProducers.setAttribute('aria-pressed', 'false');
 
-            // 3. Add intel legend control
+            // 3. Add intel legend
             if (!intelLegendControl) {
                 intelLegendControl = buildIntelLegend();
             }
             intelLegendControl.addTo(map);
 
-            // 4. Activate intel layer (lazy-loads data first time)
+            // 4. Activate intel layer — renders into its own 'intelPane',
+            //    independent of the hidden overlayPane.
             if (window.DeliveryMode) {
                 DeliveryMode.activate(map);
-            
-            // 5. Removes producer data
-            map.removeLayer(producersLayerGroup);
-
-            //6. Remove any active labels
-            labelMarkers.forEach(m => m.remove());
-            labelMarkers = [];
             }
         }
 

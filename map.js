@@ -183,6 +183,8 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 var renderer = L.canvas({ padding: 0.5 });
 
+var producersLayerGroup = L.layerGroup().addTo(map);
+
 // Label pane — Leaflet transforms this automatically during pan
 map.createPane('labelsPane');
 map.getPane('labelsPane').style.pointerEvents = 'none';
@@ -245,7 +247,7 @@ function initMarkers(features) {
             { maxWidth: 280 }
         );
 
-        marker.addTo(map);
+        marker.addTo(producersLayerGroup);
 
         markerData.push({
             marker:     marker,

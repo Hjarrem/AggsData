@@ -6,10 +6,7 @@
 /* ── Mode Toggle ─────────────────────────────────────────────────────────── */
 
 .mode-toggle-bar {
-  position: absolute;
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
+  /* position/top/left/transform set in index.html relative to #map */
   z-index: 1000;
   display: flex;
   align-items: center;

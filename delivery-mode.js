@@ -18,12 +18,12 @@ const DeliveryMode = (() => {
 
   const CONFIG = {
     deliveryOrders: {
-      url: 'data/delivery-orders.geojson',   // adjust path as needed
+      url: 'delivery-orders.sample.geojson',   // adjust path as needed
       searchRadiusMi: 25,                    // default radius for price estimate
       outlierIqrFactor: 1.5,                 // IQR fence for outlier removal
     },
     plants: {
-      url: 'data/aggregate-plants.geojson',
+      url: 'aggregate-plants.sample.geojson',
       competitorRadiusMi: 35,
     },
     priceRange: {

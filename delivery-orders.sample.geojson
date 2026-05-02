@@ -3,53 +3,1382 @@
   "features": [
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-86.7816, 36.1627] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.7129,
+          36.2366
+        ]
+      },
       "properties": {
-        "order_id":       "ORD-2024-00142",
-        "product":        "Crushed Limestone #57",
-        "quantity":       850,
-        "quantity_unit":  "tons",
-        "asp":            18.75,
-        "delivery_date":  "2024-03-14",
-        "source_plant":   "Brentwood Quarry",
-        "source_plant_id":"PLT-TN-0042",
-        "customer":       "Customer A",
-        "haul_dist_mi":   12.4,
-        "job_type":       "DOT Highway"
+        "order_id": "ORD-2023-00142",
+        "product": "Limestone Screenings",
+        "quantity": 1600,
+        "quantity_unit": "tons",
+        "asp": 17.51,
+        "delivery_date": "2023-06-19",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer B",
+        "haul_dist_mi": 12.3,
+        "job_type": "Bridge Project"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-86.5241, 35.9948] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.9401,
+          36.1277
+        ]
+      },
       "properties": {
-        "order_id":       "ORD-2024-00187",
-        "product":        "Crushed Limestone #8",
-        "quantity":       320,
-        "quantity_unit":  "tons",
-        "asp":            22.10,
-        "delivery_date":  "2024-04-02",
-        "source_plant":   "Brentwood Quarry",
-        "source_plant_id":"PLT-TN-0042",
-        "customer":       "Customer B",
-        "haul_dist_mi":   21.0,
-        "job_type":       "Commercial Site"
+        "order_id": "ORD-2024-00143",
+        "product": "Crushed Limestone #57",
+        "quantity": 1600,
+        "quantity_unit": "tons",
+        "asp": 17.03,
+        "delivery_date": "2024-01-27",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer D",
+        "haul_dist_mi": 6.0,
+        "job_type": "Bridge Project"
       }
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-87.1022, 36.4310] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.1363,
+          35.9553
+        ]
+      },
       "properties": {
-        "order_id":       "ORD-2024-00231",
-        "product":        "Dense Grade Aggregate",
-        "quantity":       1200,
-        "quantity_unit":  "tons",
-        "asp":            16.50,
-        "delivery_date":  "2024-05-18",
-        "source_plant":   "Clarksville Sand & Gravel",
-        "source_plant_id":"PLT-TN-0071",
-        "customer":       "Customer C",
-        "haul_dist_mi":   8.2,
-        "job_type":       "Subdivision"
+        "order_id": "ORD-2023-00144",
+        "product": "Crushed Limestone #57",
+        "quantity": 1000,
+        "quantity_unit": "tons",
+        "asp": 19.51,
+        "delivery_date": "2023-04-02",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer R",
+        "haul_dist_mi": 19.0,
+        "job_type": "Subdivision"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.7128,
+          36.2248
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2023-00145",
+        "product": "Crushed Limestone #57",
+        "quantity": 1600,
+        "quantity_unit": "tons",
+        "asp": 18.47,
+        "delivery_date": "2023-02-19",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer G",
+        "haul_dist_mi": 11.6,
+        "job_type": "Residential"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.8746,
+          35.9812
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00146",
+        "product": "Ag Lime",
+        "quantity": 450,
+        "quantity_unit": "tons",
+        "asp": 16.92,
+        "delivery_date": "2024-11-18",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer N",
+        "haul_dist_mi": 7.9,
+        "job_type": "Residential"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.6009,
+          35.9909
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2023-00147",
+        "product": "Crushed Limestone #4",
+        "quantity": 320,
+        "quantity_unit": "tons",
+        "asp": 18.42,
+        "delivery_date": "2023-02-19",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer J",
+        "haul_dist_mi": 15.1,
+        "job_type": "Utility Trench"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.9034,
+          35.7051
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2023-00148",
+        "product": "Crushed Limestone #4",
+        "quantity": 200,
+        "quantity_unit": "tons",
+        "asp": 20.69,
+        "delivery_date": "2023-09-14",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer F",
+        "haul_dist_mi": 26.9,
+        "job_type": "Residential"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.0041,
+          36.1014
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00149",
+        "product": "Crushed Limestone #57",
+        "quantity": 200,
+        "quantity_unit": "tons",
+        "asp": 18.9,
+        "delivery_date": "2024-10-26",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer K",
+        "haul_dist_mi": 9.1,
+        "job_type": "Residential"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.1494,
+          35.9245
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2023-00150",
+        "product": "Ag Lime",
+        "quantity": 200,
+        "quantity_unit": "tons",
+        "asp": 20.19,
+        "delivery_date": "2023-05-16",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer C",
+        "haul_dist_mi": 20.7,
+        "job_type": "DOT Highway"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.984,
+          36.3859
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00151",
+        "product": "Ag Lime",
+        "quantity": 1250,
+        "quantity_unit": "tons",
+        "asp": 20.73,
+        "delivery_date": "2024-12-13",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer L",
+        "haul_dist_mi": 21.8,
+        "job_type": "DOT Highway"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.1763,
+          36.4393
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2023-00152",
+        "product": "Ag Lime",
+        "quantity": 120,
+        "quantity_unit": "tons",
+        "asp": 20.19,
+        "delivery_date": "2023-05-05",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer H",
+        "haul_dist_mi": 30.4,
+        "job_type": "Industrial"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.673,
+          35.9502
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00153",
+        "product": "Crushed Limestone #57",
+        "quantity": 1000,
+        "quantity_unit": "tons",
+        "asp": 17.93,
+        "delivery_date": "2024-05-05",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer N",
+        "haul_dist_mi": 13.6,
+        "job_type": "Municipal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.4653,
+          36.0664
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2023-00154",
+        "product": "Limestone Screenings",
+        "quantity": 450,
+        "quantity_unit": "tons",
+        "asp": 20.41,
+        "delivery_date": "2023-02-06",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer E",
+        "haul_dist_mi": 21.0,
+        "job_type": "Bridge Project"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.4888,
+          36.1139
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2023-00155",
+        "product": "Ag Lime",
+        "quantity": 600,
+        "quantity_unit": "tons",
+        "asp": 18.82,
+        "delivery_date": "2023-03-14",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer R",
+        "haul_dist_mi": 19.7,
+        "job_type": "Residential"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.9794,
+          36.3352
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00156",
+        "product": "Crushed Limestone #8",
+        "quantity": 1600,
+        "quantity_unit": "tons",
+        "asp": 19.66,
+        "delivery_date": "2024-11-22",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer B",
+        "haul_dist_mi": 18.4,
+        "job_type": "Utility Trench"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.7469,
+          35.6926
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00157",
+        "product": "Limestone Screenings",
+        "quantity": 1000,
+        "quantity_unit": "tons",
+        "asp": 21.23,
+        "delivery_date": "2024-07-13",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer D",
+        "haul_dist_mi": 28.1,
+        "job_type": "Utility Trench"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.525,
+          36.1977
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2023-00158",
+        "product": "Crushed Limestone #57",
+        "quantity": 1250,
+        "quantity_unit": "tons",
+        "asp": 20.34,
+        "delivery_date": "2023-02-11",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer B",
+        "haul_dist_mi": 19.1,
+        "job_type": "Commercial Site"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.8074,
+          36.1305
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2023-00159",
+        "product": "Crushed Limestone #57",
+        "quantity": 2000,
+        "quantity_unit": "tons",
+        "asp": 18.05,
+        "delivery_date": "2023-02-28",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer G",
+        "haul_dist_mi": 3.2,
+        "job_type": "Industrial"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.8435,
+          36.2232
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2023-00160",
+        "product": "Crushed Limestone #4",
+        "quantity": 1250,
+        "quantity_unit": "tons",
+        "asp": 18.17,
+        "delivery_date": "2023-02-28",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer P",
+        "haul_dist_mi": 9.0,
+        "job_type": "Utility Trench"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.9461,
+          36.2993
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00161",
+        "product": "Crushed Limestone #8",
+        "quantity": 800,
+        "quantity_unit": "tons",
+        "asp": 18.07,
+        "delivery_date": "2024-08-27",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer F",
+        "haul_dist_mi": 15.4,
+        "job_type": "DOT Highway"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.6684,
+          36.0489
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2023-00162",
+        "product": "Crushed Limestone #4",
+        "quantity": 1600,
+        "quantity_unit": "tons",
+        "asp": 17.41,
+        "delivery_date": "2023-09-10",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer C",
+        "haul_dist_mi": 10.1,
+        "job_type": "Municipal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.5965,
+          35.9637
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00163",
+        "product": "Crushed Limestone #4",
+        "quantity": 1600,
+        "quantity_unit": "tons",
+        "asp": 19.52,
+        "delivery_date": "2024-09-11",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer H",
+        "haul_dist_mi": 16.3,
+        "job_type": "Bridge Project"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.6604,
+          35.7732
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00164",
+        "product": "Limestone Screenings",
+        "quantity": 450,
+        "quantity_unit": "tons",
+        "asp": 20.7,
+        "delivery_date": "2024-08-12",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer A",
+        "haul_dist_mi": 24.2,
+        "job_type": "DOT Highway"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.2591,
+          36.1518
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00165",
+        "product": "Crushed Limestone #8",
+        "quantity": 800,
+        "quantity_unit": "tons",
+        "asp": 20.4,
+        "delivery_date": "2024-12-12",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer L",
+        "haul_dist_mi": 23.7,
+        "job_type": "Commercial Site"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.8143,
+          36.2409
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00166",
+        "product": "Crushed Limestone #8",
+        "quantity": 1250,
+        "quantity_unit": "tons",
+        "asp": 17.83,
+        "delivery_date": "2024-10-27",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer A",
+        "haul_dist_mi": 10.4,
+        "job_type": "Utility Trench"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.1265,
+          36.4362
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2023-00167",
+        "product": "Limestone Screenings",
+        "quantity": 2500,
+        "quantity_unit": "tons",
+        "asp": 19.87,
+        "delivery_date": "2023-07-26",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer G",
+        "haul_dist_mi": 28.6,
+        "job_type": "Utility Trench"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.2937,
+          36.2535
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00168",
+        "product": "Limestone Screenings",
+        "quantity": 1000,
+        "quantity_unit": "tons",
+        "asp": 20.22,
+        "delivery_date": "2024-07-24",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer C",
+        "haul_dist_mi": 27.6,
+        "job_type": "Subdivision"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.7229,
+          36.1904
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2023-00169",
+        "product": "Crushed Limestone #8",
+        "quantity": 1250,
+        "quantity_unit": "tons",
+        "asp": 18.21,
+        "delivery_date": "2023-10-27",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer P",
+        "haul_dist_mi": 9.5,
+        "job_type": "Residential"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.9983,
+          36.0526
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2023-00170",
+        "product": "Crushed Limestone #57",
+        "quantity": 2500,
+        "quantity_unit": "tons",
+        "asp": 17.01,
+        "delivery_date": "2023-09-24",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer E",
+        "haul_dist_mi": 9.2,
+        "job_type": "Industrial"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.6317,
+          36.5608
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00171",
+        "product": "Crushed Limestone #8",
+        "quantity": 450,
+        "quantity_unit": "tons",
+        "asp": 20.57,
+        "delivery_date": "2024-09-08",
+        "source_plant": "Brentwood Quarry",
+        "source_plant_id": "PLT-TN-0042",
+        "customer": "Customer K",
+        "haul_dist_mi": 34.4,
+        "job_type": "Municipal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.878,
+          36.3079
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00172",
+        "product": "Crushed Limestone #57",
+        "quantity": 800,
+        "quantity_unit": "tons",
+        "asp": 19.01,
+        "delivery_date": "2024-11-19",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer Q",
+        "haul_dist_mi": 16.9,
+        "job_type": "Industrial"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.7066,
+          36.2681
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00173",
+        "product": "Crushed Limestone #4",
+        "quantity": 1600,
+        "quantity_unit": "tons",
+        "asp": 19.31,
+        "delivery_date": "2024-01-28",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer O",
+        "haul_dist_mi": 25.0,
+        "job_type": "Subdivision"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.9774,
+          36.2557
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00174",
+        "product": "Crushed Limestone #4",
+        "quantity": 1250,
+        "quantity_unit": "tons",
+        "asp": 17.74,
+        "delivery_date": "2024-12-04",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer R",
+        "haul_dist_mi": 18.4,
+        "job_type": "DOT Highway"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.2518,
+          36.4985
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00175",
+        "product": "Rip Rap",
+        "quantity": 200,
+        "quantity_unit": "tons",
+        "asp": 18.17,
+        "delivery_date": "2024-01-08",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer G",
+        "haul_dist_mi": 12.3,
+        "job_type": "Municipal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.9399,
+          36.5709
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00176",
+        "product": "Rip Rap",
+        "quantity": 200,
+        "quantity_unit": "tons",
+        "asp": 16.93,
+        "delivery_date": "2024-06-20",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer Q",
+        "haul_dist_mi": 6.2,
+        "job_type": "Bridge Project"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.3873,
+          36.6073
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00177",
+        "product": "Rip Rap",
+        "quantity": 450,
+        "quantity_unit": "tons",
+        "asp": 18.7,
+        "delivery_date": "2024-05-18",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer G",
+        "haul_dist_mi": 20.6,
+        "job_type": "Utility Trench"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.917,
+          36.6072
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2023-00178",
+        "product": "Rip Rap",
+        "quantity": 2500,
+        "quantity_unit": "tons",
+        "asp": 16.78,
+        "delivery_date": "2023-07-03",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer G",
+        "haul_dist_mi": 8.8,
+        "job_type": "Municipal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.6941,
+          36.3141
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00179",
+        "product": "Crushed Limestone #4",
+        "quantity": 2500,
+        "quantity_unit": "tons",
+        "asp": 19.93,
+        "delivery_date": "2024-03-09",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer E",
+        "haul_dist_mi": 23.4,
+        "job_type": "Utility Trench"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.8532,
+          36.4749
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2023-00180",
+        "product": "Rip Rap",
+        "quantity": 320,
+        "quantity_unit": "tons",
+        "asp": 18.11,
+        "delivery_date": "2023-03-23",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer N",
+        "haul_dist_mi": 10.3,
+        "job_type": "Industrial"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.9558,
+          36.6904
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2023-00181",
+        "product": "Dense Grade Aggregate",
+        "quantity": 800,
+        "quantity_unit": "tons",
+        "asp": 16.82,
+        "delivery_date": "2023-06-18",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer O",
+        "haul_dist_mi": 12.6,
+        "job_type": "Utility Trench"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.3138,
+          36.7207
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2023-00182",
+        "product": "Dense Grade Aggregate",
+        "quantity": 200,
+        "quantity_unit": "tons",
+        "asp": 18.75,
+        "delivery_date": "2023-04-04",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer C",
+        "haul_dist_mi": 20.9,
+        "job_type": "Municipal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.8625,
+          36.4278
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00183",
+        "product": "Crushed Limestone #4",
+        "quantity": 320,
+        "quantity_unit": "tons",
+        "asp": 17.01,
+        "delivery_date": "2024-11-27",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer I",
+        "haul_dist_mi": 11.3,
+        "job_type": "Industrial"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.8889,
+          36.4552
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00184",
+        "product": "Rip Rap",
+        "quantity": 200,
+        "quantity_unit": "tons",
+        "asp": 17.58,
+        "delivery_date": "2024-01-26",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer F",
+        "haul_dist_mi": 9.0,
+        "job_type": "Industrial"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.0911,
+          36.9201
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2023-00185",
+        "product": "Crushed Limestone #57",
+        "quantity": 600,
+        "quantity_unit": "tons",
+        "asp": 19.89,
+        "delivery_date": "2023-10-28",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer H",
+        "haul_dist_mi": 27.9,
+        "job_type": "Commercial Site"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.8864,
+          36.6309
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00186",
+        "product": "Crushed Limestone #57",
+        "quantity": 1600,
+        "quantity_unit": "tons",
+        "asp": 17.13,
+        "delivery_date": "2024-05-20",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer E",
+        "haul_dist_mi": 11.2,
+        "job_type": "DOT Highway"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.0099,
+          36.757
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2023-00187",
+        "product": "Crushed Limestone #57",
+        "quantity": 600,
+        "quantity_unit": "tons",
+        "asp": 19.08,
+        "delivery_date": "2023-03-07",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer J",
+        "haul_dist_mi": 16.5,
+        "job_type": "Municipal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.9497,
+          36.7499
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00188",
+        "product": "Rip Rap",
+        "quantity": 320,
+        "quantity_unit": "tons",
+        "asp": 18.15,
+        "delivery_date": "2024-06-26",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer A",
+        "haul_dist_mi": 16.6,
+        "job_type": "Municipal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.9239,
+          36.5291
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00189",
+        "product": "Crushed Limestone #4",
+        "quantity": 450,
+        "quantity_unit": "tons",
+        "asp": 16.81,
+        "delivery_date": "2024-02-22",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer N",
+        "haul_dist_mi": 6.0,
+        "job_type": "Utility Trench"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.7982,
+          36.3613
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00190",
+        "product": "Dense Grade Aggregate",
+        "quantity": 450,
+        "quantity_unit": "tons",
+        "asp": 18.57,
+        "delivery_date": "2024-04-27",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer E",
+        "haul_dist_mi": 16.9,
+        "job_type": "Industrial"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.4083,
+          36.4617
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00191",
+        "product": "Crushed Limestone #4",
+        "quantity": 2500,
+        "quantity_unit": "tons",
+        "asp": 19.55,
+        "delivery_date": "2024-07-06",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer B",
+        "haul_dist_mi": 34.8,
+        "job_type": "Commercial Site"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.2943,
+          36.7151
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2023-00192",
+        "product": "Dense Grade Aggregate",
+        "quantity": 600,
+        "quantity_unit": "tons",
+        "asp": 18.78,
+        "delivery_date": "2023-08-06",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer F",
+        "haul_dist_mi": 19.9,
+        "job_type": "Municipal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.0535,
+          36.7312
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00193",
+        "product": "Dense Grade Aggregate",
+        "quantity": 1600,
+        "quantity_unit": "tons",
+        "asp": 18.86,
+        "delivery_date": "2024-04-02",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer J",
+        "haul_dist_mi": 14.7,
+        "job_type": "Bridge Project"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.7991,
+          36.5203
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00194",
+        "product": "Rip Rap",
+        "quantity": 600,
+        "quantity_unit": "tons",
+        "asp": 16.84,
+        "delivery_date": "2024-11-07",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer H",
+        "haul_dist_mi": 12.9,
+        "job_type": "DOT Highway"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.9746,
+          36.4169
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00195",
+        "product": "Crushed Limestone #4",
+        "quantity": 120,
+        "quantity_unit": "tons",
+        "asp": 16.8,
+        "delivery_date": "2024-01-10",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer J",
+        "haul_dist_mi": 7.7,
+        "job_type": "Bridge Project"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.9002,
+          36.4902
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00196",
+        "product": "Crushed Limestone #4",
+        "quantity": 2000,
+        "quantity_unit": "tons",
+        "asp": 17.3,
+        "delivery_date": "2024-06-24",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer P",
+        "haul_dist_mi": 7.5,
+        "job_type": "Subdivision"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.184,
+          36.4058
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00197",
+        "product": "Crushed Limestone #4",
+        "quantity": 1600,
+        "quantity_unit": "tons",
+        "asp": 16.58,
+        "delivery_date": "2024-12-23",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer Q",
+        "haul_dist_mi": 11.5,
+        "job_type": "Subdivision"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.0222,
+          36.1045
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2023-00198",
+        "product": "Crushed Limestone #57",
+        "quantity": 2000,
+        "quantity_unit": "tons",
+        "asp": 20.37,
+        "delivery_date": "2023-02-01",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer B",
+        "haul_dist_mi": 28.6,
+        "job_type": "Subdivision"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.6974,
+          36.4492
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2023-00199",
+        "product": "Rip Rap",
+        "quantity": 1600,
+        "quantity_unit": "tons",
+        "asp": 19.16,
+        "delivery_date": "2023-11-01",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer R",
+        "haul_dist_mi": 19.1,
+        "job_type": "Bridge Project"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.7497,
+          36.5237
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2024-00200",
+        "product": "Crushed Limestone #57",
+        "quantity": 1600,
+        "quantity_unit": "tons",
+        "asp": 18.53,
+        "delivery_date": "2024-02-22",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer Q",
+        "haul_dist_mi": 15.6,
+        "job_type": "Commercial Site"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.4267,
+          36.5716
+        ]
+      },
+      "properties": {
+        "order_id": "ORD-2023-00201",
+        "product": "Crushed Limestone #57",
+        "quantity": 450,
+        "quantity_unit": "tons",
+        "asp": 19.58,
+        "delivery_date": "2023-04-24",
+        "source_plant": "Ashland City Quarry",
+        "source_plant_id": "PLT-TN-0098",
+        "customer": "Customer O",
+        "haul_dist_mi": 22.2,
+        "job_type": "Utility Trench"
       }
     }
   ]

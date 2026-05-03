@@ -189,10 +189,15 @@ map.getPane('labelsPane').style.pointerEvents = 'none';
 
 window.ProducersLayer = {
     show: function() {
-        if (!map.hasLayer(producersLayerGroup)) {
-            producersLayerGroup.addTo(map);
-        }
-        // Restore labels for current viewport
+        // Show the canvas renderer pane and labels pane via CSS only —
+        // never remove/re-add the layer group, which would orphan the
+        // canvas renderer's internal hit-test listeners and break popups.
+        var overlayPane = map.getPane('overlayPane');
+        var labelsPane  = map.getPane('labelsPane');
+        if (overlayPane) overlayPane.style.display = '';
+        if (labelsPane)  labelsPane.style.display  = '';
+
+        // Repaint labels for the current viewport
         updateMarkersAndLabels();
 
         var selCtrl = document.querySelector('.select-control');
@@ -204,13 +209,17 @@ window.ProducersLayer = {
     },
 
     hide: function() {
-        map.removeLayer(producersLayerGroup);
+        // Hide via CSS — the canvas renderer stays alive and fully wired,
+        // so popups work immediately when we show() again.
+        var overlayPane = map.getPane('overlayPane');
+        var labelsPane  = map.getPane('labelsPane');
+        if (overlayPane) overlayPane.style.display = 'none';
+        if (labelsPane)  labelsPane.style.display  = 'none';
 
-        // Clear labels (they live outside the layer group as plain markers)
+        // Clear label markers (they are in labelsPane but managed separately)
         labelMarkers.forEach(function(m) { m.remove(); });
         labelMarkers = [];
 
-        // Stash selection bar visibility before hiding
         var selBar = document.getElementById('selection-bar');
         if (selBar) {
             selBar._wasVisible = selBar.style.display !== 'none';

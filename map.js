@@ -2,7 +2,6 @@
 // CONFIGURATION
 // ============================================================
 
-// GeoJSON property names — update here if your data schema changes
 const FIELDS = {
     name:       'CURRENT_MINE_NAME',
     producer:   'CURRENT_CONTROLLER_NAME',
@@ -14,7 +13,6 @@ const FIELDS = {
     lon:        'LONGITUDE'
 };
 
-// Maps PRIMARY_SIC strings to internal geology keys (controls symbol shape)
 const SIC_TO_GEOLOGY = {
     'Crushed, Broken Limestone NEC': 'limestone',
     'Crushed, Broken Marble':        'limestone',
@@ -28,7 +26,6 @@ const SIC_TO_GEOLOGY = {
     'Construction Sand and Gravel':  'sand_gravel'
 };
 
-// Top 15 producers by total production — one color per company
 const PRODUCER_COLORS = {
     'Vulcan Materials Company':      '#e41a1c',
     'CRH PLC':                       '#377eb8',
@@ -48,28 +45,23 @@ const PRODUCER_COLORS = {
 };
 const OTHER_COLOR = '#bbbbbb';
 
-// Symbol size buckets by annual production (tons)
 const SIZE_BUCKETS = [
-    { min: 0,        size: 2  },  // < 100K tons
-    { min: 100000,   size: 4  },  // 100K - 250K
-    { min: 250000,   size: 8 },  // 250K - 500K
-    { min: 500000,   size: 12 },  // 500K - 1.5M
-    { min: 1500000,  size: 16 }   // > 1.5M
+    { min: 0,        size: 2  },
+    { min: 100000,   size: 4  },
+    { min: 250000,   size: 8  },
+    { min: 500000,   size: 12 },
+    { min: 1500000,  size: 16 }
 ];
 
-// Map starting position and zoom
 const INITIAL_VIEW = {
     center: [39.8283, -98.5795],
     zoom: 5
 };
 
-// Label settings
 const LABEL_MIN_ZOOM = 11;
 const LABEL_MIN_PROD = 150000;
 const LABEL_LIMITS   = { default: 15, detailed: 100 };
-
-// Selection settings
-const MAX_SELECTION = 100;
+const MAX_SELECTION  = 100;
 
 // ============================================================
 // HELPERS
@@ -108,7 +100,6 @@ function formatTons(num) {
     return num.toLocaleString();
 }
 
-// Point-in-polygon test (ray casting)
 function pointInPolygon(lat, lon, polygonLatLngs) {
     var x = lon, y = lat;
     var inside = false;
@@ -183,11 +174,54 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 var renderer = L.canvas({ padding: 0.5 });
 
+// All producer markers live in this group — hide/show the whole group to
+// switch modes cleanly, no pane visibility hacks needed.
 var producersLayerGroup = L.layerGroup().addTo(map);
 
-// Label pane — Leaflet transforms this automatically during pan
 map.createPane('labelsPane');
 map.getPane('labelsPane').style.pointerEvents = 'none';
+
+// ============================================================
+// PUBLIC PRODUCERS LAYER API
+// (called by the mode toggle in index.html — keeps index.html ignorant
+//  of Leaflet internals and avoids fragile DOM polling)
+// ============================================================
+
+window.ProducersLayer = {
+    show: function() {
+        if (!map.hasLayer(producersLayerGroup)) {
+            producersLayerGroup.addTo(map);
+        }
+        // Restore labels for current viewport
+        updateMarkersAndLabels();
+
+        var selCtrl = document.querySelector('.select-control');
+        var legCtrl = document.querySelector('.legend-container');
+        var selBar  = document.getElementById('selection-bar');
+        if (selCtrl) selCtrl.style.display = '';
+        if (legCtrl) legCtrl.style.display = '';
+        if (selBar && selBar._wasVisible) selBar.style.display = 'flex';
+    },
+
+    hide: function() {
+        map.removeLayer(producersLayerGroup);
+
+        // Clear labels (they live outside the layer group as plain markers)
+        labelMarkers.forEach(function(m) { m.remove(); });
+        labelMarkers = [];
+
+        // Stash selection bar visibility before hiding
+        var selBar = document.getElementById('selection-bar');
+        if (selBar) {
+            selBar._wasVisible = selBar.style.display !== 'none';
+            selBar.style.display = 'none';
+        }
+        var selCtrl = document.querySelector('.select-control');
+        var legCtrl = document.querySelector('.legend-container');
+        if (selCtrl) selCtrl.style.display = 'none';
+        if (legCtrl) legCtrl.style.display = 'none';
+    }
+};
 
 // ============================================================
 // DATA FETCH & MARKER CREATION
@@ -283,7 +317,6 @@ function updateMarkersAndLabels() {
     var scale  = Math.pow(1.2, zoom - INITIAL_VIEW.zoom);
     var bounds = map.getBounds();
 
-    // Find top 15 producers in current viewport by production volume
     var viewTotals = {};
     markerData.forEach(function(d) {
         if (bounds.contains([d.lat, d.lon])) {
@@ -298,7 +331,6 @@ function updateMarkersAndLabels() {
     var topSet = {};
     topInView.forEach(function(name) { topSet[name] = true; });
 
-    // Resize and recolor every marker
     markerData.forEach(function(d) {
         d.marker.setRadius(d.baseSize * scale);
         var color = (PRODUCER_COLORS[d.producer] && topSet[d.producer])
@@ -307,7 +339,6 @@ function updateMarkersAndLabels() {
         d.marker.setStyle({ fillColor: color });
     });
 
-    // Remove old label markers
     labelMarkers.forEach(function(m) { m.remove(); });
     labelMarkers = [];
 
@@ -341,7 +372,7 @@ map.on('moveend', updateMarkersAndLabels);
 // SELECTION TOOL
 // ============================================================
 
-var selectMode      = null;   // null | 'rect' | 'poly'
+var selectMode      = null;
 var selectedData    = [];
 var rectStart       = null;
 var rectLayer       = null;
@@ -349,7 +380,6 @@ var polyPoints      = [];
 var polyLayer       = null;
 var polyPreviewLine = null;
 
-// Status bar shown after a selection
 var selectionBar = document.createElement('div');
 selectionBar.id = 'selection-bar';
 selectionBar.style.cssText =
@@ -357,7 +387,7 @@ selectionBar.style.cssText =
     'background:white;border:2px solid rgba(0,0,0,0.2);border-radius:6px;' +
     'padding:10px 18px;box-shadow:0 2px 8px rgba(0,0,0,0.3);' +
     'font-size:13px;font-family:inherit;z-index:1000;' +
-    'display:none;align-items:center;gap:12px;';
+    'align-items:center;gap:12px;';
 document.body.appendChild(selectionBar);
 
 function updateSelectionBar() {
@@ -396,7 +426,6 @@ function updateSelectionBar() {
 }
 
 function applySelectionFromShape(latLngs) {
-    // latLngs is an array of L.LatLng forming a closed polygon
     clearSelectionHighlights();
     selectedData = [];
 
@@ -435,8 +464,6 @@ function clearDrawing() {
     polyPoints = [];
 }
 
-// ---- Rectangle selection ----
-
 function startRectMode() {
     clearSelection();
     selectMode = 'rect';
@@ -451,18 +478,24 @@ map.on('mousedown', function(e) {
 });
 
 map.on('mousemove', function(e) {
-    if (selectMode !== 'rect' || !rectStart) return;
-    if (rectLayer) rectLayer.remove();
-    rectLayer = L.rectangle([rectStart, e.latlng], {
-        color: '#2c7bb6', weight: 2, fillOpacity: 0.1, dashArray: '5,5'
-    }).addTo(map);
+    if (selectMode === 'rect' && rectStart) {
+        if (rectLayer) rectLayer.remove();
+        rectLayer = L.rectangle([rectStart, e.latlng], {
+            color: '#2c7bb6', weight: 2, fillOpacity: 0.1, dashArray: '5,5'
+        }).addTo(map);
+    }
+    if (selectMode === 'poly' && polyPoints.length > 0) {
+        if (polyPreviewLine) polyPreviewLine.remove();
+        polyPreviewLine = L.polyline([polyPoints[polyPoints.length - 1], e.latlng], {
+            color: '#e67e22', weight: 1.5, dashArray: '3,4', opacity: 0.7
+        }).addTo(map);
+    }
 });
 
 map.on('mouseup', function(e) {
     if (selectMode !== 'rect' || !rectStart) return;
 
     var bounds = L.latLngBounds(rectStart, e.latlng);
-    // Convert bounds to polygon corners for pointInPolygon
     var corners = [
         L.latLng(bounds.getNorth(), bounds.getWest()),
         L.latLng(bounds.getNorth(), bounds.getEast()),
@@ -478,21 +511,11 @@ map.on('mouseup', function(e) {
     setActiveButton(null);
 });
 
-// ---- Polygon selection ----
-
-function startPolyMode() {
-    clearSelection();
-    selectMode = 'poly';
-    polyPoints = [];
-    map.getContainer().style.cursor = 'crosshair';
-}
-
 map.on('click', function(e) {
     if (selectMode !== 'poly') return;
 
     polyPoints.push(e.latlng);
 
-    // Redraw the in-progress polygon outline
     if (polyLayer) polyLayer.remove();
     if (polyPoints.length > 1) {
         polyLayer = L.polyline(polyPoints, {
@@ -501,18 +524,9 @@ map.on('click', function(e) {
     }
 });
 
-map.on('mousemove', function(e) {
-    if (selectMode !== 'poly' || polyPoints.length === 0) return;
-    if (polyPreviewLine) polyPreviewLine.remove();
-    polyPreviewLine = L.polyline([polyPoints[polyPoints.length - 1], e.latlng], {
-        color: '#e67e22', weight: 1.5, dashArray: '3,4', opacity: 0.7
-    }).addTo(map);
-});
-
 map.on('dblclick', function(e) {
     if (selectMode !== 'poly' || polyPoints.length < 3) return;
 
-    // Close the polygon
     if (polyLayer) polyLayer.remove();
     polyLayer = L.polygon(polyPoints, {
         color: '#e67e22', weight: 2, fillOpacity: 0.1
@@ -525,8 +539,6 @@ map.on('dblclick', function(e) {
     map.getContainer().style.cursor = '';
     setActiveButton(null);
 });
-
-// ---- CSV download ----
 
 function downloadCSV() {
     var headers = ['Name', 'Producer', 'Operator', 'SIC Type', 'Geology', 'Production (tons)', 'Latitude', 'Longitude'];
@@ -557,7 +569,6 @@ function downloadCSV() {
 function csvEscape(val) {
     if (val === null || val === undefined) return '';
     var str = String(val);
-    // Wrap in quotes if value contains comma, quote, or newline
     if (str.search(/[",\n]/) >= 0) return '"' + str.replace(/"/g, '""') + '"';
     return str;
 }
@@ -589,7 +600,6 @@ function buildSelectionControl() {
             'background:white;border:2px solid rgba(0,0,0,0.2);border-radius:4px;' +
             'box-shadow:0 1px 5px rgba(0,0,0,0.4);overflow:hidden;';
 
-        // Title bar
         var title = document.createElement('div');
         title.textContent = 'Select Sites';
         title.style.cssText =
@@ -601,7 +611,6 @@ function buildSelectionControl() {
             'display:block;width:100%;padding:7px 12px;border:none;border-bottom:1px solid #eee;' +
             'background:white;color:#333;font-size:13px;cursor:pointer;text-align:left;font-family:inherit;';
 
-        // Rectangle button
         var rectBtn = document.createElement('button');
         rectBtn.innerHTML = '⬜ Rectangle';
         rectBtn.style.cssText = btnStyle;
@@ -620,7 +629,6 @@ function buildSelectionControl() {
         });
         container.appendChild(rectBtn);
 
-        // Polygon button
         var polyBtn = document.createElement('button');
         polyBtn.innerHTML = '✏️ Polygon';
         polyBtn.style.cssText = btnStyle;
@@ -633,13 +641,18 @@ function buildSelectionControl() {
                 clearDrawing();
                 setActiveButton(null);
             } else {
+                startPolyMode = function() {
+                    clearSelection();
+                    selectMode = 'poly';
+                    polyPoints = [];
+                    map.getContainer().style.cursor = 'crosshair';
+                };
                 startPolyMode();
                 setActiveButton(polyBtn);
             }
         });
         container.appendChild(polyBtn);
 
-        // Clear button
         var clearBtn = document.createElement('button');
         clearBtn.innerHTML = '✕ Clear';
         clearBtn.style.cssText = btnStyle + 'border-bottom:none;color:#c0392b;';
@@ -650,7 +663,6 @@ function buildSelectionControl() {
         });
         container.appendChild(clearBtn);
 
-        // Prevent map click-through on the control
         L.DomEvent.disableClickPropagation(container);
         L.DomEvent.disableScrollPropagation(container);
 
@@ -725,7 +737,6 @@ function buildLegend() {
         var panel = L.DomUtil.create('div', 'legend', container);
         panel.style.display = 'none';
 
-        // Geology types
         var h1 = document.createElement('h4');
         h1.textContent = 'Geology Type';
         panel.appendChild(h1);
@@ -740,7 +751,6 @@ function buildLegend() {
         });
         panel.appendChild(sec1);
 
-        // Production sizes
         var h2 = document.createElement('h4');
         h2.textContent = 'Annual Production';
         h2.style.marginTop = '10px';
@@ -758,7 +768,6 @@ function buildLegend() {
         });
         panel.appendChild(sec2);
 
-        // Top producers
         var h3 = document.createElement('h4');
         h3.textContent = 'Top Producers';
         h3.style.marginTop = '10px';

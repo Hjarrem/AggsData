@@ -172,10 +172,13 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 18
 }).addTo(map);
 
-var renderer = L.canvas({ padding: 0.5 });
+// Dedicated pane for all producer canvas markers — isolates from overlayPane
+// so hiding it never affects Leaflet internals or intel layers.
+map.createPane('producersPane');
+map.getPane('producersPane').style.zIndex = 420;
 
-// All producer markers live in this group — hide/show the whole group to
-// switch modes cleanly, no pane visibility hacks needed.
+var renderer = L.canvas({ padding: 0.5, pane: 'producersPane' });
+
 var producersLayerGroup = L.layerGroup().addTo(map);
 
 map.createPane('labelsPane');
@@ -189,15 +192,14 @@ map.getPane('labelsPane').style.pointerEvents = 'none';
 
 window.ProducersLayer = {
     show: function() {
-        // Show the canvas renderer pane and labels pane via CSS only —
-        // never remove/re-add the layer group, which would orphan the
-        // canvas renderer's internal hit-test listeners and break popups.
-        var overlayPane = map.getPane('overlayPane');
-        var labelsPane  = map.getPane('labelsPane');
-        if (overlayPane) overlayPane.style.display = '';
-        if (labelsPane)  labelsPane.style.display  = '';
+        var pane = map.getPane('producersPane');
+        var labelsPane = map.getPane('labelsPane');
+        if (pane) {
+            pane.style.opacity      = '1';
+            pane.style.pointerEvents = '';
+        }
+        if (labelsPane) labelsPane.style.opacity = '1';
 
-        // Repaint labels for the current viewport
         updateMarkersAndLabels();
 
         var selCtrl = document.querySelector('.select-control');
@@ -209,14 +211,16 @@ window.ProducersLayer = {
     },
 
     hide: function() {
-        // Hide via CSS — the canvas renderer stays alive and fully wired,
-        // so popups work immediately when we show() again.
-        var overlayPane = map.getPane('overlayPane');
-        var labelsPane  = map.getPane('labelsPane');
-        if (overlayPane) overlayPane.style.display = 'none';
-        if (labelsPane)  labelsPane.style.display  = 'none';
+        // opacity:0 + pointerEvents:none keeps the canvas renderer fully
+        // in the DOM and wired — hit-testing works immediately on show().
+        var pane = map.getPane('producersPane');
+        var labelsPane = map.getPane('labelsPane');
+        if (pane) {
+            pane.style.opacity       = '0';
+            pane.style.pointerEvents = 'none';
+        }
+        if (labelsPane) labelsPane.style.opacity = '0';
 
-        // Clear label markers (they are in labelsPane but managed separately)
         labelMarkers.forEach(function(m) { m.remove(); });
         labelMarkers = [];
 
@@ -266,6 +270,7 @@ function initMarkers(features) {
 
         var marker = new AggsMarker([lat, lon], {
             renderer:    renderer,
+            pane:        'producersPane',
             radius:      baseSize,
             fillColor:   color,
             fillOpacity: 0.85,

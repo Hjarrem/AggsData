@@ -34,6 +34,7 @@ const DeliveryMode = (() => {
 
   let _map            = null;
   let _active         = false;
+  let _activationId   = 0;      // incremented each activate(); checked after every await
   let _deliveryData   = null;
   let _plantData      = null;
   let _intelGroup     = null;   // L.layerGroup for delivery dots + plant markers
@@ -456,6 +457,11 @@ const DeliveryMode = (() => {
     _map    = mapInstance;
     _active = true;
 
+    // Stamp this activation attempt. If deactivate() is called while we are
+    // awaiting data, the stamp will have been incremented and we bail out
+    // before registering any event listeners or touching the map.
+    const myId = ++_activationId;
+
     const btn = document.getElementById('mode-btn-intel');
     if (btn) btn.classList.add('loading');
 
@@ -469,9 +475,20 @@ const DeliveryMode = (() => {
       await loadData();
     } catch (err) {
       console.error('[DeliveryMode] Data load failed:', err);
-      alert('Could not load Market Intel data.\n\n' + err.message);
-      _active = false;
+      if (myId === _activationId) {
+        // Only show the alert if we're still the current activation attempt
+        alert('Could not load Market Intel data.\n\n' + err.message);
+        _active = false;
+      }
       if (btn) btn.classList.remove('loading');
+      return;
+    }
+
+    // If deactivate() was called while we were awaiting, abort here.
+    // _active will be false and _activationId will have been incremented.
+    if (myId !== _activationId || !_active) {
+      if (btn) btn.classList.remove('loading');
+      console.log('[DeliveryMode] Activation aborted (deactivated during data load).');
       return;
     }
 
@@ -499,6 +516,7 @@ const DeliveryMode = (() => {
   function deactivate() {
     if (!_active || !_map) return;
     _active = false;
+    _activationId++;  // invalidates any in-flight activate() that is still awaiting
 
     _map.off('click', onMapClick);
     _map.getContainer().classList.remove('intel-cursor');

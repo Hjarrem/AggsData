@@ -3,10 +3,9 @@
    AggsData.com — Market Intel Mode UI
    ========================================================================== */
 
-/* ── Mode Toggle ─────────────────────────────────────────────────────────── */
+/* ── Mode Toggle Bar ─────────────────────────────────────────────────────── */
 
 .mode-toggle-bar {
-  /* position/top/left/transform set in index.html relative to #map */
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -58,7 +57,6 @@
   opacity: 1;
 }
 
-/* Intel mode gets a distinct accent */
 .mode-btn.active.intel-btn {
   background: linear-gradient(135deg, #1d6fa8 0%, #2da87e 100%);
   box-shadow: 0 2px 12px rgba(29,111,168,0.45);
@@ -81,12 +79,11 @@
   border: 2px solid rgba(255,255,255,0.3);
   border-top-color: #fff;
   border-radius: 50%;
-  animation: spin 0.7s linear infinite;
+  animation: dm-spin 0.7s linear infinite;
 }
 
-@keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
+@keyframes dm-spin { to { transform: translateY(-50%) rotate(360deg); } }
 
-/* Divider pip between buttons */
 .mode-divider {
   width: 1px;
   height: 20px;
@@ -94,49 +91,13 @@
   flex-shrink: 0;
 }
 
-/* ── Intel Mode Cursor ───────────────────────────────────────────────────── */
+/* ── Intel Mode cursor ───────────────────────────────────────────────────── */
 
 .leaflet-container.intel-cursor {
   cursor: crosshair !important;
 }
 
-/* ── Plant Markers ───────────────────────────────────────────────────────── */
-
-.plant-marker {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 22px;
-  height: 22px;
-  border-radius: 4px;
-  background: rgba(20,24,33,0.85);
-  border: 2px solid #2a7fc1;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-  transition: transform 0.15s;
-}
-
-.plant-marker:hover {
-  transform: scale(1.25);
-}
-
-.plant-marker.competitor {
-  border-color: #e05555;
-  background: rgba(33,20,20,0.88);
-}
-
-/* ── Delivery Point Pulse (optional — attach class via JS if desired) ────── */
-
-.delivery-point-pulse {
-  animation: deliveryPulse 1.8s ease-out infinite;
-}
-
-@keyframes deliveryPulse {
-  0%   { stroke-opacity: 1; stroke-width: 1; }
-  70%  { stroke-opacity: 0; stroke-width: 6; }
-  100% { stroke-opacity: 0; stroke-width: 6; }
-}
-
-/* ── Leaflet Tooltip Overrides ───────────────────────────────────────────── */
+/* ── Leaflet Tooltip overrides ───────────────────────────────────────────── */
 
 .leaflet-tooltip.agg-tooltip {
   background: #1a1e27;
@@ -159,294 +120,357 @@
   border-color: rgba(42,127,193,0.4);
 }
 
-/* ── Price Estimator Popup ───────────────────────────────────────────────── */
+/* ── Intel Sidebar ───────────────────────────────────────────────────────── */
+/*
+ * The sidebar slides in from the right edge of the viewport.
+ * It overlays the map (no map inset needed) with a strong shadow.
+ * z-index 1050 — above Leaflet tile/overlay (400–500) and popups (700)
+ * but below any browser-level chrome.
+ */
 
-/* Lift the entire popup pane above the mode toggle bar (z-index 1000) */
-.leaflet-pane.leaflet-popup-pane {
-  z-index: 1100 !important;
-}
-
-.leaflet-popup.price-estimator-popup .leaflet-popup-content-wrapper {
-  background: #13171f;
-  border: 1px solid rgba(255,255,255,0.11);
-  border-radius: 10px;
-  padding: 0;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.65);
-  overflow: hidden;
-}
-
-.leaflet-popup.price-estimator-popup .leaflet-popup-content {
-  margin: 0;
-  width: auto !important;
-  max-height: 75vh;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-}
-
-/* Custom scrollbar */
-.leaflet-popup.price-estimator-popup .leaflet-popup-content::-webkit-scrollbar {
-  width: 5px;
-}
-.leaflet-popup.price-estimator-popup .leaflet-popup-content::-webkit-scrollbar-track {
-  background: #1a1e27;
-}
-.leaflet-popup.price-estimator-popup .leaflet-popup-content::-webkit-scrollbar-thumb {
-  background: #2a7fc1;
-  border-radius: 3px;
-}
-
-.leaflet-popup.price-estimator-popup .leaflet-popup-tip {
-  background: #13171f;
-}
-
-.leaflet-popup.price-estimator-popup .leaflet-popup-close-button {
-  color: rgba(255,255,255,0.4) !important;
-  font-size: 18px !important;
-  /* Push close button to its own line by giving the header right padding */
-  top: 8px !important;
-  right: 8px !important;
-  z-index: 2;
-  transition: color 0.15s;
-}
-
-.leaflet-popup.price-estimator-popup .leaflet-popup-close-button:hover {
-  color: #fff !important;
-}
-
-/* ── Popup Inner Layout ──────────────────────────────────────────────────── */
-
-.price-popup {
-  font-family: 'DM Sans', 'Segoe UI', sans-serif;
-  color: #c8d0de;
-  min-width: 380px;
-  max-width: 700px;
-}
-
-.popup-header {
-  /* Right padding large enough that coord text never slides under close button */
-  padding: 12px 36px 10px 18px;
-  background: linear-gradient(135deg, #1d2638 0%, #162232 100%);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+#intel-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 380px;
+  max-width: 100vw;
+  height: 100vh;
+  z-index: 1050;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  background: #13171f;
+  border-left: 1px solid rgba(255,255,255,0.09);
+  box-shadow: -6px 0 32px rgba(0,0,0,0.55);
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  color: #c8d0de;
+
+  /* Hidden by default — slides in when .isb-open is added */
+  transform: translateX(100%);
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
 }
 
-.popup-title {
+#intel-sidebar.isb-open {
+  transform: translateX(0);
+  pointer-events: all;
+}
+
+/* ── Sidebar Header ──────────────────────────────────────────────────────── */
+
+.isb-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px 12px;
+  background: linear-gradient(135deg, #1d2638 0%, #162232 100%);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  flex-shrink: 0;
+}
+
+.isb-title {
   font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #7fb8e8;
 }
 
-.popup-coord {
-  font-size: 10.5px;
-  color: rgba(255,255,255,0.35);
-  font-variant-numeric: tabular-nums;
-  /* Stays left-aligned, well clear of the close button */
+.isb-close {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.45);
+  font-size: 13px;
+  cursor: pointer;
+  line-height: 1;
+  transition: background 0.15s, color 0.15s;
+  padding: 0;
 }
 
-/* ── Price Block ─────────────────────────────────────────────────────────── */
+.isb-close:hover {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
 
-.popup-price-block {
-  padding: 16px 18px 14px;
-  background: linear-gradient(135deg, rgba(42,127,193,0.12) 0%, rgba(45,168,126,0.08) 100%);
+/* ── Sidebar Body ────────────────────────────────────────────────────────── */
+
+.isb-body {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.isb-body::-webkit-scrollbar {
+  width: 4px;
+}
+.isb-body::-webkit-scrollbar-track {
+  background: #1a1e27;
+}
+.isb-body::-webkit-scrollbar-thumb {
+  background: #2a5a80;
+  border-radius: 2px;
+}
+
+/* ── Empty state ─────────────────────────────────────────────────────────── */
+
+.isb-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 32px;
+  gap: 16px;
+  text-align: center;
+  height: 100%;
+  min-height: 300px;
+}
+
+.isb-empty-icon {
+  font-size: 36px;
+  opacity: 0.4;
+}
+
+.isb-empty-text {
+  font-size: 14px;
+  color: rgba(255,255,255,0.38);
+  line-height: 1.7;
+  max-width: 260px;
+}
+
+/* ── Coordinate display ──────────────────────────────────────────────────── */
+
+.isb-coord {
+  padding: 8px 16px;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255,255,255,0.3);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  letter-spacing: 0.02em;
+}
+
+/* ── Price block ─────────────────────────────────────────────────────────── */
+
+.isb-price-block {
+  padding: 20px 16px 16px;
+  background: linear-gradient(135deg, rgba(42,127,193,0.13) 0%, rgba(45,168,126,0.08) 100%);
   border-bottom: 1px solid rgba(255,255,255,0.07);
   text-align: center;
 }
 
-.price-label {
+.isb-price-label {
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: rgba(255,255,255,0.35);
-  margin-bottom: 6px;
+  color: rgba(255,255,255,0.32);
+  margin-bottom: 8px;
 }
 
-.price-range {
+.isb-price-range {
   display: flex;
   align-items: baseline;
   justify-content: center;
   gap: 6px;
+  margin-bottom: 8px;
 }
 
-.price-low, .price-high {
-  font-size: 26px;
+.isb-price-val {
+  font-size: 30px;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   color: #e8f0fa;
   line-height: 1;
 }
 
-.price-sep {
-  font-size: 20px;
-  color: rgba(255,255,255,0.3);
+.isb-price-sep {
+  font-size: 22px;
+  color: rgba(255,255,255,0.28);
 }
 
-.price-unit {
-  font-size: 13px;
-  color: rgba(255,255,255,0.38);
+.isb-price-unit {
+  font-size: 14px;
+  color: rgba(255,255,255,0.35);
   align-self: flex-end;
-  margin-bottom: 3px;
+  margin-bottom: 2px;
 }
 
-.price-meta {
-  margin-top: 8px;
-  font-size: 11.5px;
-  color: rgba(255,255,255,0.42);
+.isb-price-meta {
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
 }
 
-.price-meta strong {
-  color: rgba(255,255,255,0.7);
+.isb-price-meta strong {
+  color: rgba(255,255,255,0.72);
 }
 
-.popup-no-data {
-  padding: 20px 18px;
+.isb-no-data {
+  padding: 20px 16px;
   text-align: center;
   font-size: 13px;
-  color: rgba(255,255,255,0.42);
-  background: rgba(255,100,60,0.06);
+  color: rgba(255,255,255,0.4);
+  background: rgba(255,80,40,0.05);
   border-bottom: 1px solid rgba(255,255,255,0.07);
   line-height: 1.7;
 }
 
-/* ── Popup Sections ──────────────────────────────────────────────────────── */
+.isb-no-data strong { color: rgba(255,255,255,0.65); }
+.isb-no-data em     { font-style: italic; color: rgba(255,255,255,0.55); }
 
-.popup-section {
-  padding: 14px 18px;
+/* ── Filters ─────────────────────────────────────────────────────────────── */
+
+.isb-filters {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.isb-filter-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.isb-filter-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: rgba(255,255,255,0.35);
+  width: 56px;
+  flex-shrink: 0;
+}
+
+.isb-select {
+  flex: 1;
+  background: #1e2430;
+  border: 1px solid rgba(255,255,255,0.13);
+  color: #c8d0de;
+  border-radius: 6px;
+  padding: 6px 28px 6px 10px;
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23668' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 9px center;
+  transition: border-color 0.15s;
+}
+
+.isb-select:hover  { border-color: rgba(42,127,193,0.5); }
+.isb-select:focus  { outline: none; border-color: #2a7fc1; }
+
+/* ── Sections ────────────────────────────────────────────────────────────── */
+
+.isb-section {
+  padding: 14px 16px;
   border-bottom: 1px solid rgba(255,255,255,0.07);
 }
 
-.popup-section:last-of-type {
+.isb-section:last-child {
   border-bottom: none;
 }
 
-.popup-section-title {
+.isb-section-title {
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.45);
   margin-bottom: 10px;
   display: flex;
   align-items: baseline;
   gap: 8px;
 }
 
-.popup-section-sub {
+.isb-section-sub {
   font-size: 10px;
   font-weight: 400;
   text-transform: none;
   letter-spacing: 0;
-  color: rgba(255,255,255,0.28);
+  color: rgba(255,255,255,0.25);
 }
 
-/* ── Popup Table ─────────────────────────────────────────────────────────── */
+/* ── Tables ──────────────────────────────────────────────────────────────── */
 
-.popup-table-wrap {
+.isb-table-wrap {
   overflow-x: auto;
-  border-radius: 6px;
+  border-radius: 5px;
   border: 1px solid rgba(255,255,255,0.08);
 }
 
-.popup-table {
+.isb-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 12px;
-  min-width: 420px;
+  font-size: 11.5px;
 }
 
-.popup-table thead th {
+.isb-table thead th {
   background: rgba(255,255,255,0.04);
-  padding: 7px 10px;
+  padding: 6px 8px;
   text-align: left;
   font-size: 10px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: rgba(255,255,255,0.38);
+  letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.35);
   border-bottom: 1px solid rgba(255,255,255,0.08);
   white-space: nowrap;
 }
 
-.popup-table tbody tr {
-  transition: background 0.12s;
+.isb-table tbody tr {
+  transition: background 0.1s;
 }
 
-.popup-table tbody tr:hover {
-  background: rgba(42,127,193,0.1);
+.isb-table tbody tr:hover {
+  background: rgba(42,127,193,0.09);
 }
 
-.popup-table tbody td {
-  padding: 7px 10px;
-  color: rgba(255,255,255,0.72);
+.isb-table tbody td {
+  padding: 6px 8px;
+  color: rgba(255,255,255,0.7);
   border-bottom: 1px solid rgba(255,255,255,0.05);
   vertical-align: middle;
-  white-space: nowrap;
 }
 
-.popup-table tbody tr:last-child td {
+.isb-table tbody tr:last-child td {
   border-bottom: none;
 }
 
-.popup-empty {
+.isb-num {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.isb-table-empty {
   text-align: center;
-  color: rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.28);
   font-size: 12px;
-  padding: 16px;
+  padding: 14px 8px;
+  font-style: italic;
 }
 
-/* ── Popup Footer Controls ───────────────────────────────────────────────── */
+/* ── Product color dot in orders table ───────────────────────────────────── */
 
-.popup-footer {
-  padding: 12px 18px;
-  background: rgba(0,0,0,0.25);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  border-top: 1px solid rgba(255,255,255,0.07);
+.isb-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 5px;
+  vertical-align: middle;
+  flex-shrink: 0;
 }
 
-.popup-ctrl-label {
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: rgba(255,255,255,0.35);
-}
-
-.popup-radius-select,
-.popup-product-select {
-  background: #1e2430;
-  border: 1px solid rgba(255,255,255,0.14);
-  color: #c8d0de;
-  border-radius: 6px;
-  padding: 5px 28px 5px 10px;
-  font-size: 12px;
-  font-family: inherit;
-  cursor: pointer;
-  appearance: none;
-  -webkit-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 9px center;
-  transition: border-color 0.15s;
-}
-
-.popup-radius-select:hover,
-.popup-product-select:hover {
-  border-color: rgba(42,127,193,0.55);
-}
-
-.popup-radius-select:focus,
-.popup-product-select:focus {
-  outline: none;
-  border-color: #2a7fc1;
-}
-
-/* ── Legend (appended into existing map legend or standalone) ────────────── */
+/* ── Intel bottom-right legend ───────────────────────────────────────────── */
 
 .intel-legend {
   background: rgba(20,24,33,0.92);
@@ -475,6 +499,7 @@
   align-items: center;
   gap: 9px;
   margin-bottom: 7px;
+  font-size: 11.5px;
 }
 
 .intel-legend-row:last-child {
@@ -485,24 +510,14 @@
   width: 11px;
   height: 11px;
   border-radius: 50%;
-  border: 1.5px solid rgba(255,255,255,0.35);
+  border: 1.5px solid rgba(255,255,255,0.25);
   flex-shrink: 0;
 }
 
-.legend-tri {
-  width: 0;
-  height: 0;
-  border-left: 7px solid transparent;
-  border-right: 7px solid transparent;
-  border-bottom: 12px solid currentColor;
-  flex-shrink: 0;
-}
-
-/* ── Responsive ─────────────────────────────────────────────────────────── */
+/* ── Responsive ──────────────────────────────────────────────────────────── */
 
 @media (max-width: 600px) {
   .mode-toggle-bar {
-    top: 8px;
     padding: 3px;
   }
 
@@ -511,12 +526,19 @@
     font-size: 12px;
   }
 
-  .price-popup {
-    min-width: 290px;
-    max-width: 95vw;
+  #intel-sidebar {
+    width: 100vw;
+    height: 60vh;
+    top: auto;
+    bottom: 0;
+    right: 0;
+    border-left: none;
+    border-top: 1px solid rgba(255,255,255,0.09);
+    box-shadow: 0 -6px 32px rgba(0,0,0,0.55);
+    transform: translateY(100%);
   }
 
-  .price-low, .price-high {
-    font-size: 20px;
+  #intel-sidebar.isb-open {
+    transform: translateY(0);
   }
 }

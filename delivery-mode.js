@@ -118,10 +118,13 @@ const DeliveryMode = (() => {
   // ─── Delivery dot layer ───────────────────────────────────────────────────
 
   function buildDeliveryLayer(data) {
+    const renderer = L.canvas({ padding: 0.5, pane: 'intelPane' });
     return L.geoJSON(data, {
       pointToLayer(feature, latlng) {
         const p = feature.properties;
         return L.circleMarker(latlng, {
+          pane:        'intelPane',
+          renderer,
           radius:      5,
           fillColor:   productColor(p.product),
           color:       'rgba(0,0,0,0.35)',
@@ -153,6 +156,7 @@ const DeliveryMode = (() => {
 
   function buildPlantLayer(data) {
     const useAggsMarker = typeof AggsMarker !== 'undefined';
+    const renderer      = L.canvas({ padding: 0.5, pane: 'intelPane' });
 
     return L.geoJSON(data, {
       pointToLayer(feature, latlng) {
@@ -164,6 +168,8 @@ const DeliveryMode = (() => {
 
         if (useAggsMarker) {
           return new AggsMarker([latlng.lat, latlng.lng], {
+            pane:        'intelPane',
+            renderer,
             radius:      10,
             fillColor:   color,
             fillOpacity: 0.9,
@@ -173,6 +179,8 @@ const DeliveryMode = (() => {
           });
         }
         return L.circleMarker(latlng, {
+          pane:     'intelPane',
+          renderer,
           radius: 10, fillColor: color,
           color: 'rgba(0,0,0,0.4)', weight: 0.8, fillOpacity: 0.9,
         });
@@ -243,6 +251,7 @@ const DeliveryMode = (() => {
 
     // Radius circle — semi-transparent fill, dashed stroke
     L.circle(latlng, {
+      pane:        'intelPane',
       radius:      miToM(radiusMi),
       color:       '#4a9eda',
       weight:      1.5,
@@ -254,6 +263,7 @@ const DeliveryMode = (() => {
 
     // Pin marker
     L.circleMarker(latlng, {
+      pane:        'intelPane',
       radius:      7,
       fillColor:   '#ffffff',
       color:       '#4a9eda',

@@ -21,7 +21,7 @@
   --order-dot:    #4cb87a;
   --radius-fill:  rgba(232,160,32,0.07);
   --radius-stroke:rgba(232,160,32,0.45);
-  --sidebar-w:    340px;
+  --sidebar-w:    510px;
   --font-head:    'Barlow Condensed', sans-serif;
   --font-mono:    'DM Mono', monospace;
   --font-body:    'Barlow', sans-serif;
@@ -299,9 +299,9 @@ body { display: flex; }
 
 /* ── Orders Table ────────────────────────────────────── */
 #orders-table-wrap {
-  max-height: 220px;
+  max-height: 260px;
   overflow-y: auto;
-  border: 1px solid #d0d4da;
+  border: 1px solid var(--border);
   border-radius: 3px;
   scrollbar-width: thin;
   scrollbar-color: var(--border) transparent;
@@ -319,13 +319,26 @@ body { display: flex; }
   top: 0;
   background: var(--bg);
   color: var(--text-dim);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 6px 6px;
+  padding: 6px 5px;
   text-align: left;
   border-bottom: 1px solid var(--border);
   font-weight: 500;
+  white-space: nowrap;
 }
+
+#orders-table thead th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+#orders-table thead th.sortable:hover { color: var(--amber); }
+#orders-table thead th.sort-asc  .sort-icon,
+#orders-table thead th.sort-desc .sort-icon { color: var(--amber); opacity: 1; }
+#orders-table thead th:not(.sort-asc):not(.sort-desc) .sort-icon { opacity: 0.3; }
+
+.sort-icon { font-size: 9px; margin-left: 1px; }
 
 #orders-table tbody tr {
   border-bottom: 1px solid var(--border);
@@ -336,13 +349,15 @@ body { display: flex; }
 #orders-table tbody tr:hover { background: var(--bg3); }
 
 #orders-table tbody td {
-  padding: 5px 6px;
+  padding: 5px 5px;
   color: var(--text);
+  white-space: nowrap;
 }
 
-#orders-table tbody td:nth-child(4),
-#orders-table tbody td:nth-child(5),
-#orders-table tbody td:nth-child(6) {
+/* ASP, Del, Total columns (6,7,8) in amber */
+#orders-table tbody td:nth-child(6),
+#orders-table tbody td:nth-child(7),
+#orders-table tbody td:nth-child(8) {
   color: var(--amber);
 }
 
@@ -424,6 +439,21 @@ body { display: flex; }
 }
 
 .legend-row:last-child { margin-bottom: 0; }
+
+.legend-section-label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 5px;
+  margin-top: 2px;
+}
+
+.legend-divider {
+  border-top: 1px solid #ddd;
+  margin: 8px 0;
+}
 
 .leg-dot {
   width: 10px;

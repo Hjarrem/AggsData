@@ -4,34 +4,38 @@
    ═══════════════════════════════════════════════════════ */
 
 const CONFIG = {
-  center:             [47.55, -122.10],
-  zoom:               10,
-  minZoom:            7,
-  maxZoom:            17,
-  defaultRadius:      5,
-  priceRange:         0.05,
-  maxOrdersInTable:   50,
-  recentWeight:       2.0,
-  semivariogramRange: 30,
-  nugget:             0.10,
+  center:               [47.55, -122.10],
+  zoom:                 10,
+  minZoom:              7,
+  maxZoom:              17,
+  defaultRadius:        5,
+  priceRange:           0.05,
+  maxOrdersInTable:     50,
+  recentWeight:         2.0,
+  semivariogramRange:   30,
+  nugget:               0.10,
+  truckOverheadMinutes: 5,
+  driveTimeColors:      ['#00bcd4', '#ff7043', '#ab47bc'],
+  enableAddressSearch:  false,   // Nominatim geocoder — re-enable when a better API key is available
 };
 
 let state = {
-  ordersData:     null,
-  plantsData:     null,
-  radius:         CONFIG.defaultRadius,
-  productType:    'all',
-  product:        'all',
-  dateFrom:       '2020-01-01',
-  dateTo:         '2024-12-31',
-  clickMarker:    null,
-  radiusCircle:   null,
-  allOrdersLayer: null,
-  hitOrdersLayer: null,
-  sortCol:        'dist',
-  sortDir:        'asc',
-  lastResults:    null,
-  lastClick:      null,
+  ordersData:          null,
+  plantsData:          null,
+  radius:              CONFIG.defaultRadius,
+  productType:         'all',
+  product:             'all',
+  dateFrom:            '2020-01-01',
+  dateTo:              '2024-12-31',
+  clickMarker:         null,
+  radiusCircle:        null,
+  allOrdersLayer:      null,
+  hitOrdersLayer:      null,
+  driveTimeLayerGroup: null,
+  sortCol:             'dist',
+  sortDir:             'asc',
+  lastResults:         null,
+  lastClick:           null,
 };
 
 // ── Map ────────────────────────────────────────────────
@@ -44,7 +48,12 @@ const map = L.map('map', {
   maxZoom:     CONFIG.maxZoom,
   zoomControl: true,
   renderer:    canvasRenderer,
+  attributionControl: false
 });
+
+L.control.attribution({
+  position: 'topright'
+}).addTo(map)
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
   attribution: '© OpenStreetMap © CARTO',
@@ -161,14 +170,39 @@ function updateSortHeaders() {
 }
 
 // ── Populate product dropdown ──────────────────────────
-function populateProductFilter(features) {
-  const products = [...new Set(features.map(f => f.properties.product))].sort();
-  const sel = document.getElementById('product-filter');
+let productsByType = {};
+
+function buildProductMap(features) {
+  const map = {};
+  features.forEach(f => {
+    const { product, product_type } = f.properties;
+    if (!map.all) map.all = new Set();
+    map.all.add(product);
+    if (product_type) {
+      if (!map[product_type]) map[product_type] = new Set();
+      map[product_type].add(product);
+    }
+  });
+  Object.keys(map).forEach(k => { map[k] = [...map[k]].sort(); });
+  return map;
+}
+
+function filterProductDropdown(type) {
+  const sel      = document.getElementById('product-filter');
+  const products = productsByType[type] ?? productsByType.all ?? [];
+  sel.innerHTML  = '<option value="all">All Products</option>';
   products.forEach(p => {
     const opt = document.createElement('option');
     opt.value = p; opt.textContent = p;
     sel.appendChild(opt);
   });
+  sel.value    = 'all';
+  state.product = 'all';
+}
+
+function populateProductFilter(features) {
+  productsByType = buildProductMap(features);
+  filterProductDropdown('all');
 }
 
 // ── Always-on order layer ──────────────────────────────
@@ -231,14 +265,10 @@ function renderTable(results) {
   tbody.innerHTML = '';
   sorted.slice(0, CONFIG.maxOrdersInTable).forEach(r => {
     const tr = document.createElement('tr');
-    // Truncate plant name to keep table tidy
-    const plantShort = r.p.plant_name.length > 14
-      ? r.p.plant_name.substring(0, 13) + '…'
-      : r.p.plant_name;
     tr.innerHTML = `
       <td>${r.p.date}</td>
-      <td title="${r.p.product}">${r.p.product.substring(0, 12)}</td>
-      <td title="${r.p.plant_name}">${plantShort}</td>
+      <td>${r.p.product}</td>
+      <td>${r.p.plant_name}</td>
       <td>${r.dist.toFixed(1)} mi</td>
       <td>${r.p.volume_tons.toLocaleString()}</td>
       <td>${fmt(r.p.asp)}</td>
@@ -266,8 +296,7 @@ function renderResults(clickLat, clickLon) {
     document.getElementById('est-high').textContent           = '—';
     document.getElementById('est-orders-used').textContent    = 'No orders in radius';
     document.getElementById('est-radius').textContent         = '';
-    document.getElementById('orders-tbody').innerHTML         = '';
-    document.getElementById('orders-count-badge').textContent = '0';
+    document.getElementById('orders-drawer').classList.remove('visible');
     state.lastResults = null;
     renderCompetitors(clickLat, clickLon);
     return;
@@ -282,10 +311,18 @@ function renderResults(clickLat, clickLon) {
   document.getElementById('est-high').textContent           = fmt(hi);
   document.getElementById('est-orders-used').textContent    = `${results.length} order${results.length !== 1 ? 's' : ''} used`;
   document.getElementById('est-radius').textContent         = `${state.radius} mi radius`;
-  document.getElementById('orders-count-badge').textContent = results.length;
 
   state.lastResults = results;
   renderTable(results);
+
+  const drawer       = document.getElementById('orders-drawer');
+  const isNewlyShown = !drawer.classList.contains('visible');
+  drawer.classList.add('visible');
+  if (isNewlyShown) {
+    document.getElementById('orders-table-container').style.maxHeight = '240px';
+    document.getElementById('orders-collapse-btn').textContent        = '▼';
+  }
+  document.getElementById('orders-count-badge').textContent = results.length;
 
   state.hitOrdersLayer = buildHitLayer(results).addTo(map);
   renderCompetitors(clickLat, clickLon);
@@ -311,10 +348,14 @@ function renderCompetitors(clickLat, clickLon) {
   plants.forEach(p => {
     const row = document.createElement('div');
     row.className = 'competitor-row' + (p.owner === 'owned' ? ' owned-row' : '');
+    const chips = p.products.length
+      ? `<div class="competitor-products">${p.products.map(pr => `<span class="product-chip">${pr}</span>`).join('')}</div>`
+      : '';
     row.innerHTML = `
-      <div>
+      <div class="competitor-info">
         <div class="competitor-name">${p.name}</div>
         <div class="competitor-geo">${p.geology} · ${p.owner === 'owned' ? 'Owned' : 'Competitor'}</div>
+        ${chips}
       </div>
       <div class="competitor-dist">${p.dist.toFixed(1)} mi</div>
     `;
@@ -333,15 +374,132 @@ function drawRadiusCircle(lat, lng) {
   }).addTo(map);
 }
 
-// ── Map click ──────────────────────────────────────────
-map.on('click', e => {
-  const { lat, lng } = e.latlng;
+// ── Drive time analysis ─────────────────────────────────
+function formatDuration(seconds) {
+  const totalMin = Math.round(seconds / 60);
+  const h = Math.floor(totalMin / 60);
+  const m = totalMin % 60;
+  if (h === 0) return `${m}m`;
+  return m === 0 ? `${h}h` : `${h}h ${m}m`;
+}
+
+function clearDriveTimeRoutes() {
+  if (state.driveTimeLayerGroup) {
+    map.removeLayer(state.driveTimeLayerGroup);
+    state.driveTimeLayerGroup = null;
+  }
+  document.getElementById('drivetime-results').innerHTML = '';
+  document.getElementById('drivetime-loading').style.display = 'none';
+  const btn = document.getElementById('drivetime-btn');
+  btn.textContent = '▶ Run';
+  btn.disabled = false;
+  delete btn.dataset.active;
+}
+
+async function runDriveTimeAnalysis(clickLat, clickLon) {
+  clearDriveTimeRoutes();
+
+  const resultsEl = document.getElementById('drivetime-results');
+  const loadingEl = document.getElementById('drivetime-loading');
+  const btn       = document.getElementById('drivetime-btn');
+
+  loadingEl.style.display = 'block';
+  btn.disabled    = true;
+  btn.textContent = '…';
+
+  const plants = state.plantsData.features
+    .map(f => {
+      const [lon, lat] = f.geometry.coordinates;
+      return { ...f.properties, lat, lon, dist: haversine(clickLat, clickLon, lat, lon) };
+    })
+    .sort((a, b) => a.dist - b.dist)
+    .slice(0, 3);
+
+  state.driveTimeLayerGroup = L.layerGroup().addTo(map);
+  const overheadSecs = CONFIG.truckOverheadMinutes * 60;
+  const routeData    = [];
+
+  for (let i = 0; i < plants.length; i++) {
+    const plant = plants[i];
+    const color = CONFIG.driveTimeColors[i];
+    try {
+      // Uses the OSRM public demo server — swap base URL for self-hosted or paid routing API in production
+      const url  = `https://router.project-osrm.org/route/v1/driving/${plant.lon},${plant.lat};${clickLon},${clickLat}?overview=full&geometries=geojson`;
+      const resp = await fetch(url);
+      const data = await resp.json();
+
+      if (data.code !== 'Ok' || !data.routes.length) {
+        routeData.push({ plant, color, error: 'No route found' });
+        continue;
+      }
+
+      const route         = data.routes[0];
+      const oneWaySecs    = route.duration;
+      const roadDistMi    = route.distance / 1609.34;
+      const roundTripSecs = oneWaySecs * 2 + overheadSecs;
+
+      const coords = route.geometry.coordinates.map(([ln, lt]) => [lt, ln]);
+      L.polyline(coords, { color, weight: 4, opacity: 0.85, lineJoin: 'round' })
+        .addTo(state.driveTimeLayerGroup);
+
+      L.circleMarker([plant.lat, plant.lon], {
+        radius: 7, fillColor: color, fillOpacity: 1, color: '#fff', weight: 2,
+      })
+        .bindTooltip(plant.name, { permanent: false })
+        .addTo(state.driveTimeLayerGroup);
+
+      routeData.push({ plant, color, oneWaySecs, roadDistMi, roundTripSecs });
+    } catch {
+      routeData.push({ plant, color, error: 'Route unavailable' });
+    }
+  }
+
+  loadingEl.style.display = 'none';
+  btn.disabled       = false;
+  btn.textContent    = '✕ Clear';
+  btn.dataset.active = 'true';
+
+  routeData.forEach(r => {
+    const row = document.createElement('div');
+    row.className = 'drivetime-row';
+    row.style.borderLeftColor = r.color;
+    if (r.error) {
+      row.innerHTML = `
+        <div>
+          <div class="competitor-name">${r.plant.name}</div>
+          <div class="competitor-geo">${r.plant.geology} &middot; ${r.plant.owner === 'owned' ? 'Owned' : 'Competitor'}</div>
+        </div>
+        <div class="drivetime-times"><span class="drivetime-error">${r.error}</span></div>`;
+    } else {
+      row.innerHTML = `
+        <div>
+          <div class="competitor-name">${r.plant.name}</div>
+          <div class="competitor-geo">${r.plant.geology} &middot; ${r.plant.owner === 'owned' ? 'Owned' : 'Competitor'}</div>
+          <div class="drivetime-road-dist">${r.roadDistMi.toFixed(1)} mi by road</div>
+        </div>
+        <div class="drivetime-times">
+          <div class="drivetime-oneway">one-way ${formatDuration(r.oneWaySecs)}</div>
+          <div class="drivetime-roundtrip">&#8635; ${formatDuration(r.roundTripSecs)} round trip</div>
+        </div>`;
+    }
+    resultsEl.appendChild(row);
+  });
+}
+
+// ── Select location (shared by map click + address search) ─
+function selectLocation(lat, lng) {
   state.lastClick = { lat, lng };
+  clearDriveTimeRoutes();
   if (state.clickMarker) map.removeLayer(state.clickMarker);
   drawRadiusCircle(lat, lng);
   state.clickMarker = L.marker([lat, lng], { icon: clickIcon() }).addTo(map);
   document.getElementById('map-overlay-hint').classList.add('hidden');
   renderResults(lat, lng);
+}
+
+// ── Map click ──────────────────────────────────────────
+map.on('click', e => {
+  selectLocation(e.latlng.lat, e.latlng.lng);
 });
 
 // ── Clear ──────────────────────────────────────────────
@@ -349,11 +507,97 @@ document.getElementById('clear-btn').addEventListener('click', () => {
   if (state.clickMarker)   map.removeLayer(state.clickMarker);
   if (state.radiusCircle)  map.removeLayer(state.radiusCircle);
   if (state.hitOrdersLayer){ map.removeLayer(state.hitOrdersLayer); state.hitOrdersLayer = null; }
+  clearDriveTimeRoutes();
   state.clickMarker = state.radiusCircle = state.lastClick = state.lastResults = null;
   document.getElementById('results-panel').style.display = 'none';
+  document.getElementById('orders-drawer').classList.remove('visible');
   document.getElementById('click-hint').style.display    = 'block';
   document.getElementById('map-overlay-hint').classList.remove('hidden');
 });
+
+document.getElementById('drivetime-btn').addEventListener('click', () => {
+  const btn = document.getElementById('drivetime-btn');
+  if (btn.dataset.active === 'true') {
+    clearDriveTimeRoutes();
+  } else if (state.lastClick) {
+    runDriveTimeAnalysis(state.lastClick.lat, state.lastClick.lng);
+  }
+});
+
+// ── Address search ──────────────────────────────────────
+const SearchCtrl = L.Control.extend({
+  options: { position: 'topleft' },
+  onAdd() {
+    const wrap = L.DomUtil.create('div', 'search-control');
+    L.DomEvent.disableClickPropagation(wrap);
+    L.DomEvent.disableScrollPropagation(wrap);
+    wrap.innerHTML = `
+      <div class="search-input-wrap">
+        <input id="address-search" type="text" placeholder="Search address…" autocomplete="off" spellcheck="false" />
+        <button id="address-search-btn" title="Search">
+          <svg width="13" height="13" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2.2"/>
+            <line x1="13" y1="13" x2="19" y2="19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div id="search-results"></div>
+    `;
+    return wrap;
+  },
+});
+if (CONFIG.enableAddressSearch) new SearchCtrl().addTo(map);
+
+function closeSearchResults() {
+  document.getElementById('search-results').innerHTML = '';
+}
+
+async function geocodeAddress() {
+  const input  = document.getElementById('address-search');
+  const query  = input.value.trim();
+  if (!query) return;
+  const b      = map.getBounds();
+  const vbox   = `${b.getWest()},${b.getNorth()},${b.getEast()},${b.getSouth()}`;
+  const url    = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=5&viewbox=${vbox}&bounded=0&countrycodes=us`;
+  const resEl  = document.getElementById('search-results');
+  resEl.innerHTML = '<div class="search-no-results">Searching…</div>';
+  try {
+    const data = await (await fetch(url, { headers: { 'Accept-Language': 'en-US,en' } })).json();
+    resEl.innerHTML = '';
+    if (!data.length) {
+      resEl.innerHTML = '<div class="search-no-results">No results found</div>';
+      return;
+    }
+    data.forEach(r => {
+      const item       = document.createElement('div');
+      item.className   = 'search-result-item';
+      item.textContent = r.display_name.length > 58 ? r.display_name.slice(0, 55) + '…' : r.display_name;
+      item.title       = r.display_name;
+      item.addEventListener('click', e => {
+        L.DomEvent.stopPropagation(e);
+        const lat = parseFloat(r.lat), lng = parseFloat(r.lon);
+        input.value = r.display_name.split(',').slice(0, 2).join(', ').trim();
+        closeSearchResults();
+        map.setView([lat, lng], Math.max(map.getZoom(), 13));
+        selectLocation(lat, lng);
+      });
+      resEl.appendChild(item);
+    });
+  } catch {
+    document.getElementById('search-results').innerHTML = '<div class="search-no-results">Search unavailable</div>';
+  }
+}
+
+if (CONFIG.enableAddressSearch) {
+  document.getElementById('address-search').addEventListener('keydown', e => {
+    if (e.key === 'Enter')  geocodeAddress();
+    if (e.key === 'Escape') closeSearchResults();
+  });
+  document.getElementById('address-search-btn').addEventListener('click', geocodeAddress);
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.search-control')) closeSearchResults();
+  });
+}
 
 // ── Sort click ─────────────────────────────────────────
 document.querySelectorAll('#orders-table th.sortable').forEach(th => {
@@ -386,9 +630,7 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
 
 document.getElementById('product-type-filter').addEventListener('change', e => {
   state.productType = e.target.value;
-  // Reset specific product filter when type changes
-  state.product = 'all';
-  document.getElementById('product-filter').value = 'all';
+  filterProductDropdown(e.target.value);
   rerunEstimate();
 });
 
@@ -405,6 +647,57 @@ document.getElementById('date-from').addEventListener('change', e => {
 document.getElementById('date-to').addEventListener('change', e => {
   state.dateTo = e.target.value;
   rerunEstimate();
+});
+
+// ── Reset parameters ───────────────────────────────────
+document.getElementById('reset-params-btn').addEventListener('click', () => {
+  state.radius = CONFIG.defaultRadius;
+  document.querySelectorAll('.toggle-btn').forEach(b => {
+    b.classList.toggle('active', parseFloat(b.dataset.val) === CONFIG.defaultRadius);
+  });
+  state.productType = 'all';
+  document.getElementById('product-type-filter').value = 'all';
+  filterProductDropdown('all');
+  state.dateFrom = '2020-01-01';
+  state.dateTo   = '2024-12-31';
+  document.getElementById('date-from').value = '2020-01-01';
+  document.getElementById('date-to').value   = '2024-12-31';
+  rerunEstimate();
+});
+
+// ── Orders panel — collapse / download ────────────────
+document.getElementById('orders-collapse-btn').addEventListener('click', () => {
+  const container = document.getElementById('orders-table-container');
+  const btn       = document.getElementById('orders-collapse-btn');
+  const expanded  = container.style.maxHeight !== '0px';
+  container.style.maxHeight = expanded ? '0px' : '240px';
+  btn.textContent = expanded ? '▲' : '▼';
+});
+
+document.getElementById('download-orders-btn').addEventListener('click', () => {
+  if (!state.lastResults) return;
+  const sorted = sortResults(state.lastResults);
+  const header = ['Date', 'Product', 'Plant', 'Distance (mi)', 'Volume (T)', 'ASP', 'Delivery', 'Total ASP'];
+  const rows   = sorted.map(r => [
+    r.p.date,
+    `"${r.p.product}"`,
+    `"${r.p.plant_name}"`,
+    r.dist.toFixed(2),
+    r.p.volume_tons,
+    r.p.asp.toFixed(2),
+    r.p.delivery_fee.toFixed(2),
+    r.p.total_asp.toFixed(2),
+  ]);
+  const csv  = [header.join(','), ...rows.map(r => r.join(','))].join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = `nearby-orders-${new Date().toISOString().slice(0, 10)}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 });
 
 // ── Load data ──────────────────────────────────────────

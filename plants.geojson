@@ -1,0 +1,122 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.985,
+          47.612
+        ]
+      },
+      "properties": {
+        "id": "PLT-001",
+        "name": "Cascade Quarry",
+        "owner": "owned",
+        "geology": "Hard Rock",
+        "products": [
+          "#57 Stone",
+          "#67 Stone",
+          "Dense-Grade Base",
+          "Rip-Rap"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.261,
+          47.421
+        ]
+      },
+      "properties": {
+        "id": "PLT-002",
+        "name": "Puget Sound Aggregates",
+        "owner": "owned",
+        "geology": "Sand & Gravel",
+        "products": [
+          "Concrete Sand",
+          "Mason Sand",
+          "Pea Gravel",
+          "#57 Gravel"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.826,
+          47.529
+        ]
+      },
+      "properties": {
+        "id": "PLT-003",
+        "name": "Snoqualmie Stone Works",
+        "owner": "owned",
+        "geology": "Limestone",
+        "products": [
+          "#304 Base",
+          "9mm Chips",
+          "#8 Stone",
+          "Crusher Run"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.118,
+          47.674
+        ]
+      },
+      "properties": {
+        "id": "PLT-004",
+        "name": "Glacier NW \u2013 Redmond",
+        "owner": "competitor",
+        "geology": "Hard Rock",
+        "products": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.228,
+          47.304
+        ]
+      },
+      "properties": {
+        "id": "PLT-005",
+        "name": "Lehigh Hanson \u2013 Auburn",
+        "owner": "competitor",
+        "geology": "Sand & Gravel",
+        "products": []
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.241,
+          47.756
+        ]
+      },
+      "properties": {
+        "id": "PLT-006",
+        "name": "Cadman \u2013 Kenmore",
+        "owner": "competitor",
+        "geology": "Limestone",
+        "products": []
+      }
+    }
+  ]
+}

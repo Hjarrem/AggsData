@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AggsData — Delivered Price Estimator</title>
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Sidebar ─────────────────────────────────────────────────── -->
+  <aside id="sidebar">
+
+    <div id="sidebar-header">
+      <div id="logo-block">
+        <span id="logo-icon">⬡</span>
+        <div>
+          <div id="logo-title">AggsData</div>
+          <div id="logo-sub">Delivered Price Estimator</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <section class="panel" id="controls-panel">
+      <h2 class="panel-title">SEARCH PARAMETERS</h2>
+
+      <label class="field-label">Search Radius</label>
+      <div class="toggle-row" id="radius-toggle">
+        <button class="toggle-btn active" data-val="5">5 mi</button>
+        <button class="toggle-btn" data-val="10">10 mi</button>
+        <button class="toggle-btn" data-val="25">25 mi</button>
+      </div>
+
+      <label class="field-label">Product Type Filter</label>
+      <select id="product-type-filter" class="styled-select">
+        <option value="all">All Types</option>
+        <option value="concrete_agg">Concrete Aggregate</option>
+        <option value="asphalt_agg">Asphalt Aggregate</option>
+        <option value="base">Base Material</option>
+      </select>
+
+      <label class="field-label">Date Range</label>
+      <div class="date-row">
+        <input type="date" id="date-from" class="styled-input" value="2020-01-01" />
+        <span class="date-sep">→</span>
+        <input type="date" id="date-to"   class="styled-input" value="2024-12-31" />
+      </div>
+
+      <div class="hint-text" id="click-hint">
+        ↖ Click anywhere on the map to estimate price
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section class="panel" id="results-panel" style="display:none;">
+      <h2 class="panel-title">PRICE ESTIMATE
+        <button id="clear-btn" title="Clear estimate">✕</button>
+      </h2>
+
+      <div id="estimate-block">
+        <div id="est-main">
+          <span id="est-label">Est. Delivered ASP</span>
+          <span id="est-value">—</span>
+        </div>
+        <div id="est-range-row">
+          <span class="est-bound" id="est-low">—</span>
+          <div id="est-bar-wrap"><div id="est-bar-fill"></div></div>
+          <span class="est-bound" id="est-high">—</span>
+        </div>
+        <div id="est-meta">
+          <span id="est-orders-used"></span>
+          <span id="est-radius"></span>
+        </div>
+      </div>
+
+      <!-- Nearby Orders -->
+      <h3 class="sub-title">NEARBY ORDERS <span id="orders-count-badge"></span></h3>
+      <div id="orders-table-wrap">
+        <table id="orders-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Product</th>
+              <th>Vol (T)</th>
+              <th>ASP</th>
+              <th>Del.</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody id="orders-tbody"></tbody>
+        </table>
+      </div>
+
+      <!-- Nearby Competitors -->
+      <h3 class="sub-title">NEARBY PLANTS</h3>
+      <div id="competitors-list"></div>
+    </section>
+
+  </aside>
+
+  <!-- ── Map ─────────────────────────────────────────────────────── -->
+  <main id="map-container">
+    <div id="map"></div>
+    <div id="map-overlay-hint">Click map to estimate price</div>
+  </main>
+
+  <!-- ── Legend ──────────────────────────────────────────────────── -->
+  <div id="legend">
+    <div class="legend-row"><span class="leg-dot owned"></span> Owned Plant</div>
+    <div class="legend-row"><span class="leg-dot competitor"></span> Competitor</div>
+    <div class="legend-row"><span class="leg-dot order"></span> Sales Order</div>
+    <div class="legend-row"><span class="leg-dot click-point"></span> Estimate Point</div>
+  </div>
+
+  <script src="map.js"></script>
+</body>
+</html>

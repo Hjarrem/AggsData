@@ -5,11 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AggsData — Delivered Price Estimator</title>
 
-  <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet" />
@@ -18,7 +16,7 @@
 </head>
 <body>
 
-  <!-- ── Sidebar ─────────────────────────────────────────────────── -->
+  <!-- ── Sidebar ──────────────────────────────────────────── -->
   <aside id="sidebar">
 
     <div id="sidebar-header">
@@ -42,12 +40,17 @@
         <button class="toggle-btn" data-val="25">25 mi</button>
       </div>
 
-      <label class="field-label">Product Type Filter</label>
+      <label class="field-label">Product Type</label>
       <select id="product-type-filter" class="styled-select">
         <option value="all">All Types</option>
         <option value="concrete_agg">Concrete Aggregate</option>
         <option value="asphalt_agg">Asphalt Aggregate</option>
         <option value="base">Base Material</option>
+      </select>
+
+      <label class="field-label">Specific Product</label>
+      <select id="product-filter" class="styled-select">
+        <option value="all">All Products</option>
       </select>
 
       <label class="field-label">Date Range</label>
@@ -90,57 +93,64 @@
         <table id="orders-table">
           <thead>
             <tr>
-              <th>Date</th>
-              <th>Product</th>
-              <th>Vol (T)</th>
-              <th>ASP</th>
-              <th>Del.</th>
-              <th>Total</th>
+              <th data-col="date"         class="sortable">Date <span class="sort-icon">⇅</span></th>
+              <th data-col="product"      class="sortable">Product <span class="sort-icon">⇅</span></th>
+              <th data-col="plant_name"   class="sortable">Plant <span class="sort-icon">⇅</span></th>
+              <th data-col="dist"         class="sortable">Dist <span class="sort-icon">⇅</span></th>
+              <th data-col="volume_tons"  class="sortable">Vol(T) <span class="sort-icon">⇅</span></th>
+              <th data-col="asp"          class="sortable">ASP <span class="sort-icon">⇅</span></th>
+              <th data-col="delivery_fee" class="sortable">Del. <span class="sort-icon">⇅</span></th>
+              <th data-col="total_asp"    class="sortable">Total <span class="sort-icon">⇅</span></th>
             </tr>
           </thead>
           <tbody id="orders-tbody"></tbody>
         </table>
       </div>
 
-      <!-- Nearby Competitors -->
+      <!-- Nearby Plants -->
       <h3 class="sub-title">NEARBY PLANTS</h3>
       <div id="competitors-list"></div>
     </section>
 
   </aside>
 
-  <!-- ── Map ─────────────────────────────────────────────────────── -->
+  <!-- ── Map ──────────────────────────────────────────────── -->
   <main id="map-container">
     <div id="map"></div>
     <div id="map-overlay-hint">Click map to estimate price</div>
   </main>
 
-  <!-- ── Legend ──────────────────────────────────────────────────── -->
+  <!-- ── Legend ───────────────────────────────────────────── -->
   <div id="legend">
+
+    <div class="legend-section-label">SHAPE — GEOLOGY</div>
     <div class="legend-row">
-      <svg width="13" height="13" viewBox="0 0 20 20"><polygon points="10,1 19,10 10,19 1,10" fill="#e8a020" stroke="#7a4800" stroke-width="1.5"/></svg>
-      Owned — Limestone
+      <svg width="13" height="13" viewBox="0 0 20 20"><polygon points="10,1 19,10 10,19 1,10" fill="#888" stroke="#555" stroke-width="1.5"/></svg>
+      Limestone
     </div>
     <div class="legend-row">
-      <svg width="13" height="13" viewBox="0 0 20 20"><rect x="2" y="2" width="16" height="16" rx="1" fill="#e8a020" stroke="#7a4800" stroke-width="1.5"/></svg>
-      Owned — Hard Rock
+      <svg width="13" height="13" viewBox="0 0 20 20"><rect x="2" y="2" width="16" height="16" rx="1" fill="#888" stroke="#555" stroke-width="1.5"/></svg>
+      Hard Rock
     </div>
     <div class="legend-row">
-      <svg width="13" height="13" viewBox="0 0 20 20"><polygon points="10,2 19,18 1,18" fill="#e8a020" stroke="#7a4800" stroke-width="1.5"/></svg>
-      Owned — Sand &amp; Gravel
+      <svg width="13" height="13" viewBox="0 0 20 20"><polygon points="10,2 19,18 1,18" fill="#888" stroke="#555" stroke-width="1.5"/></svg>
+      Sand &amp; Gravel
+    </div>
+
+    <div class="legend-divider"></div>
+
+    <div class="legend-section-label">COLOR — OWNERSHIP</div>
+    <div class="legend-row">
+      <svg width="13" height="13" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="#e8a020" stroke="#7a4800" stroke-width="1.5"/></svg>
+      Owned
     </div>
     <div class="legend-row">
-      <svg width="11" height="11" viewBox="0 0 20 20"><polygon points="10,1 19,10 10,19 1,10" fill="#e05070" stroke="#7a1530" stroke-width="1.5"/></svg>
-      Competitor — Limestone
+      <svg width="13" height="13" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="#e05070" stroke="#7a1530" stroke-width="1.5"/></svg>
+      Competitor
     </div>
-    <div class="legend-row">
-      <svg width="11" height="11" viewBox="0 0 20 20"><rect x="2" y="2" width="16" height="16" rx="1" fill="#e05070" stroke="#7a1530" stroke-width="1.5"/></svg>
-      Competitor — Hard Rock
-    </div>
-    <div class="legend-row">
-      <svg width="11" height="11" viewBox="0 0 20 20"><polygon points="10,2 19,18 1,18" fill="#e05070" stroke="#7a1530" stroke-width="1.5"/></svg>
-      Competitor — Sand &amp; Gravel
-    </div>
+
+    <div class="legend-divider"></div>
+
     <div class="legend-row"><span class="leg-dot order"></span> Sales Order</div>
     <div class="legend-row"><span class="leg-dot click-point"></span> Estimate Point</div>
   </div>

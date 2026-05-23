@@ -129,6 +129,9 @@ body { display: flex; }
   letter-spacing: 0.18em;
   color: var(--text-dim);
   margin: 16px 0 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* ── Form Controls ───────────────────────────────────── */
@@ -215,6 +218,24 @@ body { display: flex; }
 }
 
 /* ── Estimate Block ──────────────────────────────────── */
+#reset-params-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  padding: 2px 8px;
+  letter-spacing: 0.06em;
+  transition: all 0.15s;
+}
+
+#reset-params-btn:hover {
+  border-color: var(--amber-dim);
+  color: var(--amber);
+}
+
 #clear-btn {
   background: none;
   border: none;
@@ -299,19 +320,28 @@ body { display: flex; }
 
 /* ── Orders Table ────────────────────────────────────── */
 #orders-table-wrap {
-  max-height: 260px;
   overflow-y: auto;
-  border: 1px solid var(--border);
-  border-radius: 3px;
+  overflow-x: auto;
+  max-height: 240px;
   scrollbar-width: thin;
   scrollbar-color: var(--border) transparent;
 }
+
+/* Column min-widths — date/numbers fixed, product/plant get room to breathe */
+#orders-table th:nth-child(1), #orders-table td:nth-child(1) { min-width: 100px; }
+#orders-table th:nth-child(2), #orders-table td:nth-child(2) { min-width: 150px; }
+#orders-table th:nth-child(3), #orders-table td:nth-child(3) { min-width: 170px; }
+#orders-table th:nth-child(4), #orders-table td:nth-child(4) { min-width:  76px; }
+#orders-table th:nth-child(5), #orders-table td:nth-child(5) { min-width:  76px; }
+#orders-table th:nth-child(6), #orders-table td:nth-child(6) { min-width:  76px; }
+#orders-table th:nth-child(7), #orders-table td:nth-child(7) { min-width:  76px; }
+#orders-table th:nth-child(8), #orders-table td:nth-child(8) { min-width:  86px; }
 
 #orders-table {
   width: 100%;
   border-collapse: collapse;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 12px;
 }
 
 #orders-table thead th {
@@ -373,6 +403,69 @@ body { display: flex; }
   vertical-align: middle;
 }
 
+/* ── Orders Drawer (fixed bottom) ────────────────────── */
+#orders-drawer {
+  position: fixed;
+  bottom: 0;
+  left: var(--sidebar-w);
+  right: 0;
+  z-index: 800;
+  background: var(--bg2);
+  border-top: 2px solid var(--border);
+  display: none;
+}
+
+#orders-drawer.visible { display: block; }
+
+#orders-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  height: 38px;
+  border-bottom: 1px solid var(--border);
+}
+
+#orders-drawer-title {
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.orders-panel-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#download-orders-btn,
+#orders-collapse-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  padding: 2px 7px;
+  letter-spacing: 0.05em;
+  transition: all 0.15s;
+}
+
+#download-orders-btn:hover { border-color: var(--green); color: var(--green); }
+#orders-collapse-btn:hover  { border-color: var(--amber-dim); color: var(--amber); }
+
+#orders-table-container {
+  max-height: 240px;
+  overflow: hidden;
+  transition: max-height 0.22s ease;
+}
+
 /* ── Competitors List ────────────────────────────────── */
 #competitors-list {
   display: flex;
@@ -412,13 +505,132 @@ body { display: flex; }
   margin-left: 10px;
 }
 
+.competitor-info { flex: 1; min-width: 0; }
+
 .owned-row .competitor-name { color: var(--amber); }
 .owned-row .competitor-dist { color: var(--amber); }
+
+.competitor-products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  margin-top: 5px;
+}
+
+.product-chip {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--text-dim);
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 1px 5px;
+  white-space: nowrap;
+}
+
+.owned-row .product-chip {
+  color: var(--amber-dim);
+  border-color: rgba(232,160,32,0.25);
+}
+
+/* ── Drive Time Analysis ─────────────────────────────── */
+#drivetime-section { margin-top: 4px; }
+
+#drivetime-btn {
+  background: none;
+  border: 1px solid var(--amber-dim);
+  border-radius: 3px;
+  color: var(--amber-dim);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  padding: 2px 8px;
+  letter-spacing: 0.06em;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+#drivetime-btn:hover:not(:disabled) {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+#drivetime-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+#drivetime-meta {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+  letter-spacing: 0.04em;
+}
+
+#drivetime-loading {
+  display: none;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--amber-dim);
+  padding: 8px 0;
+  animation: pulse-hint 1.5s ease-in-out infinite;
+}
+
+#drivetime-results {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.drivetime-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-left: 3px solid;
+  border-radius: 3px;
+  padding: 7px 10px;
+}
+
+.drivetime-road-dist {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-dim);
+  margin-top: 3px;
+}
+
+.drivetime-times {
+  text-align: right;
+  flex-shrink: 0;
+  margin-left: 10px;
+}
+
+.drivetime-oneway {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-mid);
+}
+
+.drivetime-roundtrip {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+  margin-top: 3px;
+}
+
+.drivetime-error {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--red);
+}
 
 /* ── Legend ──────────────────────────────────────────── */
 #legend {
   position: absolute;
-  bottom: 24px;
+  top: 20px;
   right: 16px;
   background: rgba(255,255,255,0.93);
   border: 1px solid #ccc;
@@ -484,6 +696,84 @@ body { display: flex; }
 }
 
 #map-overlay-hint.hidden { opacity: 0; }
+
+/* ── Address search control ──────────────────────────── */
+.search-control {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.search-input-wrap {
+  display: flex;
+  align-items: stretch;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+  width: 240px;
+}
+
+#address-search {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 7px 10px;
+  outline: none;
+  min-width: 0;
+}
+
+#address-search::placeholder { color: var(--text-dim); }
+
+#address-search-btn {
+  background: var(--bg3);
+  border: none;
+  border-left: 1px solid var(--border);
+  color: var(--text-mid);
+  cursor: pointer;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  transition: color 0.15s, background 0.15s;
+}
+
+#address-search-btn:hover { color: var(--amber); background: var(--bg2); }
+
+#search-results {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 3px 3px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.45);
+}
+
+.search-result-item {
+  padding: 7px 10px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text);
+  cursor: pointer;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.1s, color 0.1s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item:hover { background: var(--bg3); color: var(--amber); }
+
+.search-no-results {
+  padding: 7px 10px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-dim);
+}
 
 /* ── Leaflet overrides ───────────────────────────────── */
 .leaflet-container {

@@ -16,10 +16,12 @@
         "owner": "owned",
         "geology": "Hard Rock",
         "products": [
-          "#57 Stone",
-          "#67 Stone",
-          "Dense-Grade Base",
-          "Rip-Rap"
+          "#9 stone",
+          "#8 stone",
+          "#57 stone",
+          "#67 stone",
+          "304 base",
+          "411 base"
         ]
       }
     },
@@ -39,9 +41,12 @@
         "geology": "Sand & Gravel",
         "products": [
           "Concrete Sand",
-          "Mason Sand",
-          "Pea Gravel",
-          "#57 Gravel"
+          "#8 gravel",
+          "#8 gravel 100% crush",
+          "#9 gravel",
+          "#9 gravel 100% crush",
+          "304 base",
+          "411 base"
         ]
       }
     },
@@ -60,10 +65,13 @@
         "owner": "owned",
         "geology": "Limestone",
         "products": [
-          "#304 Base",
-          "9mm Chips",
-          "#8 Stone",
-          "Crusher Run"
+          "Concrete Sand",
+          "#9 stone",
+          "#8 stone",
+          "#57 stone",
+          "#67 stone",
+          "304 base",
+          "411 base"
         ]
       }
     },
@@ -78,10 +86,16 @@
       },
       "properties": {
         "id": "PLT-004",
-        "name": "Glacier NW \u2013 Redmond",
+        "name": "Glacier NW – Redmond",
         "owner": "competitor",
         "geology": "Hard Rock",
-        "products": []
+        "products": [
+          "#8 stone",
+          "#57 stone",
+          "#67 stone",
+          "304 base",
+          "411 base"
+        ]
       }
     },
     {
@@ -95,10 +109,16 @@
       },
       "properties": {
         "id": "PLT-005",
-        "name": "Lehigh Hanson \u2013 Auburn",
+        "name": "Lehigh Hanson – Auburn",
         "owner": "competitor",
         "geology": "Sand & Gravel",
-        "products": []
+        "products": [
+          "Concrete Sand",
+          "#8 gravel",
+          "#9 gravel",
+          "#67 gravel 100% crush",
+          "304 base"
+        ]
       }
     },
     {
@@ -112,10 +132,17 @@
       },
       "properties": {
         "id": "PLT-006",
-        "name": "Cadman \u2013 Kenmore",
+        "name": "Cadman – Kenmore",
         "owner": "competitor",
         "geology": "Limestone",
-        "products": []
+        "products": [
+          "Concrete Sand",
+          "#9 stone",
+          "#8 stone",
+          "#57 stone",
+          "304 base",
+          "411 base"
+        ]
       }
     }
   ]

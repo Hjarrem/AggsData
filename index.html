@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AggsData — Delivered Price Estimator</title>
+  <title>AggsData — Price Tool</title>
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -31,7 +31,9 @@
 
     <!-- Controls -->
     <section class="panel" id="controls-panel">
-      <h2 class="panel-title">SEARCH PARAMETERS</h2>
+      <h2 class="panel-title">SEARCH PARAMETERS
+        <button id="reset-params-btn" title="Reset all filters to defaults">Reset Filters</button>
+      </h2>
 
       <label class="field-label">Search Radius</label>
       <div class="toggle-row" id="radius-toggle">
@@ -48,7 +50,7 @@
         <option value="base">Base Material</option>
       </select>
 
-      <label class="field-label">Specific Product</label>
+      <label class="field-label">Product</label>
       <select id="product-filter" class="styled-select">
         <option value="all">All Products</option>
       </select>
@@ -87,8 +89,41 @@
         </div>
       </div>
 
-      <!-- Nearby Orders -->
-      <h3 class="sub-title">NEARBY ORDERS <span id="orders-count-badge"></span></h3>
+      <!-- Nearby Plants -->
+      <h3 class="sub-title">NEARBY PLANTS</h3>
+      <div id="competitors-list"></div>
+
+      <!-- Drive Time Analysis -->
+      <div id="drivetime-section">
+        <h3 class="sub-title">DRIVE TIME ANALYSIS
+          <button id="drivetime-btn" title="Fetch road routes from the 3 nearest plants">&#9654; Run</button>
+        </h3>
+        <div id="drivetime-meta">3 nearest plants &nbsp;·&nbsp; 90 min truck overhead</div>
+        <div id="drivetime-loading">Fetching routes&hellip;</div>
+        <div id="drivetime-results"></div>
+      </div>
+    </section>
+
+  </aside>
+
+  <!-- ── Map ──────────────────────────────────────────────── -->
+  <main id="map-container">
+    <div id="map"></div>
+    <div id="map-overlay-hint">Click map to estimate price</div>
+  </main>
+
+  <!-- ── Orders Drawer ───────────────────────────────────── -->
+  <div id="orders-drawer">
+    <div id="orders-drawer-header">
+      <div id="orders-drawer-title">
+        NEARBY ORDERS <span id="orders-count-badge"></span>
+      </div>
+      <div class="orders-panel-actions">
+        <button id="download-orders-btn" title="Download as CSV">&#8595; CSV</button>
+        <button id="orders-collapse-btn" title="Toggle table">&#9660;</button>
+      </div>
+    </div>
+    <div id="orders-table-container">
       <div id="orders-table-wrap">
         <table id="orders-table">
           <thead>
@@ -106,24 +141,13 @@
           <tbody id="orders-tbody"></tbody>
         </table>
       </div>
-
-      <!-- Nearby Plants -->
-      <h3 class="sub-title">NEARBY PLANTS</h3>
-      <div id="competitors-list"></div>
-    </section>
-
-  </aside>
-
-  <!-- ── Map ──────────────────────────────────────────────── -->
-  <main id="map-container">
-    <div id="map"></div>
-    <div id="map-overlay-hint">Click map to estimate price</div>
-  </main>
+    </div>
+  </div>
 
   <!-- ── Legend ───────────────────────────────────────────── -->
   <div id="legend">
 
-    <div class="legend-section-label">SHAPE — GEOLOGY</div>
+    <div class="legend-section-label">PLANT — GEOLOGY</div>
     <div class="legend-row">
       <svg width="13" height="13" viewBox="0 0 20 20"><polygon points="10,1 19,10 10,19 1,10" fill="#888" stroke="#555" stroke-width="1.5"/></svg>
       Limestone
@@ -139,7 +163,7 @@
 
     <div class="legend-divider"></div>
 
-    <div class="legend-section-label">COLOR — OWNERSHIP</div>
+    <div class="legend-section-label">PLANT — OWNERSHIP</div>
     <div class="legend-row">
       <svg width="13" height="13" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="#e8a020" stroke="#7a4800" stroke-width="1.5"/></svg>
       Owned

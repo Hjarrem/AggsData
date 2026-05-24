@@ -840,6 +840,16 @@ body.sidebar-collapsed #orders-drawer { left: 0; }
   opacity: 0.85;
 }
 
+/* Price heatmap: green (low) → cream (median) → red (high) */
+.heatmap-ramp.price-ramp {
+  background: linear-gradient(to right,
+    rgb(30,160,90),
+    rgb(130,210,140),
+    rgb(245,245,220),
+    rgb(240,150,60),
+    rgb(205,40,40));
+}
+
 .heatmap-ramp-labels {
   display: flex;
   justify-content: space-between;
@@ -975,6 +985,21 @@ body.sidebar-collapsed #orders-drawer { left: 0; }
 }
 
 /* ── Leaflet overrides ───────────────────────────────── */
+
+/* Lay out topleft controls in a row so the search bar sits
+   to the right of the zoom buttons, flush at the top.       */
+.leaflet-top.leaflet-left {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+/* Remove the bottom margin Leaflet adds between stacked controls */
+.leaflet-top.leaflet-left .leaflet-control {
+  margin-bottom: 0;
+}
+
 .leaflet-container {
   background: #1a1e26 !important;
   font-family: var(--font-body);

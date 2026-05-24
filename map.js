@@ -20,7 +20,7 @@ const CONFIG = {
   volumeCap:            2000,   // tonnage above which the large-order discount kicks in; weight falls beyond this point
   escalationPct:        3.0,    // Annual price escalation % applied to historical prices before averaging
   enableAddressSearch:  true,
-  mapboxToken:          'YOUR_MAPBOX_TOKEN',   // replace with your pk.* token from mapbox.com
+  mapboxToken:          pk.eyJ1Ijoicm9ja3JlcG9ydG5qIiwiYSI6ImNtcGp3NGZlbjE3eHoycHBzNWQycWtsejAifQ.zmQ6C-dqiEW4WjdaHmV6-w,   // replace with your pk.* token from mapbox.com
   enablePriceHeatmap:   false,   // Base ASP heatmap overlay — set true to expose the toggle in the legend
   // Isochrone ring styles (filled polygons rendered 45→30→15 so inner rings paint over outer)
   isochroneStyle: {

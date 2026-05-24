@@ -19,7 +19,7 @@
         "asp": 18.03,
         "delivery_fee": 14.46,
         "total_asp": 32.49,
-        "product": "Rip-Rap",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 37.81
@@ -43,7 +43,7 @@
         "asp": 18.94,
         "delivery_fee": 14.1,
         "total_asp": 33.04,
-        "product": "Rip-Rap",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 34.6
@@ -67,7 +67,7 @@
         "asp": 20.59,
         "delivery_fee": 14.81,
         "total_asp": 35.4,
-        "product": "#67 Stone",
+        "product": "#57 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 39.26
@@ -91,7 +91,7 @@
         "asp": 18.41,
         "delivery_fee": 12.2,
         "total_asp": 30.61,
-        "product": "Dense-Grade Base",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 34.31
@@ -115,8 +115,8 @@
         "asp": 17.79,
         "delivery_fee": 12.3,
         "total_asp": 30.09,
-        "product": "#57 Stone",
-        "product_type": "concrete_agg",
+        "product": "304 base",
+        "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 33.65
       }
@@ -139,7 +139,7 @@
         "asp": 18.53,
         "delivery_fee": 8.34,
         "total_asp": 26.87,
-        "product": "Rip-Rap",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 20.86
@@ -163,7 +163,7 @@
         "asp": 19.65,
         "delivery_fee": 14.44,
         "total_asp": 34.09,
-        "product": "#67 Stone",
+        "product": "#8 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 34.6
@@ -187,7 +187,7 @@
         "asp": 17.63,
         "delivery_fee": 12.51,
         "total_asp": 30.14,
-        "product": "Dense-Grade Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 36.0
@@ -211,7 +211,7 @@
         "asp": 17.48,
         "delivery_fee": 4.33,
         "total_asp": 21.81,
-        "product": "Dense-Grade Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 12.4
@@ -235,8 +235,8 @@
         "asp": 19.6,
         "delivery_fee": 12.78,
         "total_asp": 32.38,
-        "product": "Rip-Rap",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 34.94
       }
@@ -259,7 +259,7 @@
         "asp": 20.81,
         "delivery_fee": 11.54,
         "total_asp": 32.35,
-        "product": "#67 Stone",
+        "product": "#57 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 33.22
@@ -283,8 +283,8 @@
         "asp": 20.45,
         "delivery_fee": 5.67,
         "total_asp": 26.12,
-        "product": "Rip-Rap",
-        "product_type": "base",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 14.59
       }
@@ -307,7 +307,7 @@
         "asp": 17.43,
         "delivery_fee": 8.15,
         "total_asp": 25.58,
-        "product": "Rip-Rap",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 20.05
@@ -331,7 +331,7 @@
         "asp": 17.69,
         "delivery_fee": 11.68,
         "total_asp": 29.37,
-        "product": "Dense-Grade Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 31.38
@@ -355,7 +355,7 @@
         "asp": 21.28,
         "delivery_fee": 10.11,
         "total_asp": 31.39,
-        "product": "#57 Stone",
+        "product": "#57 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 24.48
@@ -379,8 +379,8 @@
         "asp": 19.12,
         "delivery_fee": 4.77,
         "total_asp": 23.89,
-        "product": "Dense-Grade Base",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 12.4
       }
@@ -403,7 +403,7 @@
         "asp": 20.49,
         "delivery_fee": 9.29,
         "total_asp": 29.78,
-        "product": "#67 Stone",
+        "product": "#9 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 26.41
@@ -427,7 +427,7 @@
         "asp": 18.53,
         "delivery_fee": 7.79,
         "total_asp": 26.32,
-        "product": "Rip-Rap",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 19.02
@@ -451,8 +451,8 @@
         "asp": 20.57,
         "delivery_fee": 12.42,
         "total_asp": 32.99,
-        "product": "Rip-Rap",
-        "product_type": "base",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 30.87
       }
@@ -475,7 +475,7 @@
         "asp": 21.0,
         "delivery_fee": 10.67,
         "total_asp": 31.67,
-        "product": "#57 Stone",
+        "product": "#57 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 27.59
@@ -499,8 +499,8 @@
         "asp": 20.23,
         "delivery_fee": 12.5,
         "total_asp": 32.73,
-        "product": "Dense-Grade Base",
-        "product_type": "base",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 33.0
       }
@@ -523,7 +523,7 @@
         "asp": 21.51,
         "delivery_fee": 9.75,
         "total_asp": 31.26,
-        "product": "#57 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 28.02
@@ -547,7 +547,7 @@
         "asp": 22.87,
         "delivery_fee": 7.85,
         "total_asp": 30.72,
-        "product": "#67 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 19.64
@@ -571,8 +571,8 @@
         "asp": 19.7,
         "delivery_fee": 12.38,
         "total_asp": 32.08,
-        "product": "Dense-Grade Base",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 34.43
       }
@@ -595,8 +595,8 @@
         "asp": 19.71,
         "delivery_fee": 9.77,
         "total_asp": 29.48,
-        "product": "Rip-Rap",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 27.06
       }
@@ -619,7 +619,7 @@
         "asp": 20.72,
         "delivery_fee": 10.43,
         "total_asp": 31.15,
-        "product": "#57 Stone",
+        "product": "#57 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 29.68
@@ -643,7 +643,7 @@
         "asp": 20.67,
         "delivery_fee": 10.21,
         "total_asp": 30.88,
-        "product": "#67 Stone",
+        "product": "#57 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 26.62
@@ -667,7 +667,7 @@
         "asp": 17.29,
         "delivery_fee": 13.12,
         "total_asp": 30.41,
-        "product": "Rip-Rap",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 36.41
@@ -691,7 +691,7 @@
         "asp": 20.64,
         "delivery_fee": 7.74,
         "total_asp": 28.38,
-        "product": "#57 Stone",
+        "product": "#57 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 20.64
@@ -715,7 +715,7 @@
         "asp": 17.0,
         "delivery_fee": 8.25,
         "total_asp": 25.25,
-        "product": "Rip-Rap",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 21.39
@@ -739,8 +739,8 @@
         "asp": 19.37,
         "delivery_fee": 11.62,
         "total_asp": 30.99,
-        "product": "Rip-Rap",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 30.47
       }
@@ -763,7 +763,7 @@
         "asp": 21.1,
         "delivery_fee": 15.85,
         "total_asp": 36.95,
-        "product": "#67 Stone",
+        "product": "#57 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 39.6
@@ -787,7 +787,7 @@
         "asp": 19.14,
         "delivery_fee": 11.94,
         "total_asp": 31.08,
-        "product": "#57 Stone",
+        "product": "#8 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 34.85
@@ -811,7 +811,7 @@
         "asp": 18.3,
         "delivery_fee": 8.09,
         "total_asp": 26.39,
-        "product": "Dense-Grade Base",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 19.54
@@ -835,7 +835,7 @@
         "asp": 20.95,
         "delivery_fee": 13.29,
         "total_asp": 34.24,
-        "product": "#57 Stone",
+        "product": "#57 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 34.15
@@ -859,8 +859,8 @@
         "asp": 19.03,
         "delivery_fee": 4.93,
         "total_asp": 23.96,
-        "product": "Rip-Rap",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 12.07
       }
@@ -883,8 +883,8 @@
         "asp": 19.45,
         "delivery_fee": 7.61,
         "total_asp": 27.06,
-        "product": "Dense-Grade Base",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 21.0
       }
@@ -907,7 +907,7 @@
         "asp": 22.54,
         "delivery_fee": 13.95,
         "total_asp": 36.49,
-        "product": "#67 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 35.05
@@ -931,8 +931,8 @@
         "asp": 20.56,
         "delivery_fee": 3.61,
         "total_asp": 24.17,
-        "product": "Rip-Rap",
-        "product_type": "base",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 8.84
       }
@@ -955,7 +955,7 @@
         "asp": 20.04,
         "delivery_fee": 6.04,
         "total_asp": 26.08,
-        "product": "#57 Stone",
+        "product": "#9 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 17.47
@@ -979,8 +979,8 @@
         "asp": 18.95,
         "delivery_fee": 11.98,
         "total_asp": 30.93,
-        "product": "#67 Stone",
-        "product_type": "concrete_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 33.53
       }
@@ -1003,7 +1003,7 @@
         "asp": 17.16,
         "delivery_fee": 9.76,
         "total_asp": 26.92,
-        "product": "Dense-Grade Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 26.69
@@ -1027,7 +1027,7 @@
         "asp": 21.21,
         "delivery_fee": 10.81,
         "total_asp": 32.02,
-        "product": "#57 Stone",
+        "product": "#57 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 27.2
@@ -1051,8 +1051,8 @@
         "asp": 19.11,
         "delivery_fee": 9.49,
         "total_asp": 28.6,
-        "product": "Dense-Grade Base",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 26.28
       }
@@ -1075,8 +1075,8 @@
         "asp": 19.06,
         "delivery_fee": 4.24,
         "total_asp": 23.3,
-        "product": "Dense-Grade Base",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 12.21
       }
@@ -1099,7 +1099,7 @@
         "asp": 21.71,
         "delivery_fee": 11.95,
         "total_asp": 33.66,
-        "product": "#57 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 33.48
@@ -1123,7 +1123,7 @@
         "asp": 21.49,
         "delivery_fee": 11.1,
         "total_asp": 32.59,
-        "product": "#57 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 28.55
@@ -1147,8 +1147,8 @@
         "asp": 20.2,
         "delivery_fee": 3.39,
         "total_asp": 23.59,
-        "product": "Dense-Grade Base",
-        "product_type": "base",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 9.47
       }
@@ -1171,7 +1171,7 @@
         "asp": 21.63,
         "delivery_fee": 3.77,
         "total_asp": 25.4,
-        "product": "#67 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 9.48
@@ -1195,7 +1195,7 @@
         "asp": 18.76,
         "delivery_fee": 7.99,
         "total_asp": 26.75,
-        "product": "Dense-Grade Base",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 21.62
@@ -1219,7 +1219,7 @@
         "asp": 20.44,
         "delivery_fee": 12.97,
         "total_asp": 33.41,
-        "product": "#57 Stone",
+        "product": "#9 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 36.49
@@ -1243,7 +1243,7 @@
         "asp": 17.15,
         "delivery_fee": 14.53,
         "total_asp": 31.68,
-        "product": "Rip-Rap",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 36.91
@@ -1267,7 +1267,7 @@
         "asp": 21.44,
         "delivery_fee": 12.8,
         "total_asp": 34.24,
-        "product": "#67 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 36.33
@@ -1291,7 +1291,7 @@
         "asp": 21.2,
         "delivery_fee": 7.22,
         "total_asp": 28.42,
-        "product": "#57 Stone",
+        "product": "#57 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 19.25
@@ -1315,7 +1315,7 @@
         "asp": 22.31,
         "delivery_fee": 15.93,
         "total_asp": 38.24,
-        "product": "#57 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 38.35
@@ -1339,7 +1339,7 @@
         "asp": 20.52,
         "delivery_fee": 9.07,
         "total_asp": 29.59,
-        "product": "#57 Stone",
+        "product": "#9 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 23.89
@@ -1363,7 +1363,7 @@
         "asp": 19.74,
         "delivery_fee": 10.07,
         "total_asp": 29.81,
-        "product": "#57 Stone",
+        "product": "#9 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 24.84
@@ -1387,8 +1387,8 @@
         "asp": 19.41,
         "delivery_fee": 10.06,
         "total_asp": 29.47,
-        "product": "Dense-Grade Base",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 27.29
       }
@@ -1411,7 +1411,7 @@
         "asp": 18.88,
         "delivery_fee": 0.69,
         "total_asp": 19.57,
-        "product": "Dense-Grade Base",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 1.98
@@ -1435,7 +1435,7 @@
         "asp": 16.98,
         "delivery_fee": 12.95,
         "total_asp": 29.93,
-        "product": "Dense-Grade Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 32.93
@@ -1459,7 +1459,7 @@
         "asp": 19.62,
         "delivery_fee": 10.07,
         "total_asp": 29.69,
-        "product": "#67 Stone",
+        "product": "#8 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 29.4
@@ -1483,8 +1483,8 @@
         "asp": 19.66,
         "delivery_fee": 14.61,
         "total_asp": 34.27,
-        "product": "Rip-Rap",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 39.23
       }
@@ -1507,7 +1507,7 @@
         "asp": 20.45,
         "delivery_fee": 6.63,
         "total_asp": 27.08,
-        "product": "#67 Stone",
+        "product": "#9 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 15.92
@@ -1531,7 +1531,7 @@
         "asp": 20.47,
         "delivery_fee": 7.87,
         "total_asp": 28.34,
-        "product": "#67 Stone",
+        "product": "#9 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 22.99
@@ -1555,8 +1555,8 @@
         "asp": 19.98,
         "delivery_fee": 4.13,
         "total_asp": 24.11,
-        "product": "Rip-Rap",
-        "product_type": "base",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 10.16
       }
@@ -1579,8 +1579,8 @@
         "asp": 19.11,
         "delivery_fee": 9.14,
         "total_asp": 28.25,
-        "product": "Rip-Rap",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 24.13
       }
@@ -1603,7 +1603,7 @@
         "asp": 17.58,
         "delivery_fee": 12.74,
         "total_asp": 30.32,
-        "product": "Dense-Grade Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 33.25
@@ -1627,8 +1627,8 @@
         "asp": 18.01,
         "delivery_fee": 13.41,
         "total_asp": 31.42,
-        "product": "#67 Stone",
-        "product_type": "concrete_agg",
+        "product": "304 base",
+        "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 38.83
       }
@@ -1651,7 +1651,7 @@
         "asp": 20.22,
         "delivery_fee": 6.54,
         "total_asp": 26.76,
-        "product": "#67 Stone",
+        "product": "#9 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 15.91
@@ -1675,8 +1675,8 @@
         "asp": 20.52,
         "delivery_fee": 14.41,
         "total_asp": 34.93,
-        "product": "Rip-Rap",
-        "product_type": "base",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 38.7
       }
@@ -1699,7 +1699,7 @@
         "asp": 18.74,
         "delivery_fee": 11.53,
         "total_asp": 30.27,
-        "product": "Rip-Rap",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 32.91
@@ -1723,7 +1723,7 @@
         "asp": 20.47,
         "delivery_fee": 13.19,
         "total_asp": 33.66,
-        "product": "#57 Stone",
+        "product": "#9 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 32.57
@@ -1747,7 +1747,7 @@
         "asp": 19.9,
         "delivery_fee": 11.85,
         "total_asp": 31.75,
-        "product": "#57 Stone",
+        "product": "#9 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 32.33
@@ -1771,8 +1771,8 @@
         "asp": 19.74,
         "delivery_fee": 15.32,
         "total_asp": 35.06,
-        "product": "Dense-Grade Base",
-        "product_type": "base",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 39.68
       }
@@ -1795,8 +1795,8 @@
         "asp": 18.04,
         "delivery_fee": 7.46,
         "total_asp": 25.5,
-        "product": "#67 Stone",
-        "product_type": "concrete_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 20.62
       }
@@ -1819,8 +1819,8 @@
         "asp": 19.49,
         "delivery_fee": 11.09,
         "total_asp": 30.58,
-        "product": "Dense-Grade Base",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 28.15
       }
@@ -1843,7 +1843,7 @@
         "asp": 19.05,
         "delivery_fee": 9.77,
         "total_asp": 28.82,
-        "product": "#67 Stone",
+        "product": "#8 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 25.89
@@ -1867,7 +1867,7 @@
         "asp": 21.78,
         "delivery_fee": 15.33,
         "total_asp": 37.11,
-        "product": "#57 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 38.09
@@ -1891,8 +1891,8 @@
         "asp": 19.08,
         "delivery_fee": 13.08,
         "total_asp": 32.16,
-        "product": "Rip-Rap",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 36.82
       }
@@ -1915,7 +1915,7 @@
         "asp": 21.86,
         "delivery_fee": 10.97,
         "total_asp": 32.83,
-        "product": "#57 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 29.06
@@ -1939,7 +1939,7 @@
         "asp": 20.34,
         "delivery_fee": 15.18,
         "total_asp": 35.52,
-        "product": "#67 Stone",
+        "product": "#9 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 38.97
@@ -1963,7 +1963,7 @@
         "asp": 22.11,
         "delivery_fee": 5.34,
         "total_asp": 27.45,
-        "product": "#57 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 14.74
@@ -1987,7 +1987,7 @@
         "asp": 20.47,
         "delivery_fee": 13.82,
         "total_asp": 34.29,
-        "product": "#67 Stone",
+        "product": "#9 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 38.32
@@ -2011,7 +2011,7 @@
         "asp": 21.42,
         "delivery_fee": 11.75,
         "total_asp": 33.17,
-        "product": "#67 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 30.77
@@ -2035,7 +2035,7 @@
         "asp": 18.25,
         "delivery_fee": 6.99,
         "total_asp": 25.24,
-        "product": "Dense-Grade Base",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 19.85
@@ -2059,7 +2059,7 @@
         "asp": 19.03,
         "delivery_fee": 8.93,
         "total_asp": 27.96,
-        "product": "Dense-Grade Base",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 24.6
@@ -2083,7 +2083,7 @@
         "asp": 18.76,
         "delivery_fee": 9.9,
         "total_asp": 28.66,
-        "product": "Rip-Rap",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 24.81
@@ -2107,7 +2107,7 @@
         "asp": 17.57,
         "delivery_fee": 13.94,
         "total_asp": 31.51,
-        "product": "Dense-Grade Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 37.51
@@ -2131,7 +2131,7 @@
         "asp": 16.63,
         "delivery_fee": 6.43,
         "total_asp": 23.06,
-        "product": "Dense-Grade Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 15.61
@@ -2155,7 +2155,7 @@
         "asp": 17.86,
         "delivery_fee": 7.12,
         "total_asp": 24.98,
-        "product": "Rip-Rap",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 20.71
@@ -2179,7 +2179,7 @@
         "asp": 18.62,
         "delivery_fee": 9.29,
         "total_asp": 27.91,
-        "product": "Dense-Grade Base",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 25.69
@@ -2203,7 +2203,7 @@
         "asp": 20.21,
         "delivery_fee": 8.74,
         "total_asp": 28.95,
-        "product": "#57 Stone",
+        "product": "#9 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 23.97
@@ -2227,7 +2227,7 @@
         "asp": 18.83,
         "delivery_fee": 11.24,
         "total_asp": 30.07,
-        "product": "Dense-Grade Base",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 29.24
@@ -2251,7 +2251,7 @@
         "asp": 17.79,
         "delivery_fee": 7.41,
         "total_asp": 25.2,
-        "product": "Dense-Grade Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 20.0
@@ -2275,7 +2275,7 @@
         "asp": 19.96,
         "delivery_fee": 11.9,
         "total_asp": 31.86,
-        "product": "#57 Stone",
+        "product": "#9 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 30.26
@@ -2299,8 +2299,8 @@
         "asp": 19.63,
         "delivery_fee": 10.81,
         "total_asp": 30.44,
-        "product": "Rip-Rap",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 30.12
       }
@@ -2323,7 +2323,7 @@
         "asp": 18.99,
         "delivery_fee": 8.02,
         "total_asp": 27.01,
-        "product": "Dense-Grade Base",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 21.53
@@ -2347,7 +2347,7 @@
         "asp": 18.18,
         "delivery_fee": 10.43,
         "total_asp": 28.61,
-        "product": "Dense-Grade Base",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 25.29
@@ -2371,7 +2371,7 @@
         "asp": 21.42,
         "delivery_fee": 14.43,
         "total_asp": 35.85,
-        "product": "#57 Stone",
+        "product": "#57 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 35.69
@@ -2395,7 +2395,7 @@
         "asp": 21.63,
         "delivery_fee": 10.19,
         "total_asp": 31.82,
-        "product": "#57 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 28.12
@@ -2419,7 +2419,7 @@
         "asp": 18.74,
         "delivery_fee": 10.77,
         "total_asp": 29.51,
-        "product": "Rip-Rap",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 28.48
@@ -2443,8 +2443,8 @@
         "asp": 20.33,
         "delivery_fee": 12.62,
         "total_asp": 32.95,
-        "product": "Rip-Rap",
-        "product_type": "base",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 35.13
       }
@@ -2467,7 +2467,7 @@
         "asp": 19.38,
         "delivery_fee": 10.1,
         "total_asp": 29.48,
-        "product": "#57 Stone",
+        "product": "#8 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 28.91
@@ -2491,7 +2491,7 @@
         "asp": 20.0,
         "delivery_fee": 15.15,
         "total_asp": 35.15,
-        "product": "#57 Stone",
+        "product": "#9 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 39.7
@@ -2515,7 +2515,7 @@
         "asp": 21.01,
         "delivery_fee": 9.32,
         "total_asp": 30.33,
-        "product": "#67 Stone",
+        "product": "#57 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 25.03
@@ -2539,8 +2539,8 @@
         "asp": 19.39,
         "delivery_fee": 12.15,
         "total_asp": 31.54,
-        "product": "Dense-Grade Base",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 31.95
       }
@@ -2563,7 +2563,7 @@
         "asp": 21.48,
         "delivery_fee": 7.84,
         "total_asp": 29.32,
-        "product": "#67 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 19.8
@@ -2587,7 +2587,7 @@
         "asp": 22.98,
         "delivery_fee": 4.71,
         "total_asp": 27.69,
-        "product": "#57 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 13.14
@@ -2611,8 +2611,8 @@
         "asp": 19.45,
         "delivery_fee": 12.62,
         "total_asp": 32.07,
-        "product": "Rip-Rap",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 30.46
       }
@@ -2635,7 +2635,7 @@
         "asp": 19.9,
         "delivery_fee": 3.01,
         "total_asp": 22.91,
-        "product": "#67 Stone",
+        "product": "#9 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 8.42
@@ -2659,7 +2659,7 @@
         "asp": 21.23,
         "delivery_fee": 8.37,
         "total_asp": 29.6,
-        "product": "#67 Stone",
+        "product": "#57 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 20.39
@@ -2683,7 +2683,7 @@
         "asp": 21.7,
         "delivery_fee": 13.77,
         "total_asp": 35.47,
-        "product": "#57 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 33.64
@@ -2707,7 +2707,7 @@
         "asp": 19.45,
         "delivery_fee": 13.83,
         "total_asp": 33.28,
-        "product": "#67 Stone",
+        "product": "#8 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 35.66
@@ -2731,7 +2731,7 @@
         "asp": 19.45,
         "delivery_fee": 8.76,
         "total_asp": 28.21,
-        "product": "#67 Stone",
+        "product": "#8 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 22.95
@@ -2755,8 +2755,8 @@
         "asp": 20.84,
         "delivery_fee": 10.59,
         "total_asp": 31.43,
-        "product": "Dense-Grade Base",
-        "product_type": "base",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 28.16
       }
@@ -2779,7 +2779,7 @@
         "asp": 19.26,
         "delivery_fee": 13.25,
         "total_asp": 32.51,
-        "product": "#57 Stone",
+        "product": "#8 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 34.71
@@ -2803,7 +2803,7 @@
         "asp": 17.54,
         "delivery_fee": 12.33,
         "total_asp": 29.87,
-        "product": "Dense-Grade Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 31.47
@@ -2827,7 +2827,7 @@
         "asp": 22.54,
         "delivery_fee": 11.92,
         "total_asp": 34.46,
-        "product": "#67 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 33.4
@@ -2851,8 +2851,8 @@
         "asp": 18.42,
         "delivery_fee": 12.97,
         "total_asp": 31.39,
-        "product": "#67 Stone",
-        "product_type": "concrete_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 33.36
       }
@@ -2875,7 +2875,7 @@
         "asp": 17.74,
         "delivery_fee": 3.05,
         "total_asp": 20.79,
-        "product": "Dense-Grade Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 8.22
@@ -2899,7 +2899,7 @@
         "asp": 20.58,
         "delivery_fee": 16.11,
         "total_asp": 36.69,
-        "product": "#67 Stone",
+        "product": "#57 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 39.13
@@ -2923,7 +2923,7 @@
         "asp": 22.32,
         "delivery_fee": 13.49,
         "total_asp": 35.81,
-        "product": "#57 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 36.38
@@ -2947,7 +2947,7 @@
         "asp": 17.02,
         "delivery_fee": 10.68,
         "total_asp": 27.7,
-        "product": "Rip-Rap",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 27.17
@@ -2971,7 +2971,7 @@
         "asp": 20.43,
         "delivery_fee": 13.3,
         "total_asp": 33.73,
-        "product": "#57 Stone",
+        "product": "#9 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 33.9
@@ -2995,7 +2995,7 @@
         "asp": 23.25,
         "delivery_fee": 12.2,
         "total_asp": 35.45,
-        "product": "#57 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 30.93
@@ -3019,7 +3019,7 @@
         "asp": 21.98,
         "delivery_fee": 14.77,
         "total_asp": 36.75,
-        "product": "#67 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 36.01
@@ -3043,7 +3043,7 @@
         "asp": 17.38,
         "delivery_fee": 14.67,
         "total_asp": 32.05,
-        "product": "Dense-Grade Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 36.28
@@ -3067,7 +3067,7 @@
         "asp": 17.26,
         "delivery_fee": 11.32,
         "total_asp": 28.58,
-        "product": "Dense-Grade Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 30.56
@@ -3091,7 +3091,7 @@
         "asp": 18.0,
         "delivery_fee": 9.97,
         "total_asp": 27.97,
-        "product": "Rip-Rap",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 26.22
@@ -3115,8 +3115,8 @@
         "asp": 19.23,
         "delivery_fee": 10.41,
         "total_asp": 29.64,
-        "product": "Rip-Rap",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 28.02
       }
@@ -3139,7 +3139,7 @@
         "asp": 18.98,
         "delivery_fee": 9.36,
         "total_asp": 28.34,
-        "product": "Rip-Rap",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 24.16
@@ -3163,7 +3163,7 @@
         "asp": 16.44,
         "delivery_fee": 8.71,
         "total_asp": 25.15,
-        "product": "Rip-Rap",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 25.41
@@ -3187,7 +3187,7 @@
         "asp": 18.47,
         "delivery_fee": 14.35,
         "total_asp": 32.82,
-        "product": "Rip-Rap",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 36.23
@@ -3211,7 +3211,7 @@
         "asp": 18.59,
         "delivery_fee": 8.83,
         "total_asp": 27.42,
-        "product": "Rip-Rap",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 22.2
@@ -3235,7 +3235,7 @@
         "asp": 18.13,
         "delivery_fee": 15.68,
         "total_asp": 33.81,
-        "product": "Dense-Grade Base",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 38.57
@@ -3259,7 +3259,7 @@
         "asp": 22.7,
         "delivery_fee": 13.42,
         "total_asp": 36.12,
-        "product": "#67 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 36.23
@@ -3283,7 +3283,7 @@
         "asp": 17.84,
         "delivery_fee": 12.1,
         "total_asp": 29.94,
-        "product": "Dense-Grade Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 32.22
@@ -3307,7 +3307,7 @@
         "asp": 21.18,
         "delivery_fee": 9.95,
         "total_asp": 31.13,
-        "product": "#57 Stone",
+        "product": "#57 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 24.11
@@ -3331,7 +3331,7 @@
         "asp": 20.71,
         "delivery_fee": 13.61,
         "total_asp": 34.32,
-        "product": "#67 Stone",
+        "product": "#57 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 38.18
@@ -3355,7 +3355,7 @@
         "asp": 18.55,
         "delivery_fee": 11.86,
         "total_asp": 30.41,
-        "product": "Dense-Grade Base",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 32.4
@@ -3379,7 +3379,7 @@
         "asp": 19.19,
         "delivery_fee": 8.94,
         "total_asp": 28.13,
-        "product": "#57 Stone",
+        "product": "#8 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 23.89
@@ -3403,7 +3403,7 @@
         "asp": 18.56,
         "delivery_fee": 13.68,
         "total_asp": 32.24,
-        "product": "Dense-Grade Base",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 36.46
@@ -3427,8 +3427,8 @@
         "asp": 20.7,
         "delivery_fee": 9.87,
         "total_asp": 30.57,
-        "product": "Dense-Grade Base",
-        "product_type": "base",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 24.23
       }
@@ -3451,7 +3451,7 @@
         "asp": 21.14,
         "delivery_fee": 3.98,
         "total_asp": 25.12,
-        "product": "#57 Stone",
+        "product": "#57 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 10.59
@@ -3475,7 +3475,7 @@
         "asp": 21.02,
         "delivery_fee": 3.0,
         "total_asp": 24.02,
-        "product": "#57 Stone",
+        "product": "#57 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 7.24
@@ -3499,7 +3499,7 @@
         "asp": 19.63,
         "delivery_fee": 10.54,
         "total_asp": 30.17,
-        "product": "#57 Stone",
+        "product": "#8 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 27.25
@@ -3523,7 +3523,7 @@
         "asp": 22.7,
         "delivery_fee": 8.2,
         "total_asp": 30.9,
-        "product": "#57 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 21.43
@@ -3547,7 +3547,7 @@
         "asp": 21.56,
         "delivery_fee": 8.28,
         "total_asp": 29.84,
-        "product": "#57 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 21.06
@@ -3571,7 +3571,7 @@
         "asp": 21.87,
         "delivery_fee": 15.84,
         "total_asp": 37.71,
-        "product": "#57 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 38.91
@@ -3595,7 +3595,7 @@
         "asp": 22.3,
         "delivery_fee": 10.27,
         "total_asp": 32.57,
-        "product": "#57 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 25.2
@@ -3619,7 +3619,7 @@
         "asp": 18.7,
         "delivery_fee": 6.1,
         "total_asp": 24.8,
-        "product": "Dense-Grade Base",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 16.71
@@ -3643,7 +3643,7 @@
         "asp": 20.62,
         "delivery_fee": 11.77,
         "total_asp": 32.39,
-        "product": "#67 Stone",
+        "product": "#57 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 32.97
@@ -3667,7 +3667,7 @@
         "asp": 17.86,
         "delivery_fee": 8.65,
         "total_asp": 26.51,
-        "product": "Dense-Grade Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 24.15
@@ -3691,7 +3691,7 @@
         "asp": 17.16,
         "delivery_fee": 7.89,
         "total_asp": 25.05,
-        "product": "Rip-Rap",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 21.11
@@ -3715,8 +3715,8 @@
         "asp": 20.17,
         "delivery_fee": 14.72,
         "total_asp": 34.89,
-        "product": "Dense-Grade Base",
-        "product_type": "base",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 39.89
       }
@@ -3739,7 +3739,7 @@
         "asp": 18.48,
         "delivery_fee": 11.0,
         "total_asp": 29.48,
-        "product": "Rip-Rap",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 31.74
@@ -3763,8 +3763,8 @@
         "asp": 20.24,
         "delivery_fee": 11.86,
         "total_asp": 32.1,
-        "product": "Rip-Rap",
-        "product_type": "base",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 28.76
       }
@@ -3787,7 +3787,7 @@
         "asp": 21.29,
         "delivery_fee": 14.74,
         "total_asp": 36.03,
-        "product": "#67 Stone",
+        "product": "#57 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 38.24
@@ -3811,7 +3811,7 @@
         "asp": 20.15,
         "delivery_fee": 13.1,
         "total_asp": 33.25,
-        "product": "#57 Stone",
+        "product": "#9 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 38.14
@@ -3835,7 +3835,7 @@
         "asp": 17.87,
         "delivery_fee": 11.11,
         "total_asp": 28.98,
-        "product": "Dense-Grade Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 31.86
@@ -3859,7 +3859,7 @@
         "asp": 21.93,
         "delivery_fee": 6.65,
         "total_asp": 28.58,
-        "product": "#67 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 16.55
@@ -3883,7 +3883,7 @@
         "asp": 18.03,
         "delivery_fee": 11.14,
         "total_asp": 29.17,
-        "product": "Rip-Rap",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 30.97
@@ -3907,7 +3907,7 @@
         "asp": 19.84,
         "delivery_fee": 14.42,
         "total_asp": 34.26,
-        "product": "#67 Stone",
+        "product": "#9 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 36.1
@@ -3931,8 +3931,8 @@
         "asp": 19.89,
         "delivery_fee": 9.87,
         "total_asp": 29.76,
-        "product": "Rip-Rap",
-        "product_type": "base",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 23.98
       }
@@ -3955,7 +3955,7 @@
         "asp": 21.74,
         "delivery_fee": 8.47,
         "total_asp": 30.21,
-        "product": "#57 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 22.36
@@ -3979,8 +3979,8 @@
         "asp": 20.37,
         "delivery_fee": 7.49,
         "total_asp": 27.86,
-        "product": "Rip-Rap",
-        "product_type": "base",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 21.49
       }
@@ -4003,7 +4003,7 @@
         "asp": 21.48,
         "delivery_fee": 12.44,
         "total_asp": 33.92,
-        "product": "#57 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 34.53
@@ -4027,7 +4027,7 @@
         "asp": 20.71,
         "delivery_fee": 9.86,
         "total_asp": 30.57,
-        "product": "#67 Stone",
+        "product": "#57 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 24.16
@@ -4051,7 +4051,7 @@
         "asp": 19.46,
         "delivery_fee": 6.64,
         "total_asp": 26.1,
-        "product": "#57 Stone",
+        "product": "#8 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 18.19
@@ -4075,8 +4075,8 @@
         "asp": 20.8,
         "delivery_fee": 7.63,
         "total_asp": 28.43,
-        "product": "Rip-Rap",
-        "product_type": "base",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 18.8
       }
@@ -4099,7 +4099,7 @@
         "asp": 19.22,
         "delivery_fee": 12.74,
         "total_asp": 31.96,
-        "product": "#67 Stone",
+        "product": "#8 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 33.06
@@ -4123,7 +4123,7 @@
         "asp": 19.59,
         "delivery_fee": 7.73,
         "total_asp": 27.32,
-        "product": "#67 Stone",
+        "product": "#8 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 19.35
@@ -4147,7 +4147,7 @@
         "asp": 19.26,
         "delivery_fee": 13.18,
         "total_asp": 32.44,
-        "product": "#67 Stone",
+        "product": "#8 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 32.36
@@ -4171,7 +4171,7 @@
         "asp": 20.39,
         "delivery_fee": 11.33,
         "total_asp": 31.72,
-        "product": "#57 Stone",
+        "product": "#9 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 32.44
@@ -4195,8 +4195,8 @@
         "asp": 20.56,
         "delivery_fee": 12.96,
         "total_asp": 33.52,
-        "product": "Dense-Grade Base",
-        "product_type": "base",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 32.06
       }
@@ -4219,7 +4219,7 @@
         "asp": 20.76,
         "delivery_fee": 16.24,
         "total_asp": 37.0,
-        "product": "#67 Stone",
+        "product": "#57 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 39.83
@@ -4243,7 +4243,7 @@
         "asp": 22.11,
         "delivery_fee": 13.25,
         "total_asp": 35.36,
-        "product": "#57 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 37.31
@@ -4267,8 +4267,8 @@
         "asp": 17.63,
         "delivery_fee": 14.83,
         "total_asp": 32.46,
-        "product": "#57 Stone",
-        "product_type": "concrete_agg",
+        "product": "304 base",
+        "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 37.64
       }
@@ -4291,7 +4291,7 @@
         "asp": 21.5,
         "delivery_fee": 13.12,
         "total_asp": 34.62,
-        "product": "#57 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 34.73
@@ -4315,7 +4315,7 @@
         "asp": 20.81,
         "delivery_fee": 8.35,
         "total_asp": 29.16,
-        "product": "#67 Stone",
+        "product": "#57 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 20.89
@@ -4339,7 +4339,7 @@
         "asp": 20.58,
         "delivery_fee": 15.85,
         "total_asp": 36.43,
-        "product": "#67 Stone",
+        "product": "#57 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 37.98
@@ -4363,7 +4363,7 @@
         "asp": 16.34,
         "delivery_fee": 10.31,
         "total_asp": 26.65,
-        "product": "Rip-Rap",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 26.71
@@ -4387,7 +4387,7 @@
         "asp": 20.05,
         "delivery_fee": 13.33,
         "total_asp": 33.38,
-        "product": "#67 Stone",
+        "product": "#9 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 35.41
@@ -4411,8 +4411,8 @@
         "asp": 20.91,
         "delivery_fee": 8.56,
         "total_asp": 29.47,
-        "product": "Dense-Grade Base",
-        "product_type": "base",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 21.39
       }
@@ -4435,7 +4435,7 @@
         "asp": 22.25,
         "delivery_fee": 3.57,
         "total_asp": 25.82,
-        "product": "#67 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 9.97
@@ -4459,7 +4459,7 @@
         "asp": 21.7,
         "delivery_fee": 2.03,
         "total_asp": 23.73,
-        "product": "#67 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 5.92
@@ -4483,7 +4483,7 @@
         "asp": 17.68,
         "delivery_fee": 13.32,
         "total_asp": 31.0,
-        "product": "Dense-Grade Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 35.01
@@ -4507,8 +4507,8 @@
         "asp": 20.06,
         "delivery_fee": 16.45,
         "total_asp": 36.51,
-        "product": "Dense-Grade Base",
-        "product_type": "base",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 39.61
       }
@@ -4531,8 +4531,8 @@
         "asp": 20.98,
         "delivery_fee": 15.24,
         "total_asp": 36.22,
-        "product": "Dense-Grade Base",
-        "product_type": "base",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 38.31
       }
@@ -4555,7 +4555,7 @@
         "asp": 20.75,
         "delivery_fee": 13.53,
         "total_asp": 34.28,
-        "product": "#57 Stone",
+        "product": "#57 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 36.06
@@ -4579,7 +4579,7 @@
         "asp": 17.88,
         "delivery_fee": 10.82,
         "total_asp": 28.7,
-        "product": "Rip-Rap",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 26.91
@@ -4603,7 +4603,7 @@
         "asp": 22.78,
         "delivery_fee": 5.4,
         "total_asp": 28.18,
-        "product": "#67 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 14.74
@@ -4627,7 +4627,7 @@
         "asp": 17.6,
         "delivery_fee": 15.22,
         "total_asp": 32.82,
-        "product": "Dense-Grade Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 38.4
@@ -4651,7 +4651,7 @@
         "asp": 19.0,
         "delivery_fee": 11.55,
         "total_asp": 30.55,
-        "product": "Rip-Rap",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 32.62
@@ -4675,7 +4675,7 @@
         "asp": 17.62,
         "delivery_fee": 14.95,
         "total_asp": 32.57,
-        "product": "Rip-Rap",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 39.16
@@ -4699,7 +4699,7 @@
         "asp": 18.5,
         "delivery_fee": 4.02,
         "total_asp": 22.52,
-        "product": "Rip-Rap",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 11.64
@@ -4723,7 +4723,7 @@
         "asp": 18.94,
         "delivery_fee": 8.25,
         "total_asp": 27.19,
-        "product": "Dense-Grade Base",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 24.02
@@ -4747,7 +4747,7 @@
         "asp": 18.7,
         "delivery_fee": 3.84,
         "total_asp": 22.54,
-        "product": "Rip-Rap",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Hard Rock",
         "dist_from_plant": 10.14
@@ -4771,8 +4771,8 @@
         "asp": 19.38,
         "delivery_fee": 4.55,
         "total_asp": 23.93,
-        "product": "Rip-Rap",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 11.9
       }
@@ -4795,7 +4795,7 @@
         "asp": 21.5,
         "delivery_fee": 6.51,
         "total_asp": 28.01,
-        "product": "#57 Stone",
+        "product": "#67 stone",
         "product_type": "concrete_agg",
         "geology": "Hard Rock",
         "dist_from_plant": 16.22
@@ -4819,8 +4819,8 @@
         "asp": 11.91,
         "delivery_fee": 13.53,
         "total_asp": 25.44,
-        "product": "#57 Gravel",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 34.06
       }
@@ -4843,7 +4843,7 @@
         "asp": 13.65,
         "delivery_fee": 6.91,
         "total_asp": 20.56,
-        "product": "Pea Gravel",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 17.11
@@ -4867,8 +4867,8 @@
         "asp": 12.72,
         "delivery_fee": 2.88,
         "total_asp": 15.6,
-        "product": "#57 Gravel",
-        "product_type": "base",
+        "product": "#9 gravel",
+        "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 8.0
       }
@@ -4891,7 +4891,7 @@
         "asp": 10.53,
         "delivery_fee": 9.68,
         "total_asp": 20.21,
-        "product": "#57 Gravel",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 26.88
@@ -4915,7 +4915,7 @@
         "asp": 12.45,
         "delivery_fee": 6.41,
         "total_asp": 18.86,
-        "product": "Pea Gravel",
+        "product": "#9 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 16.1
@@ -4939,8 +4939,8 @@
         "asp": 11.34,
         "delivery_fee": 12.44,
         "total_asp": 23.78,
-        "product": "Pea Gravel",
-        "product_type": "concrete_agg",
+        "product": "304 base",
+        "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 34.43
       }
@@ -4963,7 +4963,7 @@
         "asp": 11.06,
         "delivery_fee": 12.92,
         "total_asp": 23.98,
-        "product": "#57 Gravel",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 36.9
@@ -4987,8 +4987,8 @@
         "asp": 11.22,
         "delivery_fee": 11.44,
         "total_asp": 22.66,
-        "product": "Pea Gravel",
-        "product_type": "concrete_agg",
+        "product": "304 base",
+        "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 33.2
       }
@@ -5011,7 +5011,7 @@
         "asp": 12.1,
         "delivery_fee": 15.81,
         "total_asp": 27.91,
-        "product": "Pea Gravel",
+        "product": "#8 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 38.18
@@ -5035,7 +5035,7 @@
         "asp": 12.44,
         "delivery_fee": 8.77,
         "total_asp": 21.21,
-        "product": "Mason Sand",
+        "product": "#8 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 23.76
@@ -5059,8 +5059,8 @@
         "asp": 12.29,
         "delivery_fee": 9.84,
         "total_asp": 22.13,
-        "product": "#57 Gravel",
-        "product_type": "base",
+        "product": "#8 gravel",
+        "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 28.36
       }
@@ -5107,8 +5107,8 @@
         "asp": 12.06,
         "delivery_fee": 16.04,
         "total_asp": 28.1,
-        "product": "#57 Gravel",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 38.5
       }
@@ -5131,8 +5131,8 @@
         "asp": 12.71,
         "delivery_fee": 6.35,
         "total_asp": 19.06,
-        "product": "#57 Gravel",
-        "product_type": "base",
+        "product": "#9 gravel",
+        "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 16.04
       }
@@ -5155,7 +5155,7 @@
         "asp": 12.88,
         "delivery_fee": 6.2,
         "total_asp": 19.08,
-        "product": "Mason Sand",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 15.59
@@ -5179,7 +5179,7 @@
         "asp": 12.02,
         "delivery_fee": 9.15,
         "total_asp": 21.17,
-        "product": "Pea Gravel",
+        "product": "Concrete Sand",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 24.11
@@ -5203,8 +5203,8 @@
         "asp": 11.89,
         "delivery_fee": 11.13,
         "total_asp": 23.02,
-        "product": "#57 Gravel",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 28.08
       }
@@ -5227,7 +5227,7 @@
         "asp": 12.99,
         "delivery_fee": 10.63,
         "total_asp": 23.62,
-        "product": "Concrete Sand",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 25.89
@@ -5251,8 +5251,8 @@
         "asp": 11.83,
         "delivery_fee": 4.73,
         "total_asp": 16.56,
-        "product": "#57 Gravel",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 13.68
       }
@@ -5275,7 +5275,7 @@
         "asp": 13.69,
         "delivery_fee": 13.87,
         "total_asp": 27.56,
-        "product": "Concrete Sand",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 34.15
@@ -5299,8 +5299,8 @@
         "asp": 11.82,
         "delivery_fee": 5.63,
         "total_asp": 17.45,
-        "product": "Mason Sand",
-        "product_type": "concrete_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 13.58
       }
@@ -5323,8 +5323,8 @@
         "asp": 11.24,
         "delivery_fee": 3.95,
         "total_asp": 15.19,
-        "product": "Mason Sand",
-        "product_type": "concrete_agg",
+        "product": "304 base",
+        "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 11.36
       }
@@ -5347,7 +5347,7 @@
         "asp": 13.27,
         "delivery_fee": 12.13,
         "total_asp": 25.4,
-        "product": "Pea Gravel",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 33.07
@@ -5371,8 +5371,8 @@
         "asp": 11.88,
         "delivery_fee": 13.17,
         "total_asp": 25.05,
-        "product": "#57 Gravel",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 33.59
       }
@@ -5395,7 +5395,7 @@
         "asp": 13.01,
         "delivery_fee": 14.64,
         "total_asp": 27.65,
-        "product": "Pea Gravel",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 37.3
@@ -5419,7 +5419,7 @@
         "asp": 12.79,
         "delivery_fee": 3.57,
         "total_asp": 16.36,
-        "product": "Concrete Sand",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 9.09
@@ -5443,7 +5443,7 @@
         "asp": 11.0,
         "delivery_fee": 11.74,
         "total_asp": 22.74,
-        "product": "#57 Gravel",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 32.85
@@ -5467,7 +5467,7 @@
         "asp": 13.35,
         "delivery_fee": 9.41,
         "total_asp": 22.76,
-        "product": "Pea Gravel",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 22.82
@@ -5491,8 +5491,8 @@
         "asp": 11.68,
         "delivery_fee": 9.97,
         "total_asp": 21.65,
-        "product": "Mason Sand",
-        "product_type": "concrete_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 26.13
       }
@@ -5515,7 +5515,7 @@
         "asp": 14.14,
         "delivery_fee": 10.93,
         "total_asp": 25.07,
-        "product": "Mason Sand",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 31.59
@@ -5539,7 +5539,7 @@
         "asp": 12.96,
         "delivery_fee": 4.21,
         "total_asp": 17.17,
-        "product": "Pea Gravel",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 11.72
@@ -5563,7 +5563,7 @@
         "asp": 12.01,
         "delivery_fee": 6.34,
         "total_asp": 18.35,
-        "product": "Pea Gravel",
+        "product": "Concrete Sand",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 16.18
@@ -5587,7 +5587,7 @@
         "asp": 10.76,
         "delivery_fee": 15.67,
         "total_asp": 26.43,
-        "product": "#57 Gravel",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 37.69
@@ -5611,7 +5611,7 @@
         "asp": 12.23,
         "delivery_fee": 7.47,
         "total_asp": 19.7,
-        "product": "Concrete Sand",
+        "product": "#8 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 21.19
@@ -5635,7 +5635,7 @@
         "asp": 13.76,
         "delivery_fee": 5.64,
         "total_asp": 19.4,
-        "product": "Concrete Sand",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 14.8
@@ -5659,7 +5659,7 @@
         "asp": 11.98,
         "delivery_fee": 8.18,
         "total_asp": 20.16,
-        "product": "Mason Sand",
+        "product": "Concrete Sand",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 22.02
@@ -5683,8 +5683,8 @@
         "asp": 11.98,
         "delivery_fee": 13.92,
         "total_asp": 25.9,
-        "product": "#57 Gravel",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 38.75
       }
@@ -5707,7 +5707,7 @@
         "asp": 11.68,
         "delivery_fee": 11.85,
         "total_asp": 23.53,
-        "product": "#57 Gravel",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 31.15
@@ -5731,7 +5731,7 @@
         "asp": 12.49,
         "delivery_fee": 11.13,
         "total_asp": 23.62,
-        "product": "Pea Gravel",
+        "product": "#9 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 29.2
@@ -5755,8 +5755,8 @@
         "asp": 11.51,
         "delivery_fee": 12.67,
         "total_asp": 24.18,
-        "product": "Pea Gravel",
-        "product_type": "concrete_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 31.72
       }
@@ -5779,7 +5779,7 @@
         "asp": 12.08,
         "delivery_fee": 8.96,
         "total_asp": 21.04,
-        "product": "Mason Sand",
+        "product": "Concrete Sand",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 22.42
@@ -5803,8 +5803,8 @@
         "asp": 11.75,
         "delivery_fee": 5.42,
         "total_asp": 17.17,
-        "product": "Pea Gravel",
-        "product_type": "concrete_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 13.44
       }
@@ -5827,8 +5827,8 @@
         "asp": 11.88,
         "delivery_fee": 12.06,
         "total_asp": 23.94,
-        "product": "#57 Gravel",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 34.04
       }
@@ -5851,7 +5851,7 @@
         "asp": 13.35,
         "delivery_fee": 5.9,
         "total_asp": 19.25,
-        "product": "Mason Sand",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 16.63
@@ -5875,8 +5875,8 @@
         "asp": 12.03,
         "delivery_fee": 3.83,
         "total_asp": 15.86,
-        "product": "#57 Gravel",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 9.81
       }
@@ -5899,8 +5899,8 @@
         "asp": 12.21,
         "delivery_fee": 11.53,
         "total_asp": 23.74,
-        "product": "#57 Gravel",
-        "product_type": "base",
+        "product": "#8 gravel",
+        "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 31.86
       }
@@ -5923,7 +5923,7 @@
         "asp": 10.58,
         "delivery_fee": 6.77,
         "total_asp": 17.35,
-        "product": "#57 Gravel",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 16.6
@@ -5947,8 +5947,8 @@
         "asp": 11.91,
         "delivery_fee": 8.54,
         "total_asp": 20.45,
-        "product": "#57 Gravel",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 24.07
       }
@@ -5971,7 +5971,7 @@
         "asp": 12.71,
         "delivery_fee": 15.54,
         "total_asp": 28.25,
-        "product": "Pea Gravel",
+        "product": "#9 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 39.04
@@ -5995,7 +5995,7 @@
         "asp": 12.62,
         "delivery_fee": 12.83,
         "total_asp": 25.45,
-        "product": "Mason Sand",
+        "product": "#9 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 35.57
@@ -6019,7 +6019,7 @@
         "asp": 12.72,
         "delivery_fee": 1.93,
         "total_asp": 14.65,
-        "product": "Concrete Sand",
+        "product": "#9 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 4.73
@@ -6043,7 +6043,7 @@
         "asp": 12.75,
         "delivery_fee": 6.93,
         "total_asp": 19.68,
-        "product": "Concrete Sand",
+        "product": "#9 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 20.01
@@ -6067,8 +6067,8 @@
         "asp": 12.92,
         "delivery_fee": 16.48,
         "total_asp": 29.4,
-        "product": "#57 Gravel",
-        "product_type": "base",
+        "product": "#8 gravel 100% crush",
+        "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 39.44
       }
@@ -6091,8 +6091,8 @@
         "asp": 11.79,
         "delivery_fee": 1.15,
         "total_asp": 12.94,
-        "product": "Concrete Sand",
-        "product_type": "concrete_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 3.22
       }
@@ -6115,7 +6115,7 @@
         "asp": 11.23,
         "delivery_fee": 12.8,
         "total_asp": 24.03,
-        "product": "#57 Gravel",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 32.02
@@ -6139,7 +6139,7 @@
         "asp": 10.74,
         "delivery_fee": 5.58,
         "total_asp": 16.32,
-        "product": "#57 Gravel",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 16.23
@@ -6163,8 +6163,8 @@
         "asp": 11.81,
         "delivery_fee": 9.62,
         "total_asp": 21.43,
-        "product": "Pea Gravel",
-        "product_type": "concrete_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 25.15
       }
@@ -6187,7 +6187,7 @@
         "asp": 13.88,
         "delivery_fee": 16.01,
         "total_asp": 29.89,
-        "product": "Mason Sand",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 39.1
@@ -6211,7 +6211,7 @@
         "asp": 12.83,
         "delivery_fee": 11.4,
         "total_asp": 24.23,
-        "product": "Mason Sand",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 32.32
@@ -6235,7 +6235,7 @@
         "asp": 11.48,
         "delivery_fee": 12.19,
         "total_asp": 23.67,
-        "product": "#57 Gravel",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 32.08
@@ -6259,7 +6259,7 @@
         "asp": 13.53,
         "delivery_fee": 10.5,
         "total_asp": 24.03,
-        "product": "Mason Sand",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 28.57
@@ -6283,7 +6283,7 @@
         "asp": 13.08,
         "delivery_fee": 10.67,
         "total_asp": 23.75,
-        "product": "Mason Sand",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 29.37
@@ -6307,7 +6307,7 @@
         "asp": 12.54,
         "delivery_fee": 0.95,
         "total_asp": 13.49,
-        "product": "Mason Sand",
+        "product": "#9 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 2.27
@@ -6331,7 +6331,7 @@
         "asp": 12.67,
         "delivery_fee": 13.24,
         "total_asp": 25.91,
-        "product": "Pea Gravel",
+        "product": "#9 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 34.88
@@ -6355,7 +6355,7 @@
         "asp": 14.07,
         "delivery_fee": 12.0,
         "total_asp": 26.07,
-        "product": "Pea Gravel",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 33.77
@@ -6379,7 +6379,7 @@
         "asp": 10.7,
         "delivery_fee": 3.48,
         "total_asp": 14.18,
-        "product": "#57 Gravel",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 8.49
@@ -6403,7 +6403,7 @@
         "asp": 12.09,
         "delivery_fee": 13.38,
         "total_asp": 25.47,
-        "product": "Mason Sand",
+        "product": "#8 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 37.67
@@ -6427,8 +6427,8 @@
         "asp": 11.52,
         "delivery_fee": 13.59,
         "total_asp": 25.11,
-        "product": "Pea Gravel",
-        "product_type": "concrete_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 33.32
       }
@@ -6451,7 +6451,7 @@
         "asp": 13.85,
         "delivery_fee": 11.81,
         "total_asp": 25.66,
-        "product": "Pea Gravel",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 32.34
@@ -6475,7 +6475,7 @@
         "asp": 12.42,
         "delivery_fee": 11.85,
         "total_asp": 24.27,
-        "product": "Pea Gravel",
+        "product": "#8 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 32.92
@@ -6499,7 +6499,7 @@
         "asp": 12.53,
         "delivery_fee": 7.11,
         "total_asp": 19.64,
-        "product": "Mason Sand",
+        "product": "#9 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 20.38
@@ -6523,7 +6523,7 @@
         "asp": 13.36,
         "delivery_fee": 7.67,
         "total_asp": 21.03,
-        "product": "Concrete Sand",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 20.78
@@ -6571,8 +6571,8 @@
         "asp": 11.91,
         "delivery_fee": 14.19,
         "total_asp": 26.1,
-        "product": "#57 Gravel",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 39.87
       }
@@ -6595,7 +6595,7 @@
         "asp": 13.64,
         "delivery_fee": 12.83,
         "total_asp": 26.47,
-        "product": "Mason Sand",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 35.39
@@ -6619,7 +6619,7 @@
         "asp": 13.08,
         "delivery_fee": 14.77,
         "total_asp": 27.85,
-        "product": "Pea Gravel",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 35.67
@@ -6643,7 +6643,7 @@
         "asp": 13.12,
         "delivery_fee": 9.99,
         "total_asp": 23.11,
-        "product": "Mason Sand",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 27.21
@@ -6667,7 +6667,7 @@
         "asp": 12.41,
         "delivery_fee": 10.38,
         "total_asp": 22.79,
-        "product": "Mason Sand",
+        "product": "#8 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 27.81
@@ -6691,7 +6691,7 @@
         "asp": 13.26,
         "delivery_fee": 13.11,
         "total_asp": 26.37,
-        "product": "Concrete Sand",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 35.82
@@ -6715,7 +6715,7 @@
         "asp": 12.22,
         "delivery_fee": 13.65,
         "total_asp": 25.87,
-        "product": "Concrete Sand",
+        "product": "#8 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 33.54
@@ -6739,8 +6739,8 @@
         "asp": 11.61,
         "delivery_fee": 10.05,
         "total_asp": 21.66,
-        "product": "Pea Gravel",
-        "product_type": "concrete_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 25.86
       }
@@ -6763,7 +6763,7 @@
         "asp": 13.52,
         "delivery_fee": 14.42,
         "total_asp": 27.94,
-        "product": "Concrete Sand",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 38.29
@@ -6787,7 +6787,7 @@
         "asp": 11.85,
         "delivery_fee": 14.38,
         "total_asp": 26.23,
-        "product": "Pea Gravel",
+        "product": "Concrete Sand",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 37.66
@@ -6811,7 +6811,7 @@
         "asp": 13.6,
         "delivery_fee": 5.45,
         "total_asp": 19.05,
-        "product": "Concrete Sand",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 14.87
@@ -6835,8 +6835,8 @@
         "asp": 11.4,
         "delivery_fee": 14.34,
         "total_asp": 25.74,
-        "product": "Concrete Sand",
-        "product_type": "concrete_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 39.02
       }
@@ -6859,8 +6859,8 @@
         "asp": 11.48,
         "delivery_fee": 14.3,
         "total_asp": 25.78,
-        "product": "Mason Sand",
-        "product_type": "concrete_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 37.66
       }
@@ -6883,7 +6883,7 @@
         "asp": 12.56,
         "delivery_fee": 12.86,
         "total_asp": 25.42,
-        "product": "Pea Gravel",
+        "product": "#9 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 36.27
@@ -6907,7 +6907,7 @@
         "asp": 11.1,
         "delivery_fee": 6.54,
         "total_asp": 17.64,
-        "product": "#57 Gravel",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 17.55
@@ -6931,7 +6931,7 @@
         "asp": 13.04,
         "delivery_fee": 10.86,
         "total_asp": 23.9,
-        "product": "Pea Gravel",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 27.37
@@ -6955,7 +6955,7 @@
         "asp": 12.35,
         "delivery_fee": 8.41,
         "total_asp": 20.76,
-        "product": "Mason Sand",
+        "product": "#8 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 23.32
@@ -6979,7 +6979,7 @@
         "asp": 13.02,
         "delivery_fee": 5.9,
         "total_asp": 18.92,
-        "product": "Mason Sand",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 15.25
@@ -7003,8 +7003,8 @@
         "asp": 11.53,
         "delivery_fee": 5.27,
         "total_asp": 16.8,
-        "product": "Pea Gravel",
-        "product_type": "concrete_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 13.83
       }
@@ -7027,8 +7027,8 @@
         "asp": 12.14,
         "delivery_fee": 8.88,
         "total_asp": 21.02,
-        "product": "#57 Gravel",
-        "product_type": "base",
+        "product": "#8 gravel",
+        "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 21.97
       }
@@ -7051,8 +7051,8 @@
         "asp": 12.35,
         "delivery_fee": 15.25,
         "total_asp": 27.6,
-        "product": "#57 Gravel",
-        "product_type": "base",
+        "product": "#8 gravel",
+        "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 39.85
       }
@@ -7075,8 +7075,8 @@
         "asp": 11.53,
         "delivery_fee": 6.55,
         "total_asp": 18.08,
-        "product": "Mason Sand",
-        "product_type": "concrete_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 18.81
       }
@@ -7099,7 +7099,7 @@
         "asp": 13.87,
         "delivery_fee": 10.05,
         "total_asp": 23.92,
-        "product": "Mason Sand",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 24.83
@@ -7123,8 +7123,8 @@
         "asp": 12.43,
         "delivery_fee": 14.41,
         "total_asp": 26.84,
-        "product": "#57 Gravel",
-        "product_type": "base",
+        "product": "#8 gravel",
+        "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 39.86
       }
@@ -7147,7 +7147,7 @@
         "asp": 13.82,
         "delivery_fee": 9.23,
         "total_asp": 23.05,
-        "product": "Pea Gravel",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 23.01
@@ -7171,8 +7171,8 @@
         "asp": 11.64,
         "delivery_fee": 16.03,
         "total_asp": 27.67,
-        "product": "Pea Gravel",
-        "product_type": "concrete_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 38.53
       }
@@ -7195,7 +7195,7 @@
         "asp": 11.58,
         "delivery_fee": 8.99,
         "total_asp": 20.57,
-        "product": "#57 Gravel",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 24.69
@@ -7243,7 +7243,7 @@
         "asp": 12.77,
         "delivery_fee": 7.14,
         "total_asp": 19.91,
-        "product": "Pea Gravel",
+        "product": "#9 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 17.47
@@ -7267,7 +7267,7 @@
         "asp": 10.33,
         "delivery_fee": 16.12,
         "total_asp": 26.45,
-        "product": "#57 Gravel",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 38.94
@@ -7291,7 +7291,7 @@
         "asp": 13.91,
         "delivery_fee": 13.07,
         "total_asp": 26.98,
-        "product": "Mason Sand",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 34.75
@@ -7315,7 +7315,7 @@
         "asp": 13.13,
         "delivery_fee": 5.7,
         "total_asp": 18.83,
-        "product": "Mason Sand",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 15.68
@@ -7363,8 +7363,8 @@
         "asp": 11.47,
         "delivery_fee": 9.01,
         "total_asp": 20.48,
-        "product": "Concrete Sand",
-        "product_type": "concrete_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 23.15
       }
@@ -7387,7 +7387,7 @@
         "asp": 12.02,
         "delivery_fee": 2.8,
         "total_asp": 14.82,
-        "product": "Pea Gravel",
+        "product": "Concrete Sand",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 7.95
@@ -7411,7 +7411,7 @@
         "asp": 13.18,
         "delivery_fee": 11.93,
         "total_asp": 25.11,
-        "product": "Concrete Sand",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 31.83
@@ -7435,8 +7435,8 @@
         "asp": 11.61,
         "delivery_fee": 13.74,
         "total_asp": 25.35,
-        "product": "Pea Gravel",
-        "product_type": "concrete_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 35.43
       }
@@ -7459,7 +7459,7 @@
         "asp": 13.69,
         "delivery_fee": 9.88,
         "total_asp": 23.57,
-        "product": "Mason Sand",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 25.35
@@ -7483,7 +7483,7 @@
         "asp": 11.59,
         "delivery_fee": 13.33,
         "total_asp": 24.92,
-        "product": "#57 Gravel",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 32.64
@@ -7507,7 +7507,7 @@
         "asp": 12.75,
         "delivery_fee": 16.17,
         "total_asp": 28.92,
-        "product": "Concrete Sand",
+        "product": "#9 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 39.18
@@ -7531,7 +7531,7 @@
         "asp": 12.49,
         "delivery_fee": 12.6,
         "total_asp": 25.09,
-        "product": "Pea Gravel",
+        "product": "#9 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 35.18
@@ -7555,7 +7555,7 @@
         "asp": 12.73,
         "delivery_fee": 4.21,
         "total_asp": 16.94,
-        "product": "Concrete Sand",
+        "product": "#9 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 11.0
@@ -7579,8 +7579,8 @@
         "asp": 12.15,
         "delivery_fee": 5.57,
         "total_asp": 17.72,
-        "product": "#57 Gravel",
-        "product_type": "base",
+        "product": "#8 gravel",
+        "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 14.25
       }
@@ -7603,7 +7603,7 @@
         "asp": 12.55,
         "delivery_fee": 8.15,
         "total_asp": 20.7,
-        "product": "Mason Sand",
+        "product": "#9 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 23.8
@@ -7627,7 +7627,7 @@
         "asp": 13.07,
         "delivery_fee": 7.32,
         "total_asp": 20.39,
-        "product": "Mason Sand",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 19.49
@@ -7651,7 +7651,7 @@
         "asp": 13.31,
         "delivery_fee": 3.03,
         "total_asp": 16.34,
-        "product": "Pea Gravel",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 8.53
@@ -7675,7 +7675,7 @@
         "asp": 12.84,
         "delivery_fee": 10.69,
         "total_asp": 23.53,
-        "product": "Mason Sand",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 28.99
@@ -7699,7 +7699,7 @@
         "asp": 12.45,
         "delivery_fee": 5.17,
         "total_asp": 17.62,
-        "product": "Mason Sand",
+        "product": "#9 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 14.4
@@ -7723,7 +7723,7 @@
         "asp": 13.34,
         "delivery_fee": 2.18,
         "total_asp": 15.52,
-        "product": "Concrete Sand",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 6.02
@@ -7747,7 +7747,7 @@
         "asp": 13.84,
         "delivery_fee": 5.39,
         "total_asp": 19.23,
-        "product": "Concrete Sand",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 14.42
@@ -7771,7 +7771,7 @@
         "asp": 10.72,
         "delivery_fee": 12.31,
         "total_asp": 23.03,
-        "product": "#57 Gravel",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 29.99
@@ -7795,7 +7795,7 @@
         "asp": 13.44,
         "delivery_fee": 12.49,
         "total_asp": 25.93,
-        "product": "Pea Gravel",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 33.35
@@ -7819,7 +7819,7 @@
         "asp": 11.64,
         "delivery_fee": 12.06,
         "total_asp": 23.7,
-        "product": "#57 Gravel",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 31.92
@@ -7843,8 +7843,8 @@
         "asp": 11.4,
         "delivery_fee": 5.3,
         "total_asp": 16.7,
-        "product": "Mason Sand",
-        "product_type": "concrete_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 14.55
       }
@@ -7867,7 +7867,7 @@
         "asp": 12.43,
         "delivery_fee": 7.72,
         "total_asp": 20.15,
-        "product": "Pea Gravel",
+        "product": "#8 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 18.69
@@ -7891,7 +7891,7 @@
         "asp": 13.62,
         "delivery_fee": 13.22,
         "total_asp": 26.84,
-        "product": "Pea Gravel",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 36.04
@@ -7915,7 +7915,7 @@
         "asp": 12.65,
         "delivery_fee": 9.75,
         "total_asp": 22.4,
-        "product": "Concrete Sand",
+        "product": "#9 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 25.75
@@ -7939,8 +7939,8 @@
         "asp": 11.54,
         "delivery_fee": 8.0,
         "total_asp": 19.54,
-        "product": "Mason Sand",
-        "product_type": "concrete_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 19.74
       }
@@ -7963,7 +7963,7 @@
         "asp": 13.55,
         "delivery_fee": 6.4,
         "total_asp": 19.95,
-        "product": "Pea Gravel",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 16.78
@@ -7987,7 +7987,7 @@
         "asp": 12.85,
         "delivery_fee": 6.24,
         "total_asp": 19.09,
-        "product": "Concrete Sand",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 16.51
@@ -8011,7 +8011,7 @@
         "asp": 12.55,
         "delivery_fee": 15.76,
         "total_asp": 28.31,
-        "product": "Pea Gravel",
+        "product": "#9 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 39.43
@@ -8035,7 +8035,7 @@
         "asp": 12.75,
         "delivery_fee": 8.09,
         "total_asp": 20.84,
-        "product": "Concrete Sand",
+        "product": "#9 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 23.2
@@ -8059,7 +8059,7 @@
         "asp": 11.62,
         "delivery_fee": 13.95,
         "total_asp": 25.57,
-        "product": "#57 Gravel",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 34.76
@@ -8083,7 +8083,7 @@
         "asp": 12.0,
         "delivery_fee": 16.4,
         "total_asp": 28.4,
-        "product": "Pea Gravel",
+        "product": "Concrete Sand",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 39.73
@@ -8107,7 +8107,7 @@
         "asp": 12.1,
         "delivery_fee": 13.91,
         "total_asp": 26.01,
-        "product": "Concrete Sand",
+        "product": "#8 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 37.94
@@ -8131,7 +8131,7 @@
         "asp": 11.87,
         "delivery_fee": 11.36,
         "total_asp": 23.23,
-        "product": "Pea Gravel",
+        "product": "Concrete Sand",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 30.34
@@ -8155,7 +8155,7 @@
         "asp": 13.63,
         "delivery_fee": 14.5,
         "total_asp": 28.13,
-        "product": "Mason Sand",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 35.82
@@ -8179,7 +8179,7 @@
         "asp": 13.46,
         "delivery_fee": 15.44,
         "total_asp": 28.9,
-        "product": "Concrete Sand",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 37.8
@@ -8203,7 +8203,7 @@
         "asp": 11.77,
         "delivery_fee": 10.35,
         "total_asp": 22.12,
-        "product": "#57 Gravel",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 29.77
@@ -8227,7 +8227,7 @@
         "asp": 10.66,
         "delivery_fee": 15.26,
         "total_asp": 25.92,
-        "product": "#57 Gravel",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 37.01
@@ -8251,7 +8251,7 @@
         "asp": 10.71,
         "delivery_fee": 13.52,
         "total_asp": 24.23,
-        "product": "#57 Gravel",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 35.77
@@ -8275,7 +8275,7 @@
         "asp": 12.03,
         "delivery_fee": 7.16,
         "total_asp": 19.19,
-        "product": "Mason Sand",
+        "product": "Concrete Sand",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 17.14
@@ -8299,7 +8299,7 @@
         "asp": 12.16,
         "delivery_fee": 14.07,
         "total_asp": 26.23,
-        "product": "Mason Sand",
+        "product": "#8 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 37.15
@@ -8323,7 +8323,7 @@
         "asp": 12.09,
         "delivery_fee": 15.82,
         "total_asp": 27.91,
-        "product": "Concrete Sand",
+        "product": "#8 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 37.92
@@ -8347,7 +8347,7 @@
         "asp": 11.12,
         "delivery_fee": 15.33,
         "total_asp": 26.45,
-        "product": "#57 Gravel",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 38.64
@@ -8371,7 +8371,7 @@
         "asp": 12.21,
         "delivery_fee": 8.71,
         "total_asp": 20.92,
-        "product": "Pea Gravel",
+        "product": "#8 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 24.13
@@ -8395,8 +8395,8 @@
         "asp": 11.63,
         "delivery_fee": 4.7,
         "total_asp": 16.33,
-        "product": "Mason Sand",
-        "product_type": "concrete_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 13.22
       }
@@ -8419,7 +8419,7 @@
         "asp": 10.99,
         "delivery_fee": 6.64,
         "total_asp": 17.63,
-        "product": "#57 Gravel",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 18.01
@@ -8443,7 +8443,7 @@
         "asp": 10.54,
         "delivery_fee": 11.78,
         "total_asp": 22.32,
-        "product": "#57 Gravel",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 31.45
@@ -8467,7 +8467,7 @@
         "asp": 12.67,
         "delivery_fee": 10.25,
         "total_asp": 22.92,
-        "product": "Mason Sand",
+        "product": "#9 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 24.75
@@ -8491,7 +8491,7 @@
         "asp": 13.01,
         "delivery_fee": 11.13,
         "total_asp": 24.14,
-        "product": "Concrete Sand",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 28.43
@@ -8515,8 +8515,8 @@
         "asp": 11.13,
         "delivery_fee": 10.82,
         "total_asp": 21.95,
-        "product": "Concrete Sand",
-        "product_type": "concrete_agg",
+        "product": "304 base",
+        "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 27.59
       }
@@ -8539,7 +8539,7 @@
         "asp": 12.86,
         "delivery_fee": 7.0,
         "total_asp": 19.86,
-        "product": "Pea Gravel",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 18.45
@@ -8563,7 +8563,7 @@
         "asp": 13.66,
         "delivery_fee": 10.8,
         "total_asp": 24.46,
-        "product": "Mason Sand",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 30.54
@@ -8587,8 +8587,8 @@
         "asp": 11.24,
         "delivery_fee": 12.16,
         "total_asp": 23.4,
-        "product": "Mason Sand",
-        "product_type": "concrete_agg",
+        "product": "304 base",
+        "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 32.63
       }
@@ -8611,7 +8611,7 @@
         "asp": 12.08,
         "delivery_fee": 6.99,
         "total_asp": 19.07,
-        "product": "Mason Sand",
+        "product": "Concrete Sand",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 17.17
@@ -8635,7 +8635,7 @@
         "asp": 12.23,
         "delivery_fee": 15.5,
         "total_asp": 27.73,
-        "product": "Mason Sand",
+        "product": "#8 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 38.14
@@ -8659,7 +8659,7 @@
         "asp": 13.79,
         "delivery_fee": 6.96,
         "total_asp": 20.75,
-        "product": "Concrete Sand",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 17.38
@@ -8683,7 +8683,7 @@
         "asp": 11.42,
         "delivery_fee": 7.43,
         "total_asp": 18.85,
-        "product": "#57 Gravel",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 19.12
@@ -8707,7 +8707,7 @@
         "asp": 12.44,
         "delivery_fee": 11.43,
         "total_asp": 23.87,
-        "product": "Concrete Sand",
+        "product": "#8 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 28.42
@@ -8731,7 +8731,7 @@
         "asp": 12.34,
         "delivery_fee": 2.45,
         "total_asp": 14.79,
-        "product": "Pea Gravel",
+        "product": "#8 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 6.02
@@ -8755,7 +8755,7 @@
         "asp": 12.85,
         "delivery_fee": 13.46,
         "total_asp": 26.31,
-        "product": "Concrete Sand",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 34.27
@@ -8779,7 +8779,7 @@
         "asp": 12.36,
         "delivery_fee": 3.63,
         "total_asp": 15.99,
-        "product": "Mason Sand",
+        "product": "#8 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 8.94
@@ -8803,7 +8803,7 @@
         "asp": 12.61,
         "delivery_fee": 13.99,
         "total_asp": 26.6,
-        "product": "Pea Gravel",
+        "product": "#9 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 37.59
@@ -8827,7 +8827,7 @@
         "asp": 10.02,
         "delivery_fee": 11.15,
         "total_asp": 21.17,
-        "product": "#57 Gravel",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 27.65
@@ -8851,7 +8851,7 @@
         "asp": 12.08,
         "delivery_fee": 15.5,
         "total_asp": 27.58,
-        "product": "Pea Gravel",
+        "product": "Concrete Sand",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 37.18
@@ -8875,7 +8875,7 @@
         "asp": 12.58,
         "delivery_fee": 12.29,
         "total_asp": 24.87,
-        "product": "Pea Gravel",
+        "product": "#9 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 34.58
@@ -8899,8 +8899,8 @@
         "asp": 12.76,
         "delivery_fee": 8.99,
         "total_asp": 21.75,
-        "product": "#57 Gravel",
-        "product_type": "base",
+        "product": "#9 gravel",
+        "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 24.97
       }
@@ -8923,7 +8923,7 @@
         "asp": 12.36,
         "delivery_fee": 10.78,
         "total_asp": 23.14,
-        "product": "Concrete Sand",
+        "product": "#8 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 27.96
@@ -8947,7 +8947,7 @@
         "asp": 10.17,
         "delivery_fee": 12.64,
         "total_asp": 22.81,
-        "product": "#57 Gravel",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 32.94
@@ -8971,7 +8971,7 @@
         "asp": 12.98,
         "delivery_fee": 2.96,
         "total_asp": 15.94,
-        "product": "Mason Sand",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 7.21
@@ -8995,7 +8995,7 @@
         "asp": 13.02,
         "delivery_fee": 7.57,
         "total_asp": 20.59,
-        "product": "Concrete Sand",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 18.55
@@ -9019,7 +9019,7 @@
         "asp": 12.74,
         "delivery_fee": 2.42,
         "total_asp": 15.16,
-        "product": "Mason Sand",
+        "product": "#9 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 5.88
@@ -9043,7 +9043,7 @@
         "asp": 11.84,
         "delivery_fee": 10.1,
         "total_asp": 21.94,
-        "product": "Pea Gravel",
+        "product": "Concrete Sand",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 26.83
@@ -9067,7 +9067,7 @@
         "asp": 11.71,
         "delivery_fee": 2.49,
         "total_asp": 14.2,
-        "product": "#57 Gravel",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 6.49
@@ -9091,7 +9091,7 @@
         "asp": 13.17,
         "delivery_fee": 12.97,
         "total_asp": 26.14,
-        "product": "Concrete Sand",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 37.83
@@ -9115,7 +9115,7 @@
         "asp": 12.68,
         "delivery_fee": 11.82,
         "total_asp": 24.5,
-        "product": "Pea Gravel",
+        "product": "#9 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 30.05
@@ -9139,7 +9139,7 @@
         "asp": 9.83,
         "delivery_fee": 11.93,
         "total_asp": 21.76,
-        "product": "#57 Gravel",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 32.31
@@ -9163,7 +9163,7 @@
         "asp": 13.21,
         "delivery_fee": 11.21,
         "total_asp": 24.42,
-        "product": "Pea Gravel",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 30.11
@@ -9187,7 +9187,7 @@
         "asp": 10.96,
         "delivery_fee": 13.12,
         "total_asp": 24.08,
-        "product": "#57 Gravel",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 37.54
@@ -9211,7 +9211,7 @@
         "asp": 12.25,
         "delivery_fee": 6.94,
         "total_asp": 19.19,
-        "product": "Mason Sand",
+        "product": "#8 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 19.02
@@ -9235,7 +9235,7 @@
         "asp": 11.86,
         "delivery_fee": 9.47,
         "total_asp": 21.33,
-        "product": "Pea Gravel",
+        "product": "Concrete Sand",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 23.57
@@ -9259,7 +9259,7 @@
         "asp": 11.27,
         "delivery_fee": 2.26,
         "total_asp": 13.53,
-        "product": "#57 Gravel",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 5.43
@@ -9283,7 +9283,7 @@
         "asp": 12.71,
         "delivery_fee": 7.49,
         "total_asp": 20.2,
-        "product": "Concrete Sand",
+        "product": "#9 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 20.91
@@ -9307,7 +9307,7 @@
         "asp": 12.09,
         "delivery_fee": 3.31,
         "total_asp": 15.4,
-        "product": "Pea Gravel",
+        "product": "Concrete Sand",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 8.86
@@ -9331,7 +9331,7 @@
         "asp": 13.67,
         "delivery_fee": 8.69,
         "total_asp": 22.36,
-        "product": "Mason Sand",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 25.06
@@ -9355,7 +9355,7 @@
         "asp": 11.58,
         "delivery_fee": 8.73,
         "total_asp": 20.31,
-        "product": "#57 Gravel",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 22.75
@@ -9379,7 +9379,7 @@
         "asp": 12.47,
         "delivery_fee": 9.24,
         "total_asp": 21.71,
-        "product": "Concrete Sand",
+        "product": "#9 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 24.98
@@ -9403,7 +9403,7 @@
         "asp": 12.33,
         "delivery_fee": 12.46,
         "total_asp": 24.79,
-        "product": "Pea Gravel",
+        "product": "#8 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 33.63
@@ -9427,7 +9427,7 @@
         "asp": 10.37,
         "delivery_fee": 5.31,
         "total_asp": 15.68,
-        "product": "#57 Gravel",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 15.43
@@ -9451,7 +9451,7 @@
         "asp": 12.79,
         "delivery_fee": 13.1,
         "total_asp": 25.89,
-        "product": "Mason Sand",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 32.25
@@ -9475,7 +9475,7 @@
         "asp": 12.14,
         "delivery_fee": 14.02,
         "total_asp": 26.16,
-        "product": "Mason Sand",
+        "product": "#8 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 35.37
@@ -9499,7 +9499,7 @@
         "asp": 13.05,
         "delivery_fee": 7.68,
         "total_asp": 20.73,
-        "product": "Mason Sand",
+        "product": "#8 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 20.6
@@ -9523,7 +9523,7 @@
         "asp": 13.89,
         "delivery_fee": 9.42,
         "total_asp": 23.31,
-        "product": "Concrete Sand",
+        "product": "#9 gravel 100% crush",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 25.01
@@ -9547,8 +9547,8 @@
         "asp": 11.13,
         "delivery_fee": 4.57,
         "total_asp": 15.7,
-        "product": "Concrete Sand",
-        "product_type": "concrete_agg",
+        "product": "304 base",
+        "product_type": "base",
         "geology": "Sand & Gravel",
         "dist_from_plant": 11.18
       }
@@ -9571,7 +9571,7 @@
         "asp": 12.1,
         "delivery_fee": 10.97,
         "total_asp": 23.07,
-        "product": "Pea Gravel",
+        "product": "#8 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 29.98
@@ -9595,7 +9595,7 @@
         "asp": 12.34,
         "delivery_fee": 9.25,
         "total_asp": 21.59,
-        "product": "Concrete Sand",
+        "product": "#8 gravel",
         "product_type": "concrete_agg",
         "geology": "Sand & Gravel",
         "dist_from_plant": 25.76
@@ -9619,8 +9619,8 @@
         "asp": 15.36,
         "delivery_fee": 4.46,
         "total_asp": 19.82,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 11.54
       }
@@ -9643,8 +9643,8 @@
         "asp": 16.08,
         "delivery_fee": 3.07,
         "total_asp": 19.15,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 7.58
       }
@@ -9667,8 +9667,8 @@
         "asp": 15.24,
         "delivery_fee": 6.45,
         "total_asp": 21.69,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 17.34
       }
@@ -9691,8 +9691,8 @@
         "asp": 16.61,
         "delivery_fee": 8.83,
         "total_asp": 25.44,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 24.09
       }
@@ -9715,8 +9715,8 @@
         "asp": 17.46,
         "delivery_fee": 13.67,
         "total_asp": 31.13,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 35.66
       }
@@ -9739,7 +9739,7 @@
         "asp": 14.05,
         "delivery_fee": 10.82,
         "total_asp": 24.87,
-        "product": "Crusher Run",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 26.05
@@ -9763,8 +9763,8 @@
         "asp": 16.55,
         "delivery_fee": 7.19,
         "total_asp": 23.74,
-        "product": "#304 Base",
-        "product_type": "base",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 19.44
       }
@@ -9787,7 +9787,7 @@
         "asp": 14.44,
         "delivery_fee": 14.89,
         "total_asp": 29.33,
-        "product": "#304 Base",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 37.89
@@ -9811,8 +9811,8 @@
         "asp": 16.98,
         "delivery_fee": 4.74,
         "total_asp": 21.72,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 12.71
       }
@@ -9835,8 +9835,8 @@
         "asp": 16.68,
         "delivery_fee": 13.6,
         "total_asp": 30.28,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 33.57
       }
@@ -9859,8 +9859,8 @@
         "asp": 15.44,
         "delivery_fee": 6.58,
         "total_asp": 22.02,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 17.81
       }
@@ -9883,8 +9883,8 @@
         "asp": 15.11,
         "delivery_fee": 7.28,
         "total_asp": 22.39,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 21.06
       }
@@ -9907,8 +9907,8 @@
         "asp": 16.0,
         "delivery_fee": 4.99,
         "total_asp": 20.99,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 13.55
       }
@@ -9931,7 +9931,7 @@
         "asp": 13.79,
         "delivery_fee": 9.37,
         "total_asp": 23.16,
-        "product": "Crusher Run",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 24.08
@@ -9955,8 +9955,8 @@
         "asp": 14.48,
         "delivery_fee": 4.62,
         "total_asp": 19.1,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 13.06
       }
@@ -9979,8 +9979,8 @@
         "asp": 16.1,
         "delivery_fee": 11.0,
         "total_asp": 27.1,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 31.68
       }
@@ -10003,8 +10003,8 @@
         "asp": 15.17,
         "delivery_fee": 12.12,
         "total_asp": 27.29,
-        "product": "#304 Base",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 31.55
       }
@@ -10027,7 +10027,7 @@
         "asp": 13.38,
         "delivery_fee": 6.74,
         "total_asp": 20.12,
-        "product": "#304 Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 18.27
@@ -10051,8 +10051,8 @@
         "asp": 16.2,
         "delivery_fee": 13.86,
         "total_asp": 30.06,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 34.91
       }
@@ -10075,7 +10075,7 @@
         "asp": 14.64,
         "delivery_fee": 9.62,
         "total_asp": 24.26,
-        "product": "Crusher Run",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 24.87
@@ -10099,8 +10099,8 @@
         "asp": 16.02,
         "delivery_fee": 12.04,
         "total_asp": 28.06,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 31.48
       }
@@ -10123,8 +10123,8 @@
         "asp": 16.59,
         "delivery_fee": 8.66,
         "total_asp": 25.25,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 25.13
       }
@@ -10147,8 +10147,8 @@
         "asp": 15.54,
         "delivery_fee": 14.57,
         "total_asp": 30.11,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 36.44
       }
@@ -10171,8 +10171,8 @@
         "asp": 16.25,
         "delivery_fee": 2.77,
         "total_asp": 19.02,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 7.93
       }
@@ -10195,8 +10195,8 @@
         "asp": 16.81,
         "delivery_fee": 10.77,
         "total_asp": 27.58,
-        "product": "#304 Base",
-        "product_type": "base",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 30.8
       }
@@ -10219,8 +10219,8 @@
         "asp": 16.54,
         "delivery_fee": 11.85,
         "total_asp": 28.39,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 28.81
       }
@@ -10243,7 +10243,7 @@
         "asp": 14.26,
         "delivery_fee": 3.58,
         "total_asp": 17.84,
-        "product": "#304 Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 9.43
@@ -10267,8 +10267,8 @@
         "asp": 17.33,
         "delivery_fee": 6.71,
         "total_asp": 24.04,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 17.68
       }
@@ -10291,8 +10291,8 @@
         "asp": 16.02,
         "delivery_fee": 2.62,
         "total_asp": 18.64,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 6.55
       }
@@ -10315,8 +10315,8 @@
         "asp": 15.61,
         "delivery_fee": 6.52,
         "total_asp": 22.13,
-        "product": "#304 Base",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 15.87
       }
@@ -10339,8 +10339,8 @@
         "asp": 17.33,
         "delivery_fee": 6.33,
         "total_asp": 23.66,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 18.17
       }
@@ -10363,7 +10363,7 @@
         "asp": 14.56,
         "delivery_fee": 8.52,
         "total_asp": 23.08,
-        "product": "Crusher Run",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 20.77
@@ -10387,8 +10387,8 @@
         "asp": 17.41,
         "delivery_fee": 10.77,
         "total_asp": 28.18,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 29.54
       }
@@ -10411,7 +10411,7 @@
         "asp": 13.63,
         "delivery_fee": 13.61,
         "total_asp": 27.24,
-        "product": "Crusher Run",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 37.99
@@ -10435,8 +10435,8 @@
         "asp": 15.67,
         "delivery_fee": 12.84,
         "total_asp": 28.51,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 33.36
       }
@@ -10459,8 +10459,8 @@
         "asp": 14.6,
         "delivery_fee": 13.58,
         "total_asp": 28.18,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 37.83
       }
@@ -10483,8 +10483,8 @@
         "asp": 17.04,
         "delivery_fee": 14.75,
         "total_asp": 31.79,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 38.93
       }
@@ -10507,8 +10507,8 @@
         "asp": 15.72,
         "delivery_fee": 10.45,
         "total_asp": 26.17,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 27.66
       }
@@ -10531,8 +10531,8 @@
         "asp": 15.97,
         "delivery_fee": 13.39,
         "total_asp": 29.36,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 35.91
       }
@@ -10555,8 +10555,8 @@
         "asp": 15.55,
         "delivery_fee": 14.9,
         "total_asp": 30.45,
-        "product": "#304 Base",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 37.24
       }
@@ -10579,8 +10579,8 @@
         "asp": 14.75,
         "delivery_fee": 9.29,
         "total_asp": 24.04,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 23.7
       }
@@ -10603,8 +10603,8 @@
         "asp": 15.44,
         "delivery_fee": 12.52,
         "total_asp": 27.96,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 35.59
       }
@@ -10627,7 +10627,7 @@
         "asp": 14.81,
         "delivery_fee": 12.01,
         "total_asp": 26.82,
-        "product": "Crusher Run",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 32.67
@@ -10651,7 +10651,7 @@
         "asp": 14.32,
         "delivery_fee": 14.8,
         "total_asp": 29.12,
-        "product": "Crusher Run",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 36.74
@@ -10675,7 +10675,7 @@
         "asp": 14.85,
         "delivery_fee": 5.79,
         "total_asp": 20.64,
-        "product": "#304 Base",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 15.61
@@ -10699,8 +10699,8 @@
         "asp": 15.4,
         "delivery_fee": 6.54,
         "total_asp": 21.94,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 18.75
       }
@@ -10723,8 +10723,8 @@
         "asp": 15.51,
         "delivery_fee": 12.37,
         "total_asp": 27.88,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 31.39
       }
@@ -10747,7 +10747,7 @@
         "asp": 13.37,
         "delivery_fee": 11.0,
         "total_asp": 24.37,
-        "product": "#304 Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 31.0
@@ -10771,8 +10771,8 @@
         "asp": 16.47,
         "delivery_fee": 15.58,
         "total_asp": 32.05,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 37.95
       }
@@ -10795,8 +10795,8 @@
         "asp": 17.58,
         "delivery_fee": 7.43,
         "total_asp": 25.01,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 18.34
       }
@@ -10819,8 +10819,8 @@
         "asp": 14.6,
         "delivery_fee": 8.19,
         "total_asp": 22.79,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 23.9
       }
@@ -10843,8 +10843,8 @@
         "asp": 18.15,
         "delivery_fee": 10.02,
         "total_asp": 28.17,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 25.46
       }
@@ -10867,8 +10867,8 @@
         "asp": 15.89,
         "delivery_fee": 15.06,
         "total_asp": 30.95,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 39.14
       }
@@ -10891,8 +10891,8 @@
         "asp": 14.94,
         "delivery_fee": 2.12,
         "total_asp": 17.06,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 5.34
       }
@@ -10915,8 +10915,8 @@
         "asp": 16.59,
         "delivery_fee": 10.45,
         "total_asp": 27.04,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 26.01
       }
@@ -10939,8 +10939,8 @@
         "asp": 16.07,
         "delivery_fee": 7.18,
         "total_asp": 23.25,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 18.83
       }
@@ -10963,8 +10963,8 @@
         "asp": 15.19,
         "delivery_fee": 13.52,
         "total_asp": 28.71,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 37.3
       }
@@ -10987,8 +10987,8 @@
         "asp": 16.16,
         "delivery_fee": 9.74,
         "total_asp": 25.9,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 23.5
       }
@@ -11011,8 +11011,8 @@
         "asp": 16.12,
         "delivery_fee": 13.28,
         "total_asp": 29.4,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 36.95
       }
@@ -11035,8 +11035,8 @@
         "asp": 15.1,
         "delivery_fee": 13.53,
         "total_asp": 28.63,
-        "product": "#304 Base",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 33.2
       }
@@ -11059,8 +11059,8 @@
         "asp": 16.97,
         "delivery_fee": 4.91,
         "total_asp": 21.88,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 12.99
       }
@@ -11083,7 +11083,7 @@
         "asp": 14.48,
         "delivery_fee": 15.17,
         "total_asp": 29.65,
-        "product": "Crusher Run",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 39.64
@@ -11107,8 +11107,8 @@
         "asp": 15.88,
         "delivery_fee": 9.02,
         "total_asp": 24.9,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 26.2
       }
@@ -11131,7 +11131,7 @@
         "asp": 13.37,
         "delivery_fee": 9.49,
         "total_asp": 22.86,
-        "product": "Crusher Run",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 25.0
@@ -11155,8 +11155,8 @@
         "asp": 18.12,
         "delivery_fee": 12.84,
         "total_asp": 30.96,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 31.8
       }
@@ -11179,8 +11179,8 @@
         "asp": 16.43,
         "delivery_fee": 8.45,
         "total_asp": 24.88,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 24.1
       }
@@ -11203,7 +11203,7 @@
         "asp": 14.32,
         "delivery_fee": 6.5,
         "total_asp": 20.82,
-        "product": "#304 Base",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 18.14
@@ -11227,8 +11227,8 @@
         "asp": 15.98,
         "delivery_fee": 6.46,
         "total_asp": 22.44,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 17.15
       }
@@ -11251,8 +11251,8 @@
         "asp": 15.99,
         "delivery_fee": 3.4,
         "total_asp": 19.39,
-        "product": "#304 Base",
-        "product_type": "base",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 9.74
       }
@@ -11275,8 +11275,8 @@
         "asp": 17.16,
         "delivery_fee": 7.06,
         "total_asp": 24.22,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 19.74
       }
@@ -11299,8 +11299,8 @@
         "asp": 15.36,
         "delivery_fee": 12.73,
         "total_asp": 28.09,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 33.2
       }
@@ -11323,8 +11323,8 @@
         "asp": 15.62,
         "delivery_fee": 14.04,
         "total_asp": 29.66,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 36.27
       }
@@ -11347,8 +11347,8 @@
         "asp": 13.99,
         "delivery_fee": 15.19,
         "total_asp": 29.18,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "304 base",
+        "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 36.64
       }
@@ -11371,7 +11371,7 @@
         "asp": 14.26,
         "delivery_fee": 13.54,
         "total_asp": 27.8,
-        "product": "#304 Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 35.49
@@ -11395,8 +11395,8 @@
         "asp": 17.34,
         "delivery_fee": 6.41,
         "total_asp": 23.75,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 18.38
       }
@@ -11419,8 +11419,8 @@
         "asp": 15.13,
         "delivery_fee": 13.69,
         "total_asp": 28.82,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 34.44
       }
@@ -11443,8 +11443,8 @@
         "asp": 17.15,
         "delivery_fee": 15.72,
         "total_asp": 32.87,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 37.96
       }
@@ -11467,8 +11467,8 @@
         "asp": 15.65,
         "delivery_fee": 15.84,
         "total_asp": 31.49,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 39.59
       }
@@ -11491,8 +11491,8 @@
         "asp": 15.91,
         "delivery_fee": 6.04,
         "total_asp": 21.95,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 15.15
       }
@@ -11515,8 +11515,8 @@
         "asp": 16.9,
         "delivery_fee": 5.81,
         "total_asp": 22.71,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 15.65
       }
@@ -11539,8 +11539,8 @@
         "asp": 16.01,
         "delivery_fee": 7.51,
         "total_asp": 23.52,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 18.51
       }
@@ -11563,8 +11563,8 @@
         "asp": 15.11,
         "delivery_fee": 2.92,
         "total_asp": 18.03,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 7.37
       }
@@ -11587,8 +11587,8 @@
         "asp": 14.92,
         "delivery_fee": 1.62,
         "total_asp": 16.54,
-        "product": "#304 Base",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 3.97
       }
@@ -11611,8 +11611,8 @@
         "asp": 15.27,
         "delivery_fee": 6.94,
         "total_asp": 22.21,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 16.89
       }
@@ -11635,7 +11635,7 @@
         "asp": 13.56,
         "delivery_fee": 7.48,
         "total_asp": 21.04,
-        "product": "#304 Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 19.74
@@ -11659,8 +11659,8 @@
         "asp": 14.83,
         "delivery_fee": 11.51,
         "total_asp": 26.34,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 30.27
       }
@@ -11683,8 +11683,8 @@
         "asp": 15.59,
         "delivery_fee": 16.28,
         "total_asp": 31.87,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 38.95
       }
@@ -11707,8 +11707,8 @@
         "asp": 16.15,
         "delivery_fee": 12.75,
         "total_asp": 28.9,
-        "product": "#304 Base",
-        "product_type": "base",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 36.13
       }
@@ -11731,8 +11731,8 @@
         "asp": 15.94,
         "delivery_fee": 6.06,
         "total_asp": 22.0,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 17.09
       }
@@ -11755,7 +11755,7 @@
         "asp": 14.09,
         "delivery_fee": 7.7,
         "total_asp": 21.79,
-        "product": "Crusher Run",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 19.06
@@ -11779,8 +11779,8 @@
         "asp": 17.48,
         "delivery_fee": 9.33,
         "total_asp": 26.81,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 24.89
       }
@@ -11803,8 +11803,8 @@
         "asp": 15.94,
         "delivery_fee": 7.78,
         "total_asp": 23.72,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 18.78
       }
@@ -11827,7 +11827,7 @@
         "asp": 14.15,
         "delivery_fee": 12.23,
         "total_asp": 26.38,
-        "product": "#304 Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 32.25
@@ -11851,8 +11851,8 @@
         "asp": 16.78,
         "delivery_fee": 11.79,
         "total_asp": 28.57,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 32.48
       }
@@ -11875,8 +11875,8 @@
         "asp": 16.52,
         "delivery_fee": 9.76,
         "total_asp": 26.28,
-        "product": "#304 Base",
-        "product_type": "base",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 25.87
       }
@@ -11899,8 +11899,8 @@
         "asp": 16.51,
         "delivery_fee": 12.61,
         "total_asp": 29.12,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 32.04
       }
@@ -11923,8 +11923,8 @@
         "asp": 15.53,
         "delivery_fee": 12.25,
         "total_asp": 27.78,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 33.31
       }
@@ -11947,8 +11947,8 @@
         "asp": 14.9,
         "delivery_fee": 12.97,
         "total_asp": 27.87,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 35.43
       }
@@ -11971,8 +11971,8 @@
         "asp": 15.3,
         "delivery_fee": 9.94,
         "total_asp": 25.24,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 26.97
       }
@@ -11995,8 +11995,8 @@
         "asp": 16.57,
         "delivery_fee": 10.87,
         "total_asp": 27.44,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 26.17
       }
@@ -12019,8 +12019,8 @@
         "asp": 15.53,
         "delivery_fee": 15.24,
         "total_asp": 30.77,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 37.41
       }
@@ -12043,7 +12043,7 @@
         "asp": 14.51,
         "delivery_fee": 9.19,
         "total_asp": 23.7,
-        "product": "#304 Base",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 23.75
@@ -12067,7 +12067,7 @@
         "asp": 14.05,
         "delivery_fee": 2.11,
         "total_asp": 16.16,
-        "product": "Crusher Run",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 5.96
@@ -12091,8 +12091,8 @@
         "asp": 16.2,
         "delivery_fee": 9.92,
         "total_asp": 26.12,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 25.02
       }
@@ -12115,8 +12115,8 @@
         "asp": 16.5,
         "delivery_fee": 9.46,
         "total_asp": 25.96,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 23.06
       }
@@ -12139,8 +12139,8 @@
         "asp": 15.7,
         "delivery_fee": 14.08,
         "total_asp": 29.78,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 33.89
       }
@@ -12163,7 +12163,7 @@
         "asp": 14.6,
         "delivery_fee": 16.19,
         "total_asp": 30.79,
-        "product": "#304 Base",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 39.59
@@ -12187,7 +12187,7 @@
         "asp": 14.04,
         "delivery_fee": 14.65,
         "total_asp": 28.69,
-        "product": "#304 Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 37.08
@@ -12211,8 +12211,8 @@
         "asp": 16.66,
         "delivery_fee": 13.48,
         "total_asp": 30.14,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 37.05
       }
@@ -12235,8 +12235,8 @@
         "asp": 15.86,
         "delivery_fee": 14.46,
         "total_asp": 30.32,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 34.72
       }
@@ -12259,8 +12259,8 @@
         "asp": 15.36,
         "delivery_fee": 5.68,
         "total_asp": 21.04,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 15.39
       }
@@ -12283,8 +12283,8 @@
         "asp": 17.03,
         "delivery_fee": 10.12,
         "total_asp": 27.15,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 26.26
       }
@@ -12307,8 +12307,8 @@
         "asp": 16.11,
         "delivery_fee": 13.8,
         "total_asp": 29.91,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 39.12
       }
@@ -12331,8 +12331,8 @@
         "asp": 16.55,
         "delivery_fee": 8.23,
         "total_asp": 24.78,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 23.05
       }
@@ -12355,8 +12355,8 @@
         "asp": 16.36,
         "delivery_fee": 2.53,
         "total_asp": 18.89,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 6.4
       }
@@ -12379,8 +12379,8 @@
         "asp": 14.98,
         "delivery_fee": 12.4,
         "total_asp": 27.38,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 35.62
       }
@@ -12403,8 +12403,8 @@
         "asp": 17.18,
         "delivery_fee": 10.93,
         "total_asp": 28.11,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 31.83
       }
@@ -12427,8 +12427,8 @@
         "asp": 16.1,
         "delivery_fee": 8.66,
         "total_asp": 24.76,
-        "product": "#304 Base",
-        "product_type": "base",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 25.3
       }
@@ -12451,8 +12451,8 @@
         "asp": 17.73,
         "delivery_fee": 13.29,
         "total_asp": 31.02,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 37.65
       }
@@ -12475,8 +12475,8 @@
         "asp": 15.2,
         "delivery_fee": 7.59,
         "total_asp": 22.79,
-        "product": "#304 Base",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 19.35
       }
@@ -12499,8 +12499,8 @@
         "asp": 17.72,
         "delivery_fee": 13.41,
         "total_asp": 31.13,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 38.22
       }
@@ -12523,8 +12523,8 @@
         "asp": 15.22,
         "delivery_fee": 11.63,
         "total_asp": 26.85,
-        "product": "#304 Base",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 32.33
       }
@@ -12547,8 +12547,8 @@
         "asp": 14.91,
         "delivery_fee": 7.99,
         "total_asp": 22.9,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 21.44
       }
@@ -12571,8 +12571,8 @@
         "asp": 15.64,
         "delivery_fee": 8.07,
         "total_asp": 23.71,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 21.79
       }
@@ -12595,8 +12595,8 @@
         "asp": 15.82,
         "delivery_fee": 14.45,
         "total_asp": 30.27,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 39.61
       }
@@ -12619,8 +12619,8 @@
         "asp": 15.83,
         "delivery_fee": 13.81,
         "total_asp": 29.64,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 38.94
       }
@@ -12643,8 +12643,8 @@
         "asp": 15.26,
         "delivery_fee": 14.34,
         "total_asp": 29.6,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 37.12
       }
@@ -12667,7 +12667,7 @@
         "asp": 14.0,
         "delivery_fee": 11.31,
         "total_asp": 25.31,
-        "product": "#304 Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 30.87
@@ -12691,8 +12691,8 @@
         "asp": 15.21,
         "delivery_fee": 8.12,
         "total_asp": 23.33,
-        "product": "#304 Base",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 22.69
       }
@@ -12715,8 +12715,8 @@
         "asp": 16.28,
         "delivery_fee": 10.2,
         "total_asp": 26.48,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 26.55
       }
@@ -12739,8 +12739,8 @@
         "asp": 15.04,
         "delivery_fee": 8.99,
         "total_asp": 24.03,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 25.13
       }
@@ -12763,7 +12763,7 @@
         "asp": 14.07,
         "delivery_fee": 14.78,
         "total_asp": 28.85,
-        "product": "Crusher Run",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 36.82
@@ -12787,8 +12787,8 @@
         "asp": 15.54,
         "delivery_fee": 9.88,
         "total_asp": 25.42,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 28.15
       }
@@ -12811,8 +12811,8 @@
         "asp": 16.04,
         "delivery_fee": 14.15,
         "total_asp": 30.19,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 34.21
       }
@@ -12835,8 +12835,8 @@
         "asp": 15.08,
         "delivery_fee": 10.54,
         "total_asp": 25.62,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 28.35
       }
@@ -12859,8 +12859,8 @@
         "asp": 15.51,
         "delivery_fee": 13.69,
         "total_asp": 29.2,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 36.91
       }
@@ -12883,8 +12883,8 @@
         "asp": 15.05,
         "delivery_fee": 14.2,
         "total_asp": 29.25,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 34.15
       }
@@ -12907,7 +12907,7 @@
         "asp": 13.84,
         "delivery_fee": 10.86,
         "total_asp": 24.7,
-        "product": "#304 Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 28.98
@@ -12931,8 +12931,8 @@
         "asp": 15.49,
         "delivery_fee": 10.85,
         "total_asp": 26.34,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 25.97
       }
@@ -12955,8 +12955,8 @@
         "asp": 16.29,
         "delivery_fee": 7.85,
         "total_asp": 24.14,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 21.49
       }
@@ -12979,8 +12979,8 @@
         "asp": 14.94,
         "delivery_fee": 14.41,
         "total_asp": 29.35,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 36.17
       }
@@ -13003,8 +13003,8 @@
         "asp": 17.4,
         "delivery_fee": 12.98,
         "total_asp": 30.38,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 37.21
       }
@@ -13027,8 +13027,8 @@
         "asp": 17.11,
         "delivery_fee": 13.41,
         "total_asp": 30.52,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 33.2
       }
@@ -13051,8 +13051,8 @@
         "asp": 15.41,
         "delivery_fee": 14.39,
         "total_asp": 29.8,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 37.9
       }
@@ -13075,8 +13075,8 @@
         "asp": 16.41,
         "delivery_fee": 14.3,
         "total_asp": 30.71,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 34.36
       }
@@ -13099,8 +13099,8 @@
         "asp": 15.61,
         "delivery_fee": 11.29,
         "total_asp": 26.9,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 32.88
       }
@@ -13123,8 +13123,8 @@
         "asp": 16.93,
         "delivery_fee": 14.52,
         "total_asp": 31.45,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 35.63
       }
@@ -13147,8 +13147,8 @@
         "asp": 15.43,
         "delivery_fee": 6.77,
         "total_asp": 22.2,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 16.53
       }
@@ -13171,8 +13171,8 @@
         "asp": 15.92,
         "delivery_fee": 7.75,
         "total_asp": 23.67,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 20.64
       }
@@ -13195,8 +13195,8 @@
         "asp": 15.72,
         "delivery_fee": 9.65,
         "total_asp": 25.37,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 26.39
       }
@@ -13219,7 +13219,7 @@
         "asp": 14.31,
         "delivery_fee": 5.48,
         "total_asp": 19.79,
-        "product": "#304 Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 13.67
@@ -13243,8 +13243,8 @@
         "asp": 16.03,
         "delivery_fee": 7.73,
         "total_asp": 23.76,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 21.99
       }
@@ -13267,7 +13267,7 @@
         "asp": 13.82,
         "delivery_fee": 9.2,
         "total_asp": 23.02,
-        "product": "Crusher Run",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 23.54
@@ -13291,8 +13291,8 @@
         "asp": 15.83,
         "delivery_fee": 11.35,
         "total_asp": 27.18,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 32.26
       }
@@ -13315,8 +13315,8 @@
         "asp": 15.44,
         "delivery_fee": 10.41,
         "total_asp": 25.85,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 25.69
       }
@@ -13339,7 +13339,7 @@
         "asp": 14.73,
         "delivery_fee": 14.21,
         "total_asp": 28.94,
-        "product": "#304 Base",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 38.76
@@ -13363,8 +13363,8 @@
         "asp": 15.69,
         "delivery_fee": 9.83,
         "total_asp": 25.52,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 26.36
       }
@@ -13387,8 +13387,8 @@
         "asp": 15.96,
         "delivery_fee": 14.59,
         "total_asp": 30.55,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 37.13
       }
@@ -13411,8 +13411,8 @@
         "asp": 15.11,
         "delivery_fee": 6.27,
         "total_asp": 21.38,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 15.16
       }
@@ -13435,8 +13435,8 @@
         "asp": 15.13,
         "delivery_fee": 12.65,
         "total_asp": 27.78,
-        "product": "#304 Base",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 32.29
       }
@@ -13459,7 +13459,7 @@
         "asp": 14.45,
         "delivery_fee": 13.62,
         "total_asp": 28.07,
-        "product": "Crusher Run",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 33.91
@@ -13483,7 +13483,7 @@
         "asp": 14.55,
         "delivery_fee": 4.2,
         "total_asp": 18.75,
-        "product": "#304 Base",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 10.45
@@ -13507,7 +13507,7 @@
         "asp": 14.01,
         "delivery_fee": 11.09,
         "total_asp": 25.1,
-        "product": "#304 Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 29.71
@@ -13531,8 +13531,8 @@
         "asp": 14.83,
         "delivery_fee": 11.69,
         "total_asp": 26.52,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 29.17
       }
@@ -13555,8 +13555,8 @@
         "asp": 15.1,
         "delivery_fee": 14.73,
         "total_asp": 29.83,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 36.14
       }
@@ -13579,8 +13579,8 @@
         "asp": 14.47,
         "delivery_fee": 12.77,
         "total_asp": 27.24,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 31.96
       }
@@ -13603,8 +13603,8 @@
         "asp": 16.19,
         "delivery_fee": 8.36,
         "total_asp": 24.55,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 22.9
       }
@@ -13627,8 +13627,8 @@
         "asp": 17.83,
         "delivery_fee": 13.48,
         "total_asp": 31.31,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 34.69
       }
@@ -13651,7 +13651,7 @@
         "asp": 14.34,
         "delivery_fee": 9.54,
         "total_asp": 23.88,
-        "product": "Crusher Run",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 22.95
@@ -13675,7 +13675,7 @@
         "asp": 14.86,
         "delivery_fee": 13.7,
         "total_asp": 28.56,
-        "product": "Crusher Run",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 34.91
@@ -13699,7 +13699,7 @@
         "asp": 14.68,
         "delivery_fee": 15.5,
         "total_asp": 30.18,
-        "product": "Crusher Run",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 39.44
@@ -13723,7 +13723,7 @@
         "asp": 13.97,
         "delivery_fee": 13.76,
         "total_asp": 27.73,
-        "product": "Crusher Run",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 38.31
@@ -13747,7 +13747,7 @@
         "asp": 14.19,
         "delivery_fee": 6.21,
         "total_asp": 20.4,
-        "product": "Crusher Run",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 14.99
@@ -13771,8 +13771,8 @@
         "asp": 15.47,
         "delivery_fee": 10.89,
         "total_asp": 26.36,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 28.44
       }
@@ -13795,8 +13795,8 @@
         "asp": 16.83,
         "delivery_fee": 5.59,
         "total_asp": 22.42,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 13.94
       }
@@ -13819,8 +13819,8 @@
         "asp": 14.56,
         "delivery_fee": 14.49,
         "total_asp": 29.05,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 34.79
       }
@@ -13843,8 +13843,8 @@
         "asp": 14.93,
         "delivery_fee": 13.33,
         "total_asp": 28.26,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 34.04
       }
@@ -13867,8 +13867,8 @@
         "asp": 15.26,
         "delivery_fee": 15.17,
         "total_asp": 30.43,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 36.42
       }
@@ -13891,8 +13891,8 @@
         "asp": 16.43,
         "delivery_fee": 14.7,
         "total_asp": 31.13,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 35.82
       }
@@ -13915,7 +13915,7 @@
         "asp": 14.52,
         "delivery_fee": 12.14,
         "total_asp": 26.66,
-        "product": "#304 Base",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 29.71
@@ -13939,8 +13939,8 @@
         "asp": 14.98,
         "delivery_fee": 7.79,
         "total_asp": 22.77,
-        "product": "#304 Base",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 22.23
       }
@@ -13963,8 +13963,8 @@
         "asp": 16.52,
         "delivery_fee": 7.51,
         "total_asp": 24.03,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 19.58
       }
@@ -13987,7 +13987,7 @@
         "asp": 14.23,
         "delivery_fee": 12.34,
         "total_asp": 26.57,
-        "product": "#304 Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 35.21
@@ -14011,8 +14011,8 @@
         "asp": 16.42,
         "delivery_fee": 12.75,
         "total_asp": 29.17,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 31.72
       }
@@ -14035,7 +14035,7 @@
         "asp": 13.19,
         "delivery_fee": 11.47,
         "total_asp": 24.66,
-        "product": "Crusher Run",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 28.81
@@ -14059,8 +14059,8 @@
         "asp": 15.96,
         "delivery_fee": 9.73,
         "total_asp": 25.69,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 24.35
       }
@@ -14083,8 +14083,8 @@
         "asp": 18.36,
         "delivery_fee": 13.11,
         "total_asp": 31.47,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 31.6
       }
@@ -14107,7 +14107,7 @@
         "asp": 14.86,
         "delivery_fee": 11.71,
         "total_asp": 26.57,
-        "product": "#304 Base",
+        "product": "411 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 28.93
@@ -14131,8 +14131,8 @@
         "asp": 16.95,
         "delivery_fee": 10.28,
         "total_asp": 27.23,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 29.73
       }
@@ -14155,7 +14155,7 @@
         "asp": 13.99,
         "delivery_fee": 13.44,
         "total_asp": 27.43,
-        "product": "#304 Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 36.51
@@ -14179,8 +14179,8 @@
         "asp": 15.7,
         "delivery_fee": 9.8,
         "total_asp": 25.5,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#8 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 24.63
       }
@@ -14203,8 +14203,8 @@
         "asp": 14.62,
         "delivery_fee": 13.65,
         "total_asp": 28.27,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 34.83
       }
@@ -14227,8 +14227,8 @@
         "asp": 14.42,
         "delivery_fee": 9.27,
         "total_asp": 23.69,
-        "product": "9mm Chips",
-        "product_type": "asphalt_agg",
+        "product": "411 base",
+        "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 23.92
       }
@@ -14251,8 +14251,8 @@
         "asp": 17.82,
         "delivery_fee": 3.94,
         "total_asp": 21.76,
-        "product": "#8 Stone",
-        "product_type": "asphalt_agg",
+        "product": "#67 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 9.81
       }
@@ -14275,7 +14275,7 @@
         "asp": 13.44,
         "delivery_fee": 5.24,
         "total_asp": 18.68,
-        "product": "Crusher Run",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 13.02
@@ -14299,8 +14299,8 @@
         "asp": 15.12,
         "delivery_fee": 8.71,
         "total_asp": 23.83,
-        "product": "#304 Base",
-        "product_type": "base",
+        "product": "Concrete Sand",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 24.06
       }
@@ -14323,8 +14323,8 @@
         "asp": 15.89,
         "delivery_fee": 9.64,
         "total_asp": 25.53,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "#9 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 27.46
       }
@@ -14347,8 +14347,8 @@
         "asp": 16.47,
         "delivery_fee": 5.12,
         "total_asp": 21.59,
-        "product": "Crusher Run",
-        "product_type": "base",
+        "product": "#57 stone",
+        "product_type": "concrete_agg",
         "geology": "Limestone",
         "dist_from_plant": 14.04
       }
@@ -14371,7 +14371,7 @@
         "asp": 14.28,
         "delivery_fee": 10.49,
         "total_asp": 24.77,
-        "product": "#304 Base",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 27.09
@@ -14395,7 +14395,7 @@
         "asp": 13.99,
         "delivery_fee": 11.02,
         "total_asp": 25.01,
-        "product": "Crusher Run",
+        "product": "304 base",
         "product_type": "base",
         "geology": "Limestone",
         "dist_from_plant": 26.62

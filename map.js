@@ -14,8 +14,10 @@ const CONFIG = {
   recentWeight:         2.0,
   semivariogramRange:   30,
   nugget:               0.10,
-  truckOverheadMinutes: 5,
-  driveTimeColors:      ['#00bcd4', '#ff7043', '#ab47bc'],
+  truckOverheadMinutes: 10,
+  driveTimeColors:      ['#00bcd4', '#ff7043', '#ab47bc', '#43a047', '#fb8c00', '#1e88e5'],
+  volumeRefTons:        200,    // Hill-function half-saturation: orders at this tonnage get 50% weight
+  escalationPct:        3.0,    // Annual price escalation % applied to historical prices before averaging
   enableAddressSearch:  false,   // Nominatim geocoder — re-enable when a better API key is available
 };
 
@@ -31,7 +33,14 @@ let state = {
   radiusCircle:        null,
   allOrdersLayer:      null,
   hitOrdersLayer:      null,
-  driveTimeLayerGroup: null,
+  driveTimeLayerGroup:  null,
+  plantLabelLayer:      null,
+  orderLabelLayer:      null,
+  escalationPct:        CONFIG.escalationPct,
+  hitLayerMap:          {},      // orderId → { lat, lon } for table-row hover → map highlight
+  highlightMarker:     null,
+  plantHighlightMarker:    null,
+  driveTimeHighlightMarker: null,
   sortCol:             'dist',
   sortDir:             'asc',
   lastResults:         null,
@@ -123,23 +132,43 @@ function krigingWeight(dist_miles, daysSince) {
 
 // ── Estimation ─────────────────────────────────────────
 function estimatePrice(clickLat, clickLon, orders, radiusMiles) {
+  // Build plant-name → coords lookup so we can report distance to source plant
+  const plantCoords = {};
+  if (state.plantsData) {
+    state.plantsData.features.forEach(f => {
+      const [plon, plat] = f.geometry.coordinates;
+      plantCoords[f.properties.name] = { lat: plat, lon: plon };
+    });
+  }
+
   const now = new Date(), results = [];
   orders.forEach(f => {
     const p = f.properties;
     const [lon, lat] = f.geometry.coordinates;
-    const dist = haversine(clickLat, clickLon, lat, lon);
+    const dist = haversine(clickLat, clickLon, lat, lon);  // click → order delivery point
     if (dist > radiusMiles)                                          return;
     if (p.date < state.dateFrom || p.date > state.dateTo)           return;
     if (state.productType !== 'all' && p.product_type !== state.productType) return;
     if (state.product     !== 'all' && p.product      !== state.product)     return;
     const daysSince = (now - new Date(p.date)) / 86400000;
-    const w = krigingWeight(dist, daysSince);
-    results.push({ p, dist, w, lat, lon });
+    const spatialTimeW = krigingWeight(dist, daysSince);
+    // Hill function: large orders approach weight 1; small orders discounted
+    const vol  = p.volume_tons > 0 ? p.volume_tons : 1;
+    const volW = vol / (vol + CONFIG.volumeRefTons);
+    const w    = spatialTimeW * volW;
+    // Escalate historical price forward to today's equivalent
+    const escalationRate   = (state.escalationPct ?? CONFIG.escalationPct) / 100;
+    const escalationFactor = Math.pow(1 + escalationRate, daysSince / 365);
+    const adjustedAsp      = p.total_asp * escalationFactor;
+    const pc   = plantCoords[p.plant_name];
+    const distToPlant = pc ? haversine(clickLat, clickLon, pc.lat, pc.lon) : null;
+    results.push({ p, dist, distToPlant, w, lat, lon, adjustedAsp, escalationFactor });
   });
   if (!results.length) return null;
+  results.forEach((r, i) => { r._id = i; });  // stable per-result ID for hover linking
   const wSum = results.reduce((s, r) => s + r.w, 0);
   results.forEach(r => r.normW = r.w / wSum);
-  const estimate = results.reduce((s, r) => s + r.p.total_asp * r.normW, 0);
+  const estimate = results.reduce((s, r) => s + r.adjustedAsp * r.normW, 0);
   results.sort((a, b) => b.w - a.w);
   return { estimate, results };
 }
@@ -150,8 +179,10 @@ const fmt = v => '$' + v.toFixed(2);
 function sortResults(results) {
   const col = state.sortCol, dir = state.sortDir === 'asc' ? 1 : -1;
   return [...results].sort((a, b) => {
-    let va = col === 'dist' ? a.dist : a.p[col];
-    let vb = col === 'dist' ? b.dist : b.p[col];
+    let va, vb;
+    if      (col === 'dist')        { va = a.dist;                        vb = b.dist; }
+    else if (col === 'distToPlant') { va = a.distToPlant ?? Infinity;     vb = b.distToPlant ?? Infinity; }
+    else                            { va = a.p[col];                      vb = b.p[col]; }
     if (typeof va === 'string') return va.localeCompare(vb) * dir;
     return (va - vb) * dir;
   });
@@ -227,12 +258,16 @@ function buildAllOrdersLayer(features) {
 
 // ── Highlighted hit layer ──────────────────────────────
 function buildHitLayer(results) {
+  // Rebuild lookup table so table-row hover can find map coords by order _id
+  state.hitLayerMap = {};
+  results.forEach(r => { state.hitLayerMap[r._id] = { lat: r.lat, lon: r.lon }; });
+
   return L.geoJSON({
     type: 'FeatureCollection',
     features: results.map(r => ({
       type: 'Feature',
       geometry: { type: 'Point', coordinates: [r.lon, r.lat] },
-      properties: { ...r.p, normW: r.normW, dist: r.dist },
+      properties: { ...r.p, normW: r.normW, dist: r.dist, _id: r._id },
     })),
   }, {
     renderer: canvasRenderer,
@@ -265,10 +300,12 @@ function renderTable(results) {
   tbody.innerHTML = '';
   sorted.slice(0, CONFIG.maxOrdersInTable).forEach(r => {
     const tr = document.createElement('tr');
+    tr.dataset.orderId = r._id;
     tr.innerHTML = `
       <td>${r.p.date}</td>
       <td>${r.p.product}</td>
       <td>${r.p.plant_name}</td>
+      <td>${r.distToPlant != null ? r.distToPlant.toFixed(1) + ' mi' : '—'}</td>
       <td>${r.dist.toFixed(1)} mi</td>
       <td>${r.p.volume_tons.toLocaleString()}</td>
       <td>${fmt(r.p.asp)}</td>
@@ -278,6 +315,24 @@ function renderTable(results) {
     tbody.appendChild(tr);
   });
   updateSortHeaders();
+}
+
+// ── Table-row → map highlight ──────────────────────────
+function clearHighlight() {
+  if (state.highlightMarker) {
+    map.removeLayer(state.highlightMarker);
+    state.highlightMarker = null;
+  }
+}
+
+function highlightOrder(orderId) {
+  clearHighlight();
+  const pos = state.hitLayerMap[orderId];
+  if (!pos) return;
+  state.highlightMarker = L.circleMarker([pos.lat, pos.lon], {
+    radius: 9, fillColor: 'rgba(255,255,255,0.85)', fillOpacity: 1,
+    color: '#e8a020', weight: 2.5, renderer: canvasRenderer,
+  }).addTo(map);
 }
 
 // ── Render sidebar ─────────────────────────────────────
@@ -291,9 +346,8 @@ function renderResults(clickLat, clickLon) {
   if (state.hitOrdersLayer) { map.removeLayer(state.hitOrdersLayer); state.hitOrdersLayer = null; }
 
   if (!result) {
-    document.getElementById('est-value').textContent          = 'N/A';
-    document.getElementById('est-low').textContent            = '—';
-    document.getElementById('est-high').textContent           = '—';
+    document.getElementById('est-value').textContent = 'N/A';
+    document.getElementById('est-range').textContent = '';
     document.getElementById('est-orders-used').textContent    = 'No orders in radius';
     document.getElementById('est-radius').textContent         = '';
     document.getElementById('orders-drawer').classList.remove('visible');
@@ -306,9 +360,8 @@ function renderResults(clickLat, clickLon) {
   const lo = estimate * (1 - CONFIG.priceRange);
   const hi = estimate * (1 + CONFIG.priceRange);
 
-  document.getElementById('est-value').textContent          = fmt(estimate);
-  document.getElementById('est-low').textContent            = fmt(lo);
-  document.getElementById('est-high').textContent           = fmt(hi);
+  document.getElementById('est-value').textContent = fmt(estimate);
+  document.getElementById('est-range').textContent = `(${fmt(lo)} – ${fmt(hi)})`;
   document.getElementById('est-orders-used').textContent    = `${results.length} order${results.length !== 1 ? 's' : ''} used`;
   document.getElementById('est-radius').textContent         = `${state.radius} mi radius`;
 
@@ -328,6 +381,47 @@ function renderResults(clickLat, clickLon) {
   renderCompetitors(clickLat, clickLon);
 }
 
+// ── Plant tooltip ──────────────────────────────────────
+function showPlantTooltip(row, plant) {
+  // Highlight ring on the map
+  if (state.plantHighlightMarker) map.removeLayer(state.plantHighlightMarker);
+  const ringColor = plant.owner === 'owned' ? '#e8a020' : '#e05070';
+  state.plantHighlightMarker = L.circleMarker([plant.lat, plant.lon], {
+    radius: 15, fillOpacity: 0, color: ringColor, weight: 2.5,
+    renderer: canvasRenderer,
+  }).addTo(map);
+
+  const tip    = document.getElementById('plant-tooltip');
+  const owned  = plant.owner === 'owned';
+  const label  = owned ? 'Owned' : 'Competitor';
+
+  document.getElementById('pt-name').textContent  = plant.name;
+  document.getElementById('pt-name').className     = owned ? 'owned' : '';
+  document.getElementById('pt-badge').textContent  = label;
+  document.getElementById('pt-badge').className    = owned ? 'owned' : 'competitor';
+  document.getElementById('pt-geo').textContent    = plant.geology;
+  document.getElementById('pt-products').innerHTML =
+    plant.products.map(pr => `<span class="product-chip">${pr}</span>`).join('');
+
+  // Show off-screen first to measure height, then position
+  tip.style.display = 'block';
+  const tipH    = tip.offsetHeight;
+  const sidebar = document.getElementById('sidebar');
+  const left    = sidebar.getBoundingClientRect().right + 12;
+  const rowRect = row.getBoundingClientRect();
+  const top     = Math.min(rowRect.top, window.innerHeight - tipH - 10);
+  tip.style.left = left + 'px';
+  tip.style.top  = Math.max(10, top) + 'px';
+}
+
+function hidePlantTooltip() {
+  document.getElementById('plant-tooltip').style.display = 'none';
+  if (state.plantHighlightMarker) {
+    map.removeLayer(state.plantHighlightMarker);
+    state.plantHighlightMarker = null;
+  }
+}
+
 // ── Nearby plants ──────────────────────────────────────
 function renderCompetitors(clickLat, clickLon) {
   const container = document.getElementById('competitors-list');
@@ -342,23 +436,19 @@ function renderCompetitors(clickLat, clickLon) {
     .sort((a, b) => a.dist - b.dist);
 
   if (!plants.length) {
-    container.innerHTML = '<div style="font-family:var(--font-mono);font-size:10px;color:var(--text-dim);">No plants within range</div>';
+    container.innerHTML = '<div style="font-family:var(--font-mono);font-size:10px;color:var(--text-dim);padding:6px 0;">No plants within range</div>';
     return;
   }
-  plants.forEach(p => {
+
+  plants.forEach(plant => {
     const row = document.createElement('div');
-    row.className = 'competitor-row' + (p.owner === 'owned' ? ' owned-row' : '');
-    const chips = p.products.length
-      ? `<div class="competitor-products">${p.products.map(pr => `<span class="product-chip">${pr}</span>`).join('')}</div>`
-      : '';
+    row.className = 'competitor-row' + (plant.owner === 'owned' ? ' owned-row' : '');
     row.innerHTML = `
-      <div class="competitor-info">
-        <div class="competitor-name">${p.name}</div>
-        <div class="competitor-geo">${p.geology} · ${p.owner === 'owned' ? 'Owned' : 'Competitor'}</div>
-        ${chips}
-      </div>
-      <div class="competitor-dist">${p.dist.toFixed(1)} mi</div>
+      <span class="competitor-name">${plant.name}</span>
+      <span class="competitor-dist">${plant.dist.toFixed(1)} mi</span>
     `;
+    row.addEventListener('mouseenter', () => showPlantTooltip(row, plant));
+    row.addEventListener('mouseleave', hidePlantTooltip);
     container.appendChild(row);
   });
 }
@@ -388,6 +478,10 @@ function clearDriveTimeRoutes() {
     map.removeLayer(state.driveTimeLayerGroup);
     state.driveTimeLayerGroup = null;
   }
+  if (state.driveTimeHighlightMarker) {
+    map.removeLayer(state.driveTimeHighlightMarker);
+    state.driveTimeHighlightMarker = null;
+  }
   document.getElementById('drivetime-results').innerHTML = '';
   document.getElementById('drivetime-loading').style.display = 'none';
   const btn = document.getElementById('drivetime-btn');
@@ -407,16 +501,20 @@ async function runDriveTimeAnalysis(clickLat, clickLon) {
   btn.disabled    = true;
   btn.textContent = '…';
 
+  // Read user-configurable parameters from the sidebar inputs
+  const plantCount   = Math.max(1, Math.min(6, parseInt(document.getElementById('dt-plant-count').value)  || 3));
+  const overheadMins = Math.max(0,             parseInt(document.getElementById('dt-overhead-min').value) || 0);
+
   const plants = state.plantsData.features
     .map(f => {
       const [lon, lat] = f.geometry.coordinates;
       return { ...f.properties, lat, lon, dist: haversine(clickLat, clickLon, lat, lon) };
     })
     .sort((a, b) => a.dist - b.dist)
-    .slice(0, 3);
+    .slice(0, plantCount);
 
   state.driveTimeLayerGroup = L.layerGroup().addTo(map);
-  const overheadSecs = CONFIG.truckOverheadMinutes * 60;
+  const overheadSecs = overheadMins * 60;
   const routeData    = [];
 
   for (let i = 0; i < plants.length; i++) {
@@ -438,8 +536,8 @@ async function runDriveTimeAnalysis(clickLat, clickLon) {
       const roadDistMi    = route.distance / 1609.34;
       const roundTripSecs = oneWaySecs * 2 + overheadSecs;
 
-      const coords = route.geometry.coordinates.map(([ln, lt]) => [lt, ln]);
-      L.polyline(coords, { color, weight: 4, opacity: 0.85, lineJoin: 'round' })
+      const coords   = route.geometry.coordinates.map(([ln, lt]) => [lt, ln]);
+      const polyline = L.polyline(coords, { color, weight: 4, opacity: 0.85, lineJoin: 'round' })
         .addTo(state.driveTimeLayerGroup);
 
       L.circleMarker([plant.lat, plant.lon], {
@@ -448,7 +546,7 @@ async function runDriveTimeAnalysis(clickLat, clickLon) {
         .bindTooltip(plant.name, { permanent: false })
         .addTo(state.driveTimeLayerGroup);
 
-      routeData.push({ plant, color, oneWaySecs, roadDistMi, roundTripSecs });
+      routeData.push({ plant, color, oneWaySecs, roadDistMi, roundTripSecs, polyline });
     } catch {
       routeData.push({ plant, color, error: 'Route unavailable' });
     }
@@ -459,7 +557,7 @@ async function runDriveTimeAnalysis(clickLat, clickLon) {
   btn.textContent    = '✕ Clear';
   btn.dataset.active = 'true';
 
-  routeData.forEach(r => {
+  routeData.forEach((r, i) => {
     const row = document.createElement('div');
     row.className = 'drivetime-row';
     row.style.borderLeftColor = r.color;
@@ -481,6 +579,31 @@ async function runDriveTimeAnalysis(clickLat, clickLon) {
           <div class="drivetime-oneway">one-way ${formatDuration(r.oneWaySecs)}</div>
           <div class="drivetime-roundtrip">&#8635; ${formatDuration(r.roundTripSecs)} round trip</div>
         </div>`;
+
+      // Hover: highlight this route, dim the others
+      row.addEventListener('mouseenter', () => {
+        routeData.forEach((rd, j) => {
+          if (!rd.polyline) return;
+          rd.polyline.setStyle(j === i
+            ? { weight: 7, opacity: 1 }
+            : { weight: 4, opacity: 0.15 });
+        });
+        if (state.driveTimeHighlightMarker) map.removeLayer(state.driveTimeHighlightMarker);
+        state.driveTimeHighlightMarker = L.circleMarker([r.plant.lat, r.plant.lon], {
+          radius: 13, fillOpacity: 0, color: r.color, weight: 3,
+          renderer: canvasRenderer,
+        }).addTo(map);
+      });
+
+      row.addEventListener('mouseleave', () => {
+        routeData.forEach(rd => {
+          if (rd.polyline) rd.polyline.setStyle({ weight: 4, opacity: 0.85 });
+        });
+        if (state.driveTimeHighlightMarker) {
+          map.removeLayer(state.driveTimeHighlightMarker);
+          state.driveTimeHighlightMarker = null;
+        }
+      });
     }
     resultsEl.appendChild(row);
   });
@@ -649,6 +772,13 @@ document.getElementById('date-to').addEventListener('change', e => {
   rerunEstimate();
 });
 
+document.getElementById('escalation-pct').addEventListener('change', e => {
+  const v = parseFloat(e.target.value);
+  state.escalationPct = isNaN(v) ? CONFIG.escalationPct : Math.max(0, Math.min(20, v));
+  e.target.value = state.escalationPct;
+  rerunEstimate();
+});
+
 // ── Reset parameters ───────────────────────────────────
 document.getElementById('reset-params-btn').addEventListener('click', () => {
   state.radius = CONFIG.defaultRadius;
@@ -662,6 +792,8 @@ document.getElementById('reset-params-btn').addEventListener('click', () => {
   state.dateTo   = '2024-12-31';
   document.getElementById('date-from').value = '2020-01-01';
   document.getElementById('date-to').value   = '2024-12-31';
+  state.escalationPct = CONFIG.escalationPct;
+  document.getElementById('escalation-pct').value = CONFIG.escalationPct;
   rerunEstimate();
 });
 
@@ -677,16 +809,19 @@ document.getElementById('orders-collapse-btn').addEventListener('click', () => {
 document.getElementById('download-orders-btn').addEventListener('click', () => {
   if (!state.lastResults) return;
   const sorted = sortResults(state.lastResults);
-  const header = ['Date', 'Product', 'Plant', 'Distance (mi)', 'Volume (T)', 'ASP', 'Delivery', 'Total ASP'];
+  const header = ['Date', 'Product', 'Plant', 'Dist. to Plant (mi)', 'Dist. to Point (mi)', 'Volume (T)', 'Base ASP', 'Delivery', 'Total ASP', 'Latitude', 'Longitude'];
   const rows   = sorted.map(r => [
     r.p.date,
     `"${r.p.product}"`,
     `"${r.p.plant_name}"`,
+    r.distToPlant != null ? r.distToPlant.toFixed(2) : '',
     r.dist.toFixed(2),
     r.p.volume_tons,
     r.p.asp.toFixed(2),
     r.p.delivery_fee.toFixed(2),
     r.p.total_asp.toFixed(2),
+    r.lat.toFixed(6),
+    r.lon.toFixed(6),
   ]);
   const csv  = [header.join(','), ...rows.map(r => r.join(','))].join('\n');
   const blob = new Blob([csv], { type: 'text/csv' });
@@ -700,6 +835,106 @@ document.getElementById('download-orders-btn').addEventListener('click', () => {
   URL.revokeObjectURL(url);
 });
 
+// ── Sidebar collapse ───────────────────────────────────
+document.getElementById('sidebar-toggle').addEventListener('click', () => {
+  const collapsed = document.body.classList.toggle('sidebar-collapsed');
+  const btn = document.getElementById('sidebar-toggle');
+  btn.innerHTML   = collapsed ? '&#9654;' : '&#9664;';
+  btn.title       = collapsed ? 'Show sidebar' : 'Hide sidebar';
+  // Let the CSS transition finish before Leaflet reflows the map
+  setTimeout(() => { map.invalidateSize(); updateMapLabels(); }, 260);
+});
+
+// ── Map labels ─────────────────────────────────────────
+function buildPlantLabelLayer(plantsData) {
+  const group = L.layerGroup();
+  plantsData.features.forEach(f => {
+    const [lon, lat] = f.geometry.coordinates;
+    L.marker([lat, lon], {
+      icon: L.divIcon({
+        className:  '',   // empty → no outer styling; Leaflet won't render a visible box
+        html:       `<span class="plant-label">${f.properties.name}</span>`,
+        iconSize:   [0, 0],
+        iconAnchor: [0, 0],
+      }),
+      interactive:   false,
+      zIndexOffset:  2000,
+    }).addTo(group);
+  });
+  return group;
+}
+
+function updateOrderLabels() {
+  if (state.orderLabelLayer) { map.removeLayer(state.orderLabelLayer); state.orderLabelLayer = null; }
+  const collapsed = document.body.classList.contains('sidebar-collapsed');
+  if (!collapsed || map.getZoom() < 14 || !state.ordersData) return;
+
+  const bounds = map.getBounds();
+  const group  = L.layerGroup();
+  state.ordersData.features.forEach(f => {
+    const [lon, lat] = f.geometry.coordinates;
+    if (!bounds.contains([lat, lon])) return;
+    const p = f.properties;
+    L.marker([lat, lon], {
+      icon: L.divIcon({
+        className:  '',   // empty → invisible outer wrapper
+        html:       `<div class="order-label">` +
+                      `<div class="ol-product">${p.product}</div>` +
+                      `<div class="ol-meta">${p.volume_tons.toLocaleString()} T &middot; ${fmt(p.total_asp)}/T</div>` +
+                    `</div>`,
+        iconSize:   [0, 0],
+        iconAnchor: [0, 0],
+      }),
+      interactive:  false,
+      zIndexOffset: 500,
+    }).addTo(group);
+  });
+  state.orderLabelLayer = group.addTo(map);
+}
+
+function updateMapLabels() {
+  const collapsed = document.body.classList.contains('sidebar-collapsed');
+  const zoom      = map.getZoom();
+
+  // Plant labels — zoom 11+
+  if (state.plantLabelLayer) {
+    if (collapsed && zoom >= 11) {
+      if (!map.hasLayer(state.plantLabelLayer)) state.plantLabelLayer.addTo(map);
+    } else {
+      if (map.hasLayer(state.plantLabelLayer)) map.removeLayer(state.plantLabelLayer);
+    }
+  }
+
+  // Order labels — zoom 14+ (rebuilt per bounds)
+  updateOrderLabels();
+}
+
+map.on('zoomend moveend', updateMapLabels);
+
+// ── Orders table row → map highlight ──────────────────
+;(function () {
+  const tbody = document.getElementById('orders-tbody');
+  let lastHighlightedRow = null;
+
+  tbody.addEventListener('mouseover', e => {
+    const tr = e.target.closest('tr[data-order-id]');
+    if (!tr || tr === lastHighlightedRow) return;
+    if (lastHighlightedRow) lastHighlightedRow.classList.remove('row-highlight');
+    lastHighlightedRow = tr;
+    tr.classList.add('row-highlight');
+    highlightOrder(tr.dataset.orderId);
+  });
+
+  tbody.addEventListener('mouseout', e => {
+    const tr = e.target.closest('tr[data-order-id]');
+    if (tr && !tr.contains(e.relatedTarget)) {
+      tr.classList.remove('row-highlight');
+      lastHighlightedRow = null;
+      clearHighlight();
+    }
+  });
+})();
+
 // ── Load data ──────────────────────────────────────────
 async function loadData() {
   try {
@@ -712,7 +947,8 @@ async function loadData() {
 
     populateProductFilter(state.ordersData.features);
 
-    state.allOrdersLayer = buildAllOrdersLayer(state.ordersData.features).addTo(map);
+    state.allOrdersLayer  = buildAllOrdersLayer(state.ordersData.features).addTo(map);
+    state.plantLabelLayer = buildPlantLabelLayer(state.plantsData);
 
     state.plantsData.features.forEach(f => {
       const p = f.properties;

@@ -19,9 +19,7 @@ const CONFIG = {
   volumeRefTons:        200,    // Hill-function half-saturation: orders at this tonnage get 50% weight on the way up
   volumeCap:            2000,   // tonnage above which the large-order discount kicks in; weight falls beyond this point
   escalationPct:        3.0,    // Annual price escalation % applied to historical prices before averaging
-  enableAddressSearch:  true,
-  mapboxToken:          pk.eyJ1Ijoicm9ja3JlcG9ydG5qIiwiYSI6ImNtcGp3NGZlbjE3eHoycHBzNWQycWtsejAifQ.zmQ6C-dqiEW4WjdaHmV6-w,   // replace with your pk.* token from mapbox.com
-  enablePriceHeatmap:   false,   // Base ASP heatmap overlay — set true to expose the toggle in the legend
+  enableAddressSearch:  false,   // Nominatim geocoder — re-enable when a better API key is available
   // Isochrone ring styles (filled polygons rendered 45→30→15 so inner rings paint over outer)
   isochroneStyle: {
     45: { fillColor: '#6366f1', color: '#4338ca', fillOpacity: 0.08, weight: 1.2, opacity: 0.50 },
@@ -47,8 +45,6 @@ let state = {
   showIsochrones:       false,
   heatmapLayer:         null,
   showHeatmap:          false,
-  priceHeatmapLayer:    null,
-  showPriceHeatmap:     false,
   plantLabelLayer:      null,
   orderLabelLayer:      null,
   escalationPct:        CONFIG.escalationPct,
@@ -133,8 +129,8 @@ function haversine(lat1, lon1, lat2, lon2) {
 }
 
 // ── Kriging weight ─────────────────────────────────────
-function krigingWeight(dist_miles, daysSince, rangeMiles) {
-  const h = dist_miles, a = rangeMiles ?? CONFIG.semivariogramRange, nug = CONFIG.nugget;
+function krigingWeight(dist_miles, daysSince) {
+  const h = dist_miles, a = radius, nug = CONFIG.nugget;
   let gamma;
   if      (h <= 0) gamma = 0;
   else if (h >= a) gamma = 1;
@@ -166,7 +162,7 @@ function estimatePrice(clickLat, clickLon, orders, radiusMiles) {
     if (state.productType !== 'all' && p.product_type !== state.productType) return;
     if (state.product     !== 'all' && p.product      !== state.product)     return;
     const daysSince = (now - new Date(p.date)) / 86400000;
-    const spatialTimeW = krigingWeight(dist, daysSince, radiusMiles);
+    const spatialTimeW = krigingWeight(dist, daysSince);
     // Hill function: large orders approach weight 1; small orders discounted
     const vol    = p.volume_tons > 0 ? p.volume_tons : 1;
     const volEff = Math.min(vol, CONFIG.volumeCap);   // cap large orders before applying Hill fn
@@ -714,77 +710,51 @@ const SearchCtrl = L.Control.extend({
 if (CONFIG.enableAddressSearch) new SearchCtrl().addTo(map);
 
 function closeSearchResults() {
-  const el = document.getElementById('search-results');
-  if (el) el.innerHTML = '';
+  document.getElementById('search-results').innerHTML = '';
 }
 
 async function geocodeAddress() {
-  const input = document.getElementById('address-search');
-  const query = input.value.trim();
-  if (query.length < 3) { closeSearchResults(); return; }
-
-  const center = map.getCenter();
-  const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json`
-    + `?access_token=${CONFIG.mapboxToken}`
-    + `&country=US`
-    + `&proximity=${center.lng.toFixed(4)},${center.lat.toFixed(4)}`
-    + `&limit=6`
-    + `&types=address,place,locality,neighborhood,postcode,poi`;
-
-  const resEl = document.getElementById('search-results');
+  const input  = document.getElementById('address-search');
+  const query  = input.value.trim();
+  if (!query) return;
+  const b      = map.getBounds();
+  const vbox   = `${b.getWest()},${b.getNorth()},${b.getEast()},${b.getSouth()}`;
+  const url    = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=5&viewbox=${vbox}&bounded=0&countrycodes=us`;
+  const resEl  = document.getElementById('search-results');
   resEl.innerHTML = '<div class="search-no-results">Searching…</div>';
-
   try {
-    const data = await (await fetch(url)).json();
+    const data = await (await fetch(url, { headers: { 'Accept-Language': 'en-US,en' } })).json();
     resEl.innerHTML = '';
-    const features = data.features ?? [];
-    if (!features.length) {
+    if (!data.length) {
       resEl.innerHTML = '<div class="search-no-results">No results found</div>';
       return;
     }
-    features.forEach(f => {
-      const [lng, lat] = f.center;
-      const label      = f.place_name;
+    data.forEach(r => {
       const item       = document.createElement('div');
       item.className   = 'search-result-item';
-      item.textContent = label.length > 60 ? label.slice(0, 57) + '…' : label;
-      item.title       = label;
+      item.textContent = r.display_name.length > 58 ? r.display_name.slice(0, 55) + '…' : r.display_name;
+      item.title       = r.display_name;
       item.addEventListener('click', e => {
         L.DomEvent.stopPropagation(e);
-        // Show just the first two components (street + city) in the input
-        input.value = label.split(',').slice(0, 2).join(',').trim();
+        const lat = parseFloat(r.lat), lng = parseFloat(r.lon);
+        input.value = r.display_name.split(',').slice(0, 2).join(', ').trim();
         closeSearchResults();
-        map.panTo([lat, lng]);
+        map.setView([lat, lng], Math.max(map.getZoom(), 13));
         selectLocation(lat, lng);
       });
       resEl.appendChild(item);
     });
   } catch {
-    resEl.innerHTML = '<div class="search-no-results">Search unavailable</div>';
+    document.getElementById('search-results').innerHTML = '<div class="search-no-results">Search unavailable</div>';
   }
 }
 
 if (CONFIG.enableAddressSearch) {
-  let _searchTimer = null;
-  const searchInput = document.getElementById('address-search');
-
-  // Real-time suggestions — fire 300 ms after the user stops typing
-  searchInput.addEventListener('input', () => {
-    clearTimeout(_searchTimer);
-    if (searchInput.value.trim().length < 3) { closeSearchResults(); return; }
-    _searchTimer = setTimeout(geocodeAddress, 300);
+  document.getElementById('address-search').addEventListener('keydown', e => {
+    if (e.key === 'Enter')  geocodeAddress();
+    if (e.key === 'Escape') closeSearchResults();
   });
-
-  searchInput.addEventListener('keydown', e => {
-    if (e.key === 'Enter')  { clearTimeout(_searchTimer); geocodeAddress(); }
-    if (e.key === 'Escape') { closeSearchResults(); }
-  });
-
-  document.getElementById('address-search-btn').addEventListener('click', () => {
-    clearTimeout(_searchTimer);
-    geocodeAddress();
-  });
-
+  document.getElementById('address-search-btn').addEventListener('click', geocodeAddress);
   document.addEventListener('click', e => {
     if (!e.target.closest('.search-control')) closeSearchResults();
   });
@@ -903,24 +873,6 @@ document.getElementById('sidebar-toggle').addEventListener('click', () => {
   btn.title       = collapsed ? 'Show sidebar' : 'Hide sidebar';
   // Let the CSS transition finish before Leaflet reflows the map
   setTimeout(() => { map.invalidateSize(); updateMapLabels(); }, 260);
-});
-
-// ── Price heatmap toggle ────────────────────────────────
-document.getElementById('price-heatmap-toggle-btn').addEventListener('click', () => {
-  state.showPriceHeatmap = !state.showPriceHeatmap;
-  const btn  = document.getElementById('price-heatmap-toggle-btn');
-  const rows = document.getElementById('price-heatmap-legend-rows');
-  if (state.showPriceHeatmap) {
-    if (state.priceHeatmapLayer) state.priceHeatmapLayer.addTo(map);
-    btn.textContent = 'ON';
-    btn.classList.add('iso-on');
-    rows.classList.remove('iso-hidden');
-  } else {
-    if (state.priceHeatmapLayer) map.removeLayer(state.priceHeatmapLayer);
-    btn.textContent = 'OFF';
-    btn.classList.remove('iso-on');
-    rows.classList.add('iso-hidden');
-  }
 });
 
 // ── Heatmap toggle ─────────────────────────────────────
@@ -1061,18 +1013,8 @@ async function loadData() {
     state.ordersData = await ordersRes.json();
     const isoData    = await isoRes.json();
 
-    // Price heatmap raster — controlled by CONFIG.enablePriceHeatmap
-    const hmBounds = [[47.05, -122.70], [48.00, -121.50]];
-    if (CONFIG.enablePriceHeatmap) {
-      state.priceHeatmapLayer = L.imageOverlay('price_heatmap.png', hmBounds, {
-        opacity: 1, interactive: false, zIndex: 148,
-      });
-      if (state.showPriceHeatmap) state.priceHeatmapLayer.addTo(map);
-    } else {
-      document.getElementById('price-heatmap-section').style.display = 'none';
-    }
-
     // Drive-time heatmap raster — hidden by default
+    const hmBounds = [[47.05, -122.70], [48.00, -121.50]];  // [[south,west],[north,east]]
     state.heatmapLayer = L.imageOverlay('drivetime_heatmap.png', hmBounds, {
       opacity: 1,          // per-pixel alpha lives inside the PNG itself
       interactive: false,

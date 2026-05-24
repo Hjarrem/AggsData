@@ -16,7 +16,8 @@ const CONFIG = {
   nugget:               0.10,
   truckOverheadMinutes: 10,
   driveTimeColors:      ['#00bcd4', '#ff7043', '#ab47bc', '#43a047', '#fb8c00', '#1e88e5'],
-  volumeRefTons:        200,    // Hill-function half-saturation: orders at this tonnage get 50% weight
+  volumeRefTons:        200,    // Hill-function half-saturation: orders at this tonnage get 50% weight on the way up
+  volumeCap:            2000,   // tonnage above which the large-order discount kicks in; weight falls beyond this point
   escalationPct:        3.0,    // Annual price escalation % applied to historical prices before averaging
   enableAddressSearch:  false,   // Nominatim geocoder — re-enable when a better API key is available
   // Isochrone ring styles (filled polygons rendered 45→30→15 so inner rings paint over outer)
@@ -163,8 +164,9 @@ function estimatePrice(clickLat, clickLon, orders, radiusMiles) {
     const daysSince = (now - new Date(p.date)) / 86400000;
     const spatialTimeW = krigingWeight(dist, daysSince);
     // Hill function: large orders approach weight 1; small orders discounted
-    const vol  = p.volume_tons > 0 ? p.volume_tons : 1;
-    const volW = vol / (vol + CONFIG.volumeRefTons);
+    const vol    = p.volume_tons > 0 ? p.volume_tons : 1;
+    const volEff = Math.min(vol, CONFIG.volumeCap);   // cap large orders before applying Hill fn
+    const volW   = volEff / (vol + CONFIG.volumeRefTons);
     const w    = spatialTimeW * volW;
     // Escalate historical price forward to today's equivalent
     const escalationRate   = (state.escalationPct ?? CONFIG.escalationPct) / 100;

@@ -71,12 +71,15 @@
     <!-- Results -->
     <section class="panel" id="results-panel" style="display:none;">
       <h2 class="panel-title">PRICE ESTIMATE
-        <button id="clear-btn" title="Clear estimate">✕ Clear</button>
+        <span class="title-actions">
+          <button id="methodology-btn" title="How this estimate is calculated">&#9432;</button>
+          <button id="clear-btn" title="Clear estimate">✕ Clear</button>
+        </span>
       </h2>
 
       <div id="estimate-block">
         <div id="est-main">
-          <span id="est-label">Est. Delivered ASP</span>
+          <span id="est-label">Modeled Delivered Price</span>
           <span id="est-value">—</span>
           <span id="est-range"></span>
         </div>
@@ -86,8 +89,20 @@
         </div>
       </div>
 
+      <!-- How it's calculated -->
+      <div id="methodology-popover">
+        <div class="mp-title">How this estimate is calculated</div>
+        <p>This is a model output, not a simple average of the orders below. Each historical order is weighted by:</p>
+        <ul>
+          <li><strong>Distance</strong> — closer deliveries count more (semivariogram model; range follows your search radius).</li>
+          <li><strong>Recency</strong> — newer orders count more (~2-year half-life; orders under a year old are boosted).</li>
+          <li><strong>Volume</strong> — typical market orders are favored; very small and very large jobs are discounted.</li>
+        </ul>
+        <p>Historical prices are escalated to today at <span id="mp-escalation">3</span>%/yr before weighting. The range is ±1 standard deviation of comparable delivered prices — it widens when nearby prices disagree or data is thin.</p>
+      </div>
+
       <!-- Nearby Plants -->
-      <h3 class="sub-title">NEARBY PLANTS</h3>
+      <h3 class="sub-title"><span>NEARBY PLANTS <span id="nearby-plants-note" class="sub-note"></span></span></h3>
       <div id="competitors-list"></div>
 
       <!-- Drive Time Analysis -->

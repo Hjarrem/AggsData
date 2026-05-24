@@ -9,18 +9,25 @@ const CONFIG = {
   minZoom:              7,
   maxZoom:              17,
   defaultRadius:        5,
-  priceRange:           0.05,
-  maxOrdersInTable:     50,
+  priceBandSigma:       1.0,    // confidence band width, in weighted std-devs of comparable prices
+  priceBandFloorPct:    0.03,   // minimum ± band (fraction of estimate) for thin/degenerate data
+  thinDataNeff:         3,      // effective-order count below which the estimate is flagged "thin data"
+  maxOrdersInTable:     500,    // table render cap (rows scroll); raise if datasets grow
   recentWeight:         2.0,
   semivariogramRange:   30,
   nugget:               0.10,
+  timeHalfLifeDays:     730,    // recency weighting half-life (days)
+  competitorRadiusMult: 3,      // nearby-plants list shows plants within this × search radius
+  plantLabelMinZoom:    11,     // plant labels (sidebar collapsed) show at/above this zoom
+  orderLabelMinZoom:    14,     // order labels (sidebar collapsed) show at/above this zoom
+  heatmapBounds:        [[47.05, -122.70], [48.00, -121.50]],
   truckOverheadMinutes: 10,
   driveTimeColors:      ['#00bcd4', '#ff7043', '#ab47bc', '#43a047', '#fb8c00', '#1e88e5'],
   volumeRefTons:        200,    // Hill-function half-saturation: orders at this tonnage get 50% weight on the way up
   volumeCap:            2000,   // tonnage above which the large-order discount kicks in; weight falls beyond this point
   escalationPct:        3.0,    // Annual price escalation % applied to historical prices before averaging
   enableAddressSearch:  true,
-  mapboxToken:          'pk.eyJ1Ijoicm9ja3JlcG9ydG5qIiwiYSI6ImNtcGp3NGZlbjE3eHoycHBzNWQycWtsejAifQ.zmQ6C-dqiEW4WjdaHmV6-w',
+  mapboxToken:          'pk.eyJ1Ijoicm9ja3JlcG9ydG5qIiwiYSI6ImNtcGp3bW1xeTFxejkycnExdXl5ZmIzOHAifQ.W3e7XR9dKlXFHNDZ5KaLpg',
   enablePriceHeatmap:   false,   // Base ASP heatmap overlay — set true to expose the toggle in the legend
   // Isochrone ring styles (filled polygons rendered 45→30→15 so inner rings paint over outer)
   isochroneStyle: {
@@ -140,7 +147,7 @@ function krigingWeight(dist_miles, daysSince, rangeMiles) {
   else if (h >= a) gamma = 1;
   else { const r = h / a; gamma = nug + (1 - nug) * (1.5 * r - 0.5 * r ** 3); }
   const spatialW    = Math.max(0, 1 - gamma);
-  const timeW       = Math.exp(-Math.LN2 * daysSince / 730);
+  const timeW       = Math.exp(-Math.LN2 * daysSince / CONFIG.timeHalfLifeDays);
   const recentBoost = daysSince < 365 ? CONFIG.recentWeight : 1.0;
   return spatialW * timeW * recentBoost;
 }
@@ -185,8 +192,17 @@ function estimatePrice(clickLat, clickLon, orders, radiusMiles) {
   const wSum = results.reduce((s, r) => s + r.w, 0);
   results.forEach(r => r.normW = r.w / wSum);
   const estimate = results.reduce((s, r) => s + r.adjustedAsp * r.normW, 0);
+
+  // Weighted spread of comparable (escalated) prices → confidence band.
+  // Bias-corrected weighted variance for reliability weights: V = Σwᵢ(xᵢ−μ)² / (1 − Σwᵢ²)
+  const sumSqW = results.reduce((s, r) => s + r.normW * r.normW, 0);
+  const wVar   = results.reduce((s, r) => s + r.normW * (r.adjustedAsp - estimate) ** 2, 0);
+  const denom  = 1 - sumSqW;
+  const stdev  = denom > 1e-9 ? Math.sqrt(wVar / denom) : 0;
+  const neff   = sumSqW > 0 ? 1 / sumSqW : results.length;   // effective sample size
+
   results.sort((a, b) => b.w - a.w);
-  return { estimate, results };
+  return { estimate, results, stdev, neff };
 }
 
 const fmt = v => '$' + v.toFixed(2);
@@ -329,7 +345,7 @@ function buildHitLayer(results) {
         <div class="popup-row"><span class="popup-key">Distance</span><span class="popup-val">${p.dist.toFixed(1)} mi</span></div>
         <div class="popup-row"><span class="popup-key">Total ASP</span><span class="popup-val">${fmt(p.total_asp)}</span></div>
         <div class="popup-row"><span class="popup-key">Volume</span><span class="popup-val">${p.volume_tons.toLocaleString()} T</span></div>
-        <div class="popup-row"><span class="popup-key">Krig. Weight</span><span class="popup-val">${(p.normW * 100).toFixed(1)}%</span></div>
+        <div class="popup-row"><span class="popup-key">Model Weight</span><span class="popup-val">${(p.normW * 100).toFixed(1)}%</span></div>
       `);
     },
   });
@@ -372,7 +388,7 @@ function highlightOrder(orderId) {
   const pos = state.hitLayerMap[orderId];
   if (!pos) return;
   state.highlightMarker = L.circleMarker([pos.lat, pos.lon], {
-    radius: 9, fillColor: 'rgba(255,255,255,0.85)', fillOpacity: 1,
+    radius: 9, fillColor: '#ffffff', fillOpacity: 0.85,
     color: '#e8a020', weight: 2.5, renderer: canvasRenderer,
   }).addTo(map);
 }
@@ -390,7 +406,10 @@ function renderResults(clickLat, clickLon) {
   if (!result) {
     document.getElementById('est-value').textContent = 'N/A';
     document.getElementById('est-range').textContent = '';
-    document.getElementById('est-orders-used').textContent    = 'No orders in radius';
+    const ou = document.getElementById('est-orders-used');
+    ou.textContent = 'No orders in radius';
+    ou.classList.remove('thin-data');
+    ou.removeAttribute('title');
     document.getElementById('est-radius').textContent         = '';
     document.getElementById('orders-drawer').classList.remove('visible');
     state.lastResults = null;
@@ -398,13 +417,22 @@ function renderResults(clickLat, clickLon) {
     return;
   }
 
-  const { estimate, results } = result;
-  const lo = estimate * (1 - CONFIG.priceRange);
-  const hi = estimate * (1 + CONFIG.priceRange);
+  const { estimate, results, stdev, neff } = result;
+  // ± band: priceBandSigma × weighted std-dev, with a floor so it never collapses to $X–$X
+  const half = Math.max(CONFIG.priceBandSigma * stdev, estimate * CONFIG.priceBandFloorPct);
+  const lo = estimate - half;
+  const hi = estimate + half;
 
   document.getElementById('est-value').textContent = fmt(estimate);
   document.getElementById('est-range').textContent = `(${fmt(lo)} – ${fmt(hi)})`;
-  document.getElementById('est-orders-used').textContent    = `${results.length} order${results.length !== 1 ? 's' : ''} used`;
+
+  // Orders used + effective-sample-size confidence signal
+  const ordersUsedEl = document.getElementById('est-orders-used');
+  const thin         = neff < CONFIG.thinDataNeff;
+  ordersUsedEl.textContent = `${results.length} order${results.length !== 1 ? 's' : ''} used`
+    + (thin ? ' · thin data' : '');
+  ordersUsedEl.title       = `${neff.toFixed(1)} effective orders (distance/recency/volume-weighted)`;
+  ordersUsedEl.classList.toggle('thin-data', thin);
   document.getElementById('est-radius').textContent         = `${state.radius} mi radius`;
 
   state.lastResults = results;
@@ -468,13 +496,15 @@ function hidePlantTooltip() {
 function renderCompetitors(clickLat, clickLon) {
   const container = document.getElementById('competitors-list');
   container.innerHTML = '';
+  const note = document.getElementById('nearby-plants-note');
+  if (note) note.textContent = `within ${state.radius * CONFIG.competitorRadiusMult} mi`;
   if (!state.plantsData) return;
   const plants = state.plantsData.features
     .map(f => {
       const [lon, lat] = f.geometry.coordinates;
       return { ...f.properties, lat, lon, dist: haversine(clickLat, clickLon, lat, lon) };
     })
-    .filter(p => p.dist <= state.radius * 3)
+    .filter(p => p.dist <= state.radius * CONFIG.competitorRadiusMult)
     .sort((a, b) => a.dist - b.dist);
 
   if (!plants.length) {
@@ -895,6 +925,26 @@ document.getElementById('legend-collapse-btn').addEventListener('click', () => {
   btn.textContent = collapsed ? '▲' : '▼';
 });
 
+// ── Methodology popover ────────────────────────────────
+(function () {
+  const btn = document.getElementById('methodology-btn');
+  const pop = document.getElementById('methodology-popover');
+  if (!btn || !pop) return;
+  const esc = document.getElementById('mp-escalation');
+  if (esc) esc.textContent = CONFIG.escalationPct;   // keep copy in sync with CONFIG
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    pop.classList.toggle('visible');
+  });
+  document.addEventListener('click', e => {
+    if (pop.classList.contains('visible')
+        && !e.target.closest('#methodology-popover')
+        && !e.target.closest('#methodology-btn')) {
+      pop.classList.remove('visible');
+    }
+  });
+})();
+
 document.getElementById('download-orders-btn').addEventListener('click', () => {
   if (!state.lastResults) return;
   const sorted = sortResults(state.lastResults);
@@ -1010,7 +1060,7 @@ function buildPlantLabelLayer(plantsData) {
 function updateOrderLabels() {
   if (state.orderLabelLayer) { map.removeLayer(state.orderLabelLayer); state.orderLabelLayer = null; }
   const collapsed = document.body.classList.contains('sidebar-collapsed');
-  if (!collapsed || map.getZoom() < 14 || !state.ordersData) return;
+  if (!collapsed || map.getZoom() < CONFIG.orderLabelMinZoom || !state.ordersData) return;
 
   const bounds = map.getBounds();
   const group  = L.layerGroup();
@@ -1041,7 +1091,7 @@ function updateMapLabels() {
 
   // Plant labels — zoom 11+
   if (state.plantLabelLayer) {
-    if (collapsed && zoom >= 11) {
+    if (collapsed && zoom >= CONFIG.plantLabelMinZoom) {
       if (!map.hasLayer(state.plantLabelLayer)) state.plantLabelLayer.addTo(map);
     } else {
       if (map.hasLayer(state.plantLabelLayer)) map.removeLayer(state.plantLabelLayer);
@@ -1091,7 +1141,7 @@ async function loadData() {
     const isoData    = await isoRes.json();
 
     // Price heatmap raster — controlled by CONFIG.enablePriceHeatmap
-    const hmBounds = [[47.05, -122.70], [48.00, -121.50]];
+    const hmBounds = CONFIG.heatmapBounds;
     if (CONFIG.enablePriceHeatmap) {
       state.priceHeatmapLayer = L.imageOverlay('price_heatmap.png', hmBounds, {
         opacity: 1, interactive: false, zIndex: 148,

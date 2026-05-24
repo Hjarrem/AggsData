@@ -304,6 +304,70 @@ body.sidebar-collapsed #sidebar-toggle {
   color: var(--amber);
 }
 
+.title-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#methodology-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-size: 11px;
+  line-height: 1;
+  padding: 2px 6px;
+  transition: all 0.15s;
+}
+
+#methodology-btn:hover { border-color: var(--amber-dim); color: var(--amber); }
+
+/* Muted note appended to a sub-title (e.g. "within 15 mi") */
+.sub-note {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--text-dim);
+}
+
+/* Methodology explainer card (toggled by the ⓘ button) */
+#methodology-popover {
+  display: none;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--amber);
+  border-radius: 4px;
+  padding: 12px 14px;
+  margin-top: 10px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--text-mid);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+}
+
+#methodology-popover.visible { display: block; }
+
+#methodology-popover .mp-title {
+  font-family: var(--font-head);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+#methodology-popover p  { margin-bottom: 8px; }
+#methodology-popover p:last-child { margin-bottom: 0; }
+#methodology-popover ul { margin: 0 0 8px 0; padding-left: 16px; }
+#methodology-popover li { margin-bottom: 4px; }
+#methodology-popover strong { color: var(--text); }
+
 #estimate-block {
   background: var(--bg);
   border: 1px solid rgba(184,112,16,0.25);
@@ -352,6 +416,12 @@ body.sidebar-collapsed #sidebar-toggle {
   font-size: 10px;
   color: var(--text-dim);
   letter-spacing: 0.05em;
+}
+
+/* Low effective-sample-size warning on the orders-used line */
+#est-meta .thin-data {
+  color: var(--amber);
+  cursor: help;
 }
 
 /* ── Orders Table ────────────────────────────────────── */

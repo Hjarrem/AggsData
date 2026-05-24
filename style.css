@@ -782,47 +782,126 @@ body.sidebar-collapsed #orders-drawer { left: 0; }
   right: 16px;
   background: rgba(255,255,255,0.93);
   border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 10px 14px;
+  border-radius: 5px;
+  padding: 12px 18px 14px;
   backdrop-filter: blur(6px);
   z-index: 1000;
+  min-width: 170px;
+}
+
+#legend-title {
+  font-family: var(--font-head);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #222;
+  margin-bottom: 10px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid #ddd;
 }
 
 .legend-row {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 9px;
   font-family: var(--font-mono);
-  font-size: 10px;
-  color: #444;
-  margin-bottom: 5px;
+  font-size: 12px;
+  color: #333;
+  margin-bottom: 6px;
 }
 
 .legend-row:last-child { margin-bottom: 0; }
 
 .legend-section-label {
   font-family: var(--font-mono);
-  font-size: 8px;
-  letter-spacing: 0.18em;
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #999;
-  margin-bottom: 5px;
+  color: #888;
+  margin-bottom: 6px;
   margin-top: 2px;
 }
 
 .legend-divider {
   border-top: 1px solid #ddd;
-  margin: 8px 0;
+  margin: 9px 0;
 }
 
 .leg-dot {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   flex-shrink: 0;
 }
 
 .leg-dot.order       { background: #4cb87a; border-radius: 50%; }
 .leg-dot.click-point { background: #fff; border: 2px solid var(--amber); border-radius: 50%; }
+
+.leg-iso {
+  display: inline-block;
+  width: 16px;
+  height: 11px;
+  flex-shrink: 0;
+  border-radius: 2px;
+  border: 1.5px solid;
+  opacity: 0.85;
+}
+
+/* Heatmap legend colour ramp */
+.heatmap-ramp-row {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 3px;
+  margin-top: 2px;
+}
+
+.heatmap-ramp {
+  display: block;
+  height: 10px;
+  border-radius: 3px;
+  background: linear-gradient(to right,
+    rgb(20,150,50),
+    rgb(150,220,130),
+    rgb(240,240,220),
+    rgb(240,130,70),
+    rgb(200,20,20));
+  opacity: 0.85;
+}
+
+.heatmap-ramp-labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 7.5px;
+  color: var(--text-dim);
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+}
+
+/* Toggle buttons (heatmap + isochrone) — sit below their section label */
+.iso-toggle-btn {
+  display: block;
+  margin-bottom: 7px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  padding: 1px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  line-height: 1.6;
+}
+
+.iso-toggle-btn:hover  { color: var(--text); border-color: var(--text-mid); }
+.iso-toggle-btn.iso-on { color: var(--amber); border-color: var(--amber-dim); background: rgba(232,160,32,0.10); }
+
+/* Hide legend colour chips when layer is off */
+#iso-legend-rows.iso-hidden,
+#heatmap-legend-rows.iso-hidden { display: none; }
 
 /* ── Map Overlay Hint ────────────────────────────────── */
 #map-overlay-hint {

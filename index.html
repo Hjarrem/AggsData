@@ -62,6 +62,14 @@
         <input type="date" id="date-to"   class="styled-input" value="2024-12-31" />
       </div>
 
+      <label class="field-label">Annual Price Escalation</label>
+      <div class="escalation-row">
+        <input type="number" id="escalation-pct" class="styled-input escalation-input"
+               value="3.0" min="0" max="20" step="0.5" />
+        <span class="escalation-unit">% / yr</span>
+        <span class="escalation-hint">applied to historical prices</span>
+      </div>
+
       <div class="hint-text" id="click-hint">
         ↖ Click anywhere on the map to estimate price
       </div>
@@ -70,18 +78,14 @@
     <!-- Results -->
     <section class="panel" id="results-panel" style="display:none;">
       <h2 class="panel-title">PRICE ESTIMATE
-        <button id="clear-btn" title="Clear estimate">✕</button>
+        <button id="clear-btn" title="Clear estimate">✕ Clear</button>
       </h2>
 
       <div id="estimate-block">
         <div id="est-main">
           <span id="est-label">Est. Delivered ASP</span>
           <span id="est-value">—</span>
-        </div>
-        <div id="est-range-row">
-          <span class="est-bound" id="est-low">—</span>
-          <div id="est-bar-wrap"><div id="est-bar-fill"></div></div>
-          <span class="est-bound" id="est-high">—</span>
+          <span id="est-range"></span>
         </div>
         <div id="est-meta">
           <span id="est-orders-used"></span>
@@ -98,13 +102,21 @@
         <h3 class="sub-title">DRIVE TIME ANALYSIS
           <button id="drivetime-btn" title="Fetch road routes from the 3 nearest plants">&#9654; Run</button>
         </h3>
-        <div id="drivetime-meta">3 nearest plants &nbsp;·&nbsp; 10 minute load & dump time</div>
+        <div id="drivetime-meta">
+          <span class="dt-meta-label">Plants</span>
+          <input type="number" id="dt-plant-count" class="dt-meta-input" value="3" min="1" max="6" step="1" />
+          <span class="dt-meta-label">Overhead&nbsp;(min)</span>
+          <input type="number" id="dt-overhead-min" class="dt-meta-input" value="10" min="0" max="240" step="5" />
+        </div>
         <div id="drivetime-loading">Fetching routes&hellip;</div>
         <div id="drivetime-results"></div>
       </div>
     </section>
 
   </aside>
+
+  <!-- ── Sidebar toggle ───────────────────────────────── -->
+  <button id="sidebar-toggle" title="Hide sidebar">&#9664;</button>
 
   <!-- ── Map ──────────────────────────────────────────────── -->
   <main id="map-container">
@@ -131,11 +143,12 @@
               <th data-col="date"         class="sortable">Date <span class="sort-icon">⇅</span></th>
               <th data-col="product"      class="sortable">Product <span class="sort-icon">⇅</span></th>
               <th data-col="plant_name"   class="sortable">Plant <span class="sort-icon">⇅</span></th>
-              <th data-col="dist"         class="sortable">Dist. to Plant <span class="sort-icon">⇅</span></th>
-              <th data-col="volume_tons"  class="sortable">Vol(T) <span class="sort-icon">⇅</span></th>
-              <th data-col="asp"          class="sortable">ASP <span class="sort-icon">⇅</span></th>
-              <th data-col="delivery_fee" class="sortable">Delivery Fee <span class="sort-icon">⇅</span></th>
-              <th data-col="total_asp"    class="sortable">Total <span class="sort-icon">⇅</span></th>
+              <th data-col="distToPlant"  class="sortable">Dist. to Plant <span class="sort-icon">⇅</span></th>
+              <th data-col="dist"         class="sortable">Dist. to Point <span class="sort-icon">⇅</span></th>
+              <th data-col="volume_tons"  class="sortable">Volume (T) <span class="sort-icon">⇅</span></th>
+              <th data-col="asp"          class="sortable">Base ASP <span class="sort-icon">⇅</span></th>
+              <th data-col="delivery_fee" class="sortable">Delivery <span class="sort-icon">⇅</span></th>
+              <th data-col="total_asp"    class="sortable">Total ASP <span class="sort-icon">⇅</span></th>
             </tr>
           </thead>
           <tbody id="orders-tbody"></tbody>
@@ -177,6 +190,16 @@
 
     <div class="legend-row"><span class="leg-dot order"></span> Sales Order</div>
     <div class="legend-row"><span class="leg-dot click-point"></span> Estimate Point</div>
+  </div>
+
+  <!-- ── Plant hover tooltip ──────────────────────────── -->
+  <div id="plant-tooltip">
+    <div id="pt-header">
+      <span id="pt-name"></span>
+      <span id="pt-badge"></span>
+    </div>
+    <div id="pt-geo"></div>
+    <div id="pt-products"></div>
   </div>
 
   <script src="map.js"></script>

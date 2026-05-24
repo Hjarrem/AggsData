@@ -478,7 +478,7 @@ function renderCompetitors(clickLat, clickLon) {
     .sort((a, b) => a.dist - b.dist);
 
   if (!plants.length) {
-    container.innerHTML = '<div style="font-family:var(--font-mono);font-size:10px;color:var(--text-dim);padding:6px 0;">No plants within range</div>';
+    container.innerHTML = '<div style="font-family:var(--font-mono);font-size:10px;color:var(--text-dim);padding:6px 10px;"> No plants within range</div>';
     return;
   }
 
@@ -678,6 +678,7 @@ document.getElementById('clear-btn').addEventListener('click', () => {
   document.getElementById('orders-drawer').classList.remove('visible');
   document.getElementById('click-hint').style.display    = 'block';
   document.getElementById('map-overlay-hint').classList.remove('hidden');
+  clearSearchInput();
 });
 
 document.getElementById('drivetime-btn').addEventListener('click', () => {
@@ -699,6 +700,7 @@ const SearchCtrl = L.Control.extend({
     wrap.innerHTML = `
       <div class="search-input-wrap">
         <input id="address-search" type="text" placeholder="Search address…" autocomplete="off" spellcheck="false" />
+        <button id="address-search-clear" title="Clear search" style="display:none">✕</button>
         <button id="address-search-btn" title="Search">
           <svg width="13" height="13" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2.2"/>
@@ -767,9 +769,15 @@ async function geocodeAddress() {
 if (CONFIG.enableAddressSearch) {
   let _searchTimer = null;
   const searchInput = document.getElementById('address-search');
+  const clearSearchBtn = document.getElementById('address-search-clear');
+
+  function updateClearBtn() {
+    clearSearchBtn.style.display = searchInput.value.length ? 'flex' : 'none';
+  }
 
   // Real-time suggestions — fire 300 ms after the user stops typing
   searchInput.addEventListener('input', () => {
+    updateClearBtn();
     clearTimeout(_searchTimer);
     if (searchInput.value.trim().length < 3) { closeSearchResults(); return; }
     _searchTimer = setTimeout(geocodeAddress, 300);
@@ -777,7 +785,12 @@ if (CONFIG.enableAddressSearch) {
 
   searchInput.addEventListener('keydown', e => {
     if (e.key === 'Enter')  { clearTimeout(_searchTimer); geocodeAddress(); }
-    if (e.key === 'Escape') { closeSearchResults(); }
+    if (e.key === 'Escape') { clearSearchInput(); }
+  });
+
+  clearSearchBtn.addEventListener('click', () => {
+    clearSearchInput();
+    document.getElementById('clear-btn').click();
   });
 
   document.getElementById('address-search-btn').addEventListener('click', () => {
@@ -788,6 +801,14 @@ if (CONFIG.enableAddressSearch) {
   document.addEventListener('click', e => {
     if (!e.target.closest('.search-control')) closeSearchResults();
   });
+}
+
+function clearSearchInput() {
+  const el = document.getElementById('address-search');
+  const btn = document.getElementById('address-search-clear');
+  if (el)  { el.value = ''; }
+  if (btn) { btn.style.display = 'none'; }
+  closeSearchResults();
 }
 
 // ── Sort click ─────────────────────────────────────────
@@ -864,6 +885,14 @@ document.getElementById('orders-collapse-btn').addEventListener('click', () => {
   const expanded  = container.style.maxHeight !== '0px';
   container.style.maxHeight = expanded ? '0px' : '240px';
   btn.textContent = expanded ? '▲' : '▼';
+});
+
+// ── Legend — collapse ──────────────────────────────────
+document.getElementById('legend-collapse-btn').addEventListener('click', () => {
+  const body = document.getElementById('legend-body');
+  const btn  = document.getElementById('legend-collapse-btn');
+  const collapsed = body.classList.toggle('collapsed');
+  btn.textContent = collapsed ? '▲' : '▼';
 });
 
 document.getElementById('download-orders-btn').addEventListener('click', () => {

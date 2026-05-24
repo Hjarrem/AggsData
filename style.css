@@ -245,34 +245,6 @@ body.sidebar-collapsed #sidebar-toggle {
 .date-row .styled-input { flex: 1; }
 .date-sep { color: var(--text-dim); font-size: 12px; }
 
-.escalation-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.escalation-input {
-  width: 72px;
-  flex-shrink: 0;
-  -moz-appearance: textfield;
-}
-
-.escalation-input::-webkit-inner-spin-button,
-.escalation-input::-webkit-outer-spin-button { opacity: 0.4; }
-
-.escalation-unit {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--text-mid);
-  white-space: nowrap;
-}
-
-.escalation-hint {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  color: var(--text-dim);
-  white-space: nowrap;
-}
 
 .hint-text {
   margin-top: 14px;

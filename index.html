@@ -13,6 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/svg+xml" href="loader-icon.svg" />
 </head>
 <body>
 
@@ -21,10 +22,10 @@
 
     <div id="sidebar-header">
       <div id="logo-block">
-        <span id="logo-icon">⬡</span>
+        <img id="logo-icon" src="loader-icon.svg" alt="Stockpile" />
         <div>
           <div id="logo-title">AggsData</div>
-          <div id="logo-sub">Delivered Price Estimator</div>
+          <div id="logo-sub">Aggregates Price Tool</div>
         </div>
       </div>
     </div>
@@ -152,79 +153,84 @@
   <!-- ── Legend ───────────────────────────────────────────── -->
   <div id="legend">
 
-    <div id="legend-title">Legend</div>
-
-    <div class="legend-section-label">PLANT — GEOLOGY</div>
-    <div class="legend-row">
-      <svg width="15" height="15" viewBox="0 0 20 20"><polygon points="10,1 19,10 10,19 1,10" fill="#888" stroke="#555" stroke-width="1.5"/></svg>
-      Limestone
-    </div>
-    <div class="legend-row">
-      <svg width="15" height="15" viewBox="0 0 20 20"><rect x="2" y="2" width="16" height="16" rx="1" fill="#888" stroke="#555" stroke-width="1.5"/></svg>
-      Hard Rock
-    </div>
-    <div class="legend-row">
-      <svg width="15" height="15" viewBox="0 0 20 20"><polygon points="10,2 19,18 1,18" fill="#888" stroke="#555" stroke-width="1.5"/></svg>
-      Sand &amp; Gravel
+    <div id="legend-title">
+      Legend
+      <button id="legend-collapse-btn" title="Collapse legend">&#9660;</button>
     </div>
 
-    <div class="legend-divider"></div>
+    <div id="legend-body">
+      <div class="legend-section-label">PLANT — GEOLOGY</div>
+      <div class="legend-row">
+        <svg width="15" height="15" viewBox="0 0 20 20"><polygon points="10,1 19,10 10,19 1,10" fill="#888" stroke="#555" stroke-width="1.5"/></svg>
+        Limestone
+      </div>
+      <div class="legend-row">
+        <svg width="15" height="15" viewBox="0 0 20 20"><rect x="2" y="2" width="16" height="16" rx="1" fill="#888" stroke="#555" stroke-width="1.5"/></svg>
+        Hard Rock
+      </div>
+      <div class="legend-row">
+        <svg width="15" height="15" viewBox="0 0 20 20"><polygon points="10,2 19,18 1,18" fill="#888" stroke="#555" stroke-width="1.5"/></svg>
+        Sand &amp; Gravel
+      </div>
 
-    <div class="legend-section-label">PLANT — OWNERSHIP</div>
-    <div class="legend-row">
-      <svg width="15" height="15" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="#e8a020" stroke="#7a4800" stroke-width="1.5"/></svg>
-      Owned
-    </div>
-    <div class="legend-row">
-      <svg width="15" height="15" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="#e05070" stroke="#7a1530" stroke-width="1.5"/></svg>
-      Competitor
-    </div>
+      <div class="legend-divider"></div>
 
-    <div class="legend-divider"></div>
+      <div class="legend-section-label">PLANT — OWNERSHIP</div>
+      <div class="legend-row">
+        <svg width="15" height="15" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="#e8a020" stroke="#7a4800" stroke-width="1.5"/></svg>
+        Owned
+      </div>
+      <div class="legend-row">
+        <svg width="15" height="15" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="#e05070" stroke="#7a1530" stroke-width="1.5"/></svg>
+        Competitor
+      </div>
 
-    <div class="legend-row"><span class="leg-dot order"></span> Sales Order</div>
-    <div class="legend-row"><span class="leg-dot click-point"></span> Estimate Point</div>
+      <div class="legend-divider"></div>
 
-    <div class="legend-divider"></div>
+      <div class="legend-row"><span class="leg-dot order"></span> Sales Order</div>
+      <div class="legend-row"><span class="leg-dot click-point"></span> Estimate Point</div>
 
-    <div id="price-heatmap-section">
-      <div class="legend-section-label">BASE ASP HEATMAP</div>
-      <button id="price-heatmap-toggle-btn" class="iso-toggle-btn" title="Show/hide base ASP heatmap (excl. delivery)">OFF</button>
-      <div id="price-heatmap-legend-rows" class="iso-hidden">
+      <div class="legend-divider"></div>
+
+      <div id="price-heatmap-section">
+        <div class="legend-section-label">BASE ASP HEATMAP</div>
+        <button id="price-heatmap-toggle-btn" class="iso-toggle-btn" title="Show/hide base ASP heatmap (excl. delivery)">OFF</button>
+        <div id="price-heatmap-legend-rows" class="iso-hidden">
+          <div class="legend-row heatmap-ramp-row">
+            <span class="heatmap-ramp price-ramp"></span>
+            <span class="heatmap-ramp-labels">
+              <span>Low</span>
+              <span>Median</span>
+              <span>High</span>
+            </span>
+          </div>
+        </div>
+        <div class="legend-divider"></div>
+      </div>
+
+      <div class="legend-section-label">DRIVE-TIME HEATMAP</div>
+      <button id="heatmap-toggle-btn" class="iso-toggle-btn" title="Show/hide drive-time heatmap">OFF</button>
+      <div id="heatmap-legend-rows" class="iso-hidden">
         <div class="legend-row heatmap-ramp-row">
-          <span class="heatmap-ramp price-ramp"></span>
+          <span class="heatmap-ramp"></span>
           <span class="heatmap-ramp-labels">
-            <span>Low</span>
-            <span>Median</span>
-            <span>High</span>
+            <span>Owned</span>
+            <span></span>
+            <span>Competitor</span>
           </span>
         </div>
       </div>
+
       <div class="legend-divider"></div>
-    </div>
 
-    <div class="legend-section-label">DRIVE-TIME HEATMAP</div>
-    <button id="heatmap-toggle-btn" class="iso-toggle-btn" title="Show/hide drive-time heatmap">OFF</button>
-    <div id="heatmap-legend-rows" class="iso-hidden">
-      <div class="legend-row heatmap-ramp-row">
-        <span class="heatmap-ramp"></span>
-        <span class="heatmap-ramp-labels">
-          <span>Owned</span>
-          <span></span>
-          <span>Competitor</span>
-        </span>
+      <div class="legend-section-label">ISOCHRONES</div>
+      <button id="iso-toggle-btn" class="iso-toggle-btn" title="Show/hide drive-time rings">OFF</button>
+      <div id="iso-legend-rows" class="iso-hidden">
+        <div class="legend-row"><span class="leg-iso" style="background:#f59e0b;border-color:#b45309;"></span> 15 min</div>
+        <div class="legend-row"><span class="leg-iso" style="background:#0ea5e9;border-color:#0369a1;"></span> 30 min</div>
+        <div class="legend-row"><span class="leg-iso" style="background:#6366f1;border-color:#4338ca;"></span> 45 min</div>
       </div>
-    </div>
-
-    <div class="legend-divider"></div>
-
-    <div class="legend-section-label">ISOCHRONES</div>
-    <button id="iso-toggle-btn" class="iso-toggle-btn" title="Show/hide drive-time rings">OFF</button>
-    <div id="iso-legend-rows" class="iso-hidden">
-      <div class="legend-row"><span class="leg-iso" style="background:#f59e0b;border-color:#b45309;"></span> 15 min</div>
-      <div class="legend-row"><span class="leg-iso" style="background:#0ea5e9;border-color:#0369a1;"></span> 30 min</div>
-      <div class="legend-row"><span class="leg-iso" style="background:#6366f1;border-color:#4338ca;"></span> 45 min</div>
-    </div>
+    </div><!-- /legend-body -->
   </div>
 
   <!-- ── Plant hover tooltip ──────────────────────────── -->

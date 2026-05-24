@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
+  <!-- Dark grey circular background -->
+  <circle cx="30" cy="30" r="29" fill="#3a3a3a"/>
+
+  <!-- Stockpile — raised base, narrower footprint -->
+  <path d="
+    M 14 43
+    C 16 39  18 34  21 29
+    C 24 23  27 18  29 16
+    C 29.5 15  30 14.5  30.5 15
+    C 31 15  31.5 15.5  33 17
+    Q 34 16  35 18
+    C 38 22  41 27  44 32
+    C 46 36  48 40  46 43
+    Z"
+    fill="#ffffff"/>
+
+  <!-- Base ground line -->
+  <rect x="13.5" y="42.5" width="33" height="2" rx="1" fill="#ffffff"/>
+
+  <!-- Grey aggregate specks -->
+  <circle cx="23" cy="36" r="1.8" fill="#999"/>
+  <circle cx="30" cy="29" r="1.8" fill="#999"/>
+  <circle cx="37" cy="36" r="1.8" fill="#999"/>
+  <circle cx="26" cy="40" r="1.4" fill="#999"/>
+  <circle cx="34" cy="40" r="1.4" fill="#999"/>
+</svg>

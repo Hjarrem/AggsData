@@ -19,6 +19,12 @@ const CONFIG = {
   volumeRefTons:        200,    // Hill-function half-saturation: orders at this tonnage get 50% weight
   escalationPct:        3.0,    // Annual price escalation % applied to historical prices before averaging
   enableAddressSearch:  false,   // Nominatim geocoder — re-enable when a better API key is available
+  // Isochrone ring styles (filled polygons rendered 45→30→15 so inner rings paint over outer)
+  isochroneStyle: {
+    45: { fillColor: '#6366f1', color: '#4338ca', fillOpacity: 0.08, weight: 1.2, opacity: 0.50 },
+    30: { fillColor: '#0ea5e9', color: '#0369a1', fillOpacity: 0.10, weight: 1.4, opacity: 0.55 },
+    15: { fillColor: '#f59e0b', color: '#b45309', fillOpacity: 0.13, weight: 1.6, opacity: 0.60 },
+  },
 };
 
 let state = {
@@ -34,6 +40,10 @@ let state = {
   allOrdersLayer:      null,
   hitOrdersLayer:      null,
   driveTimeLayerGroup:  null,
+  isochroneLayer:       null,
+  showIsochrones:       false,
+  heatmapLayer:         null,
+  showHeatmap:          false,
   plantLabelLayer:      null,
   orderLabelLayer:      null,
   escalationPct:        CONFIG.escalationPct,
@@ -234,6 +244,32 @@ function filterProductDropdown(type) {
 function populateProductFilter(features) {
   productsByType = buildProductMap(features);
   filterProductDropdown('all');
+}
+
+// ── Isochrone layer ────────────────────────────────────
+function buildIsochroneLayer(features) {
+  // Render largest ring first so smaller rings paint over the center
+  const ordered = [...features].sort((a, b) => b.properties.minutes - a.properties.minutes);
+  const group   = L.layerGroup();
+  ordered.forEach(f => {
+    const style = CONFIG.isochroneStyle[f.properties.minutes] ?? {};
+    L.geoJSON(f, {
+      style: () => ({
+        fillColor:   style.fillColor,
+        fillOpacity: style.fillOpacity,
+        color:       style.color,
+        weight:      style.weight,
+        opacity:     style.opacity,
+      }),
+      onEachFeature(feat, layer) {
+        layer.bindTooltip(
+          `${feat.properties.minutes}-min delivery zone`,
+          { sticky: true, className: 'order-tooltip' }
+        );
+      },
+    }).addTo(group);
+  });
+  return group;
 }
 
 // ── Always-on order layer ──────────────────────────────
@@ -772,12 +808,6 @@ document.getElementById('date-to').addEventListener('change', e => {
   rerunEstimate();
 });
 
-document.getElementById('escalation-pct').addEventListener('change', e => {
-  const v = parseFloat(e.target.value);
-  state.escalationPct = isNaN(v) ? CONFIG.escalationPct : Math.max(0, Math.min(20, v));
-  e.target.value = state.escalationPct;
-  rerunEstimate();
-});
 
 // ── Reset parameters ───────────────────────────────────
 document.getElementById('reset-params-btn').addEventListener('click', () => {
@@ -792,8 +822,6 @@ document.getElementById('reset-params-btn').addEventListener('click', () => {
   state.dateTo   = '2024-12-31';
   document.getElementById('date-from').value = '2020-01-01';
   document.getElementById('date-to').value   = '2024-12-31';
-  state.escalationPct = CONFIG.escalationPct;
-  document.getElementById('escalation-pct').value = CONFIG.escalationPct;
   rerunEstimate();
 });
 
@@ -843,6 +871,42 @@ document.getElementById('sidebar-toggle').addEventListener('click', () => {
   btn.title       = collapsed ? 'Show sidebar' : 'Hide sidebar';
   // Let the CSS transition finish before Leaflet reflows the map
   setTimeout(() => { map.invalidateSize(); updateMapLabels(); }, 260);
+});
+
+// ── Heatmap toggle ─────────────────────────────────────
+document.getElementById('heatmap-toggle-btn').addEventListener('click', () => {
+  state.showHeatmap = !state.showHeatmap;
+  const btn  = document.getElementById('heatmap-toggle-btn');
+  const rows = document.getElementById('heatmap-legend-rows');
+  if (state.showHeatmap) {
+    if (state.heatmapLayer) state.heatmapLayer.addTo(map);
+    btn.textContent = 'ON';
+    btn.classList.add('iso-on');
+    rows.classList.remove('iso-hidden');
+  } else {
+    if (state.heatmapLayer) map.removeLayer(state.heatmapLayer);
+    btn.textContent = 'OFF';
+    btn.classList.remove('iso-on');
+    rows.classList.add('iso-hidden');
+  }
+});
+
+// ── Isochrone toggle ───────────────────────────────────
+document.getElementById('iso-toggle-btn').addEventListener('click', () => {
+  state.showIsochrones = !state.showIsochrones;
+  const btn  = document.getElementById('iso-toggle-btn');
+  const rows = document.getElementById('iso-legend-rows');
+  if (state.showIsochrones) {
+    if (state.isochroneLayer) state.isochroneLayer.addTo(map);
+    btn.textContent = 'ON';
+    btn.classList.add('iso-on');
+    rows.classList.remove('iso-hidden');
+  } else {
+    if (state.isochroneLayer) map.removeLayer(state.isochroneLayer);
+    btn.textContent = 'OFF';
+    btn.classList.remove('iso-on');
+    rows.classList.add('iso-hidden');
+  }
 });
 
 // ── Map labels ─────────────────────────────────────────
@@ -938,12 +1002,27 @@ map.on('zoomend moveend', updateMapLabels);
 // ── Load data ──────────────────────────────────────────
 async function loadData() {
   try {
-    const [plantsRes, ordersRes] = await Promise.all([
+    const [plantsRes, ordersRes, isoRes] = await Promise.all([
       fetch('plants.geojson'),
       fetch('orders.geojson'),
+      fetch('isochrones.geojson'),
     ]);
     state.plantsData = await plantsRes.json();
     state.ordersData = await ordersRes.json();
+    const isoData    = await isoRes.json();
+
+    // Drive-time heatmap raster — hidden by default
+    const hmBounds = [[47.05, -122.70], [48.00, -121.50]];  // [[south,west],[north,east]]
+    state.heatmapLayer = L.imageOverlay('drivetime_heatmap.png', hmBounds, {
+      opacity: 1,          // per-pixel alpha lives inside the PNG itself
+      interactive: false,
+      zIndex: 150,         // below order dots (z≈200) and plants (z≈1000+)
+    });
+    if (state.showHeatmap) state.heatmapLayer.addTo(map);
+
+    // Build isochrone layer but don't add to map yet — hidden by default
+    state.isochroneLayer = buildIsochroneLayer(isoData.features);
+    if (state.showIsochrones) state.isochroneLayer.addTo(map);
 
     populateProductFilter(state.ordersData.features);
 

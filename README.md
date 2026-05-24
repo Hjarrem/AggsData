@@ -1,6 +1,6 @@
 # AggsData — Delivered Price Estimator
 
-An interactive, browser-based tool for estimating delivered aggregate prices at any point on the map. Click anywhere to instantly see a weighted price estimate drawn from nearby historical sales orders, view competing plant locations, and run drive-time analysis — all without a backend.
+An interactive, browser-based tool for estimating delivered aggregate prices at any point on the map. Click anywhere to instantly see a weighted price estimate drawn from nearby historical sales orders, view competing plant locations, and run drive-time analysis all without a backend.
 
 ---
 

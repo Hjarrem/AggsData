@@ -41,11 +41,12 @@ const CONFIG = {
 let state = {
   ordersData:          null,
   plantsData:          null,
+  catalog:             null,
   radius:              CONFIG.defaultRadius,
   productType:         'all',
   product:             'all',
   dateFrom:            '2020-01-01',
-  dateTo:              '2024-12-31',
+  dateTo:              '2026-03-31',
   clickMarker:         null,
   radiusCircle:        null,
   allOrdersLayer:      null,
@@ -267,6 +268,20 @@ function filterProductDropdown(type) {
 function populateProductFilter(features) {
   productsByType = buildProductMap(features);
   filterProductDropdown('all');
+}
+
+// Build the Product Type dropdown from the catalog so it can never drift
+// out of sync with the data (categories are authoritative + ordered here).
+function populateProductTypeFilter(catalog) {
+  const sel = document.getElementById('product-type-filter');
+  if (!sel || !catalog || !catalog.categories) return;
+  sel.innerHTML = '<option value="all">All Types</option>';
+  catalog.categories.forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c.code;
+    opt.textContent = c.label;
+    sel.appendChild(opt);
+  });
 }
 
 // ── Isochrone layer ────────────────────────────────────
@@ -966,9 +981,9 @@ document.getElementById('reset-params-btn').addEventListener('click', () => {
   document.getElementById('product-type-filter').value = 'all';
   filterProductDropdown('all');
   state.dateFrom = '2020-01-01';
-  state.dateTo   = '2024-12-31';
+  state.dateTo   = '2026-03-31';
   document.getElementById('date-from').value = '2020-01-01';
-  document.getElementById('date-to').value   = '2024-12-31';
+  document.getElementById('date-to').value   = '2026-03-31';
   rerunEstimate();
 });
 
@@ -1195,14 +1210,16 @@ map.on('zoomend moveend', updateMapLabels);
 // ── Load data ──────────────────────────────────────────
 async function loadData() {
   try {
-    const [plantsRes, ordersRes, isoRes] = await Promise.all([
+    const [plantsRes, ordersRes, isoRes, catalogRes] = await Promise.all([
       fetch('plants.geojson'),
       fetch('orders.geojson'),
       fetch('isochrones.geojson'),
+      fetch('products.json'),
     ]);
     state.plantsData = await plantsRes.json();
     state.ordersData = await ordersRes.json();
     const isoData    = await isoRes.json();
+    state.catalog    = await catalogRes.json();
 
     // Price heatmap raster — controlled by CONFIG.enablePriceHeatmap
     const hmBounds = CONFIG.heatmapBounds;
@@ -1227,6 +1244,7 @@ async function loadData() {
     state.isochroneLayer = buildIsochroneLayer(isoData.features);
     if (state.showIsochrones) state.isochroneLayer.addTo(map);
 
+    populateProductTypeFilter(state.catalog);
     populateProductFilter(state.ordersData.features);
 
     state.allOrdersLayer  = buildAllOrdersLayer(state.ordersData.features).addTo(map);

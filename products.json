@@ -1,0 +1,27 @@
+{
+  "priceModel": {
+    "baseYear": 2020,
+    "annualTrend": 0.04
+  },
+  "categories": [
+    { "code": "base",       "label": "Base Material" },
+    { "code": "coarse_agg", "label": "Coarse Aggregate" },
+    { "code": "fine_agg",   "label": "Fine Aggregate" }
+  ],
+  "products": [
+    { "code": "57_stone",  "label": "#57 Stone",         "category": "coarse_agg", "basePrice": 18.0, "validGeology": ["Limestone", "Hard Rock"] },
+    { "code": "57_gravel", "label": "#57 Gravel",        "category": "coarse_agg", "basePrice": 16.0, "validGeology": ["Sand & Gravel"] },
+    { "code": "67_gravel", "label": "#67 Gravel",        "category": "coarse_agg", "basePrice": 15.5, "validGeology": ["Sand & Gravel"] },
+
+    { "code": "8_gravel",  "label": "#8 Gravel",         "category": "fine_agg",   "basePrice": 13.5, "validGeology": ["Sand & Gravel"] },
+    { "code": "8_stone",   "label": "#8 Stone",          "category": "fine_agg",   "basePrice": 15.0, "validGeology": ["Limestone", "Hard Rock"] },
+    { "code": "9_gravel",  "label": "#9 Gravel",         "category": "fine_agg",   "basePrice": 13.0, "validGeology": ["Sand & Gravel"] },
+    { "code": "9_stone",   "label": "#9 Stone",          "category": "fine_agg",   "basePrice": 14.5, "validGeology": ["Limestone", "Hard Rock"] },
+    { "code": "sand",      "label": "Sand",              "category": "fine_agg",   "basePrice": 11.5, "validGeology": ["Sand & Gravel"] },
+    { "code": "mfg_sand",  "label": "Manufactured Sand", "category": "fine_agg",   "basePrice": 16.5, "validGeology": ["Limestone", "Hard Rock"] },
+
+    { "code": "411_base",  "label": "411 Base",          "category": "base",       "basePrice": 11.0, "validGeology": ["Limestone", "Hard Rock", "Sand & Gravel"] },
+    { "code": "304_base",  "label": "304 Base",          "category": "base",       "basePrice": 10.0, "validGeology": ["Limestone", "Hard Rock", "Sand & Gravel"] },
+    { "code": "crusher_fines", "label": "Crusher Fines", "category": "base",       "basePrice":  7.5, "validGeology": ["Limestone", "Hard Rock"] }
+  ]
+}

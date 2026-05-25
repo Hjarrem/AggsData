@@ -29,6 +29,7 @@ const CONFIG = {
   enableAddressSearch:  true,
   mapboxToken:          'pk.eyJ1Ijoicm9ja3JlcG9ydG5qIiwiYSI6ImNtcGp3bW1xeTFxejkycnExdXl5ZmIzOHAifQ.W3e7XR9dKlXFHNDZ5KaLpg',
   enablePriceHeatmap:   false,   // Base ASP heatmap overlay — set true to expose the toggle in the legend
+  enableSparkline:      true,    // Historic price trend mini-chart under the benchmark — set false to hide
   // Isochrone ring styles (filled polygons rendered 45→30→15 so inner rings paint over outer)
   isochroneStyle: {
     45: { fillColor: '#6366f1', color: '#4338ca', fillOpacity: 0.08, weight: 1.2, opacity: 0.50 },
@@ -393,6 +394,66 @@ function highlightOrder(orderId) {
   }).addTo(map);
 }
 
+// ── Historic price sparkline ───────────────────────────
+function renderSparkline(results, modeled) {
+  const host = document.getElementById('price-sparkline');
+  if (!host) return;
+  if (!CONFIG.enableSparkline) { host.style.display = 'none'; return; }
+
+  // Bucket in-radius orders by month → mean raw total_asp (a clean trend line)
+  const buckets = {};
+  results.forEach(r => {
+    const ym = r.p.date.slice(0, 7);                       // YYYY-MM
+    (buckets[ym] ||= []).push(r.p.total_asp);
+  });
+  const points = Object.keys(buckets).sort().map(ym => ({
+    t: new Date(ym + '-01').getTime(),
+    v: buckets[ym].reduce((s, v) => s + v, 0) / buckets[ym].length,
+  }));
+  if (!points.length) { host.style.display = 'none'; return; }
+  host.style.display = 'block';
+
+  // Value range — include the modeled price so its dot is always on-canvas
+  const vals = points.map(p => p.v);
+  const vMin = Math.min(...vals), vMax = Math.max(...vals);
+  const dLo  = Math.min(vMin, modeled), dHi = Math.max(vMax, modeled);
+  const pad  = (dHi - dLo) * 0.15 || 1;                    // avoid a zero-height range
+  const lo   = dLo - pad, hi = dHi + pad;
+
+  // X-axis spans first order → end of the latest year, so the modeled point
+  // (dated "today") lands at its true position rather than pinned to the edge.
+  const now     = Date.now();
+  const tMin    = points[0].t;
+  const lastT   = points[points.length - 1].t;
+  const endYear = new Date(Math.max(now, lastT)).getFullYear();
+  const tEnd    = new Date(endYear, 11, 31).getTime();
+  const tSpan   = tEnd - tMin;
+
+  // SVG geometry (uniform-scaled to the panel width via CSS)
+  const W = 300, H = 54, x0 = 36, x1 = 295, y0 = 9, y1 = 39;
+  const xAt = t => tSpan > 0 ? x0 + ((t - tMin) / tSpan) * (x1 - x0) : (x0 + x1) / 2;
+  const yAt = v => y1 - ((v - lo) / (hi - lo)) * (y1 - y0);
+
+  const poly  = points.map(p => `${xAt(p.t).toFixed(1)},${yAt(p.v).toFixed(1)}`).join(' ');
+  const d     = v => '$' + Math.round(v);
+
+  // Last historic order → modeled point (dotted projection to today)
+  const lastX = xAt(lastT), lastY = yAt(points[points.length - 1].v);
+  const mX    = xAt(now),   mY    = yAt(modeled);
+
+  host.innerHTML = `
+    <svg viewBox="0 0 ${W} ${H}" class="spark-svg" preserveAspectRatio="xMidYMid meet">
+      <text class="spark-axis" x="30" y="12"  text-anchor="end">${d(vMax)}</text>
+      <text class="spark-axis" x="30" y="41"  text-anchor="end">${d(vMin)}</text>
+      <text class="spark-axis" x="${x0}" y="51" text-anchor="start">${new Date(tMin).getFullYear()}</text>
+      <text class="spark-axis" x="${x1}" y="51" text-anchor="end">${endYear}</text>
+      ${points.length > 1 ? `<polyline class="spark-line" points="${poly}" vector-effect="non-scaling-stroke"/>` : ''}
+      <line class="spark-projection" x1="${lastX.toFixed(1)}" y1="${lastY.toFixed(1)}" x2="${mX.toFixed(1)}" y2="${mY.toFixed(1)}" vector-effect="non-scaling-stroke"/>
+      <circle class="spark-modeled-halo" cx="${mX.toFixed(1)}" cy="${mY.toFixed(1)}" r="3.2"/>
+      <circle class="spark-modeled"      cx="${mX.toFixed(1)}" cy="${mY.toFixed(1)}" r="1.7"/>
+    </svg>`;
+}
+
 // ── Render sidebar ─────────────────────────────────────
 function renderResults(clickLat, clickLon) {
   if (!state.ordersData) return;
@@ -410,6 +471,7 @@ function renderResults(clickLat, clickLon) {
     ou.textContent = 'No orders in radius';
     ou.classList.remove('thin-data');
     ou.removeAttribute('title');
+    document.getElementById('price-sparkline').style.display = 'none';
     document.getElementById('est-radius').textContent         = '';
     document.getElementById('orders-drawer').classList.remove('visible');
     state.lastResults = null;
@@ -434,6 +496,8 @@ function renderResults(clickLat, clickLon) {
   ordersUsedEl.title       = `${neff.toFixed(1)} effective orders (distance/recency/volume-weighted)`;
   ordersUsedEl.classList.toggle('thin-data', thin);
   document.getElementById('est-radius').textContent         = `${state.radius} mi radius`;
+
+  renderSparkline(results, estimate);
 
   state.lastResults = results;
   renderTable(results);

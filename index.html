@@ -79,7 +79,7 @@
 
       <div id="estimate-block">
         <div id="est-main">
-          <span id="est-label">Modeled Delivered Price</span>
+          <span id="est-label">Delivered Price Benchmark</span>
           <span id="est-value">—</span>
           <span id="est-range"></span>
         </div>
@@ -89,10 +89,13 @@
         </div>
       </div>
 
+      <!-- Historic price trend (sparkline) -->
+      <div id="price-sparkline"></div>
+
       <!-- How it's calculated -->
       <div id="methodology-popover">
-        <div class="mp-title">How this estimate is calculated</div>
-        <p>This is a model output, not a simple average of the orders below. Each historical order is weighted by:</p>
+        <div class="mp-title">How this benchmark is calculated</div>
+        <p>This benchmark is a model output, not a simple average of the orders below. Each historical order is weighted by:</p>
         <ul>
           <li><strong>Distance</strong> — closer deliveries count more (semivariogram model; range follows your search radius).</li>
           <li><strong>Recency</strong> — newer orders count more (~2-year half-life; orders under a year old are boosted).</li>

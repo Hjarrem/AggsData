@@ -368,6 +368,44 @@ body.sidebar-collapsed #sidebar-toggle {
 #methodology-popover li { margin-bottom: 4px; }
 #methodology-popover strong { color: var(--text); }
 
+/* Historic price sparkline */
+#price-sparkline {
+  display: none;
+  margin-top: 12px;
+  padding: 10px 12px 6px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.spark-svg { width: 100%; height: auto; display: block; }
+
+.spark-line {
+  fill: none;
+  stroke: var(--amber-dim);
+  stroke-width: 1.4px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.spark-modeled-halo { fill: var(--bg); stroke: var(--amber); stroke-width: 1.2px; }
+.spark-modeled      { fill: var(--amber); }
+
+.spark-projection {
+  fill: none;
+  stroke: var(--amber);
+  stroke-width: 1.2px;
+  stroke-dasharray: 2.5 2.5;
+  opacity: 0.7;
+}
+
+.spark-axis {
+  fill: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 7px;
+  letter-spacing: 0.02em;
+}
+
 #estimate-block {
   background: var(--bg);
   border: 1px solid rgba(184,112,16,0.25);

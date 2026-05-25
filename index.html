@@ -45,10 +45,8 @@
 
       <label class="field-label">Product Type</label>
       <select id="product-type-filter" class="styled-select">
+        <!-- Options populated from products.json at load time -->
         <option value="all">All Types</option>
-        <option value="concrete_agg">Concrete Aggregate</option>
-        <option value="asphalt_agg">Asphalt Aggregate</option>
-        <option value="base">Base Material</option>
       </select>
 
       <label class="field-label">Product</label>
@@ -60,7 +58,7 @@
       <div class="date-row">
         <input type="date" id="date-from" class="styled-input" value="2020-01-01" />
         <span class="date-sep">→</span>
-        <input type="date" id="date-to"   class="styled-input" value="2024-12-31" />
+        <input type="date" id="date-to"   class="styled-input" value="2026-03-31" />
       </div>
 
       <div class="hint-text" id="click-hint">

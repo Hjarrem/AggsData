@@ -16,12 +16,13 @@
         "owner": "owned",
         "geology": "Hard Rock",
         "products": [
-          "#9 stone",
-          "#8 stone",
-          "#57 stone",
-          "#67 stone",
-          "304 base",
-          "411 base"
+          "#57 Stone",
+          "#8 Stone",
+          "#9 Stone",
+          "Manufactured Sand",
+          "411 Base",
+          "304 Base",
+          "Crusher Fines"
         ]
       }
     },
@@ -40,13 +41,13 @@
         "owner": "owned",
         "geology": "Sand & Gravel",
         "products": [
-          "Concrete Sand",
-          "#8 gravel",
-          "#8 gravel 100% crush",
-          "#9 gravel",
-          "#9 gravel 100% crush",
-          "304 base",
-          "411 base"
+          "#57 Gravel",
+          "#67 Gravel",
+          "#8 Gravel",
+          "#9 Gravel",
+          "Sand",
+          "411 Base",
+          "304 Base"
         ]
       }
     },
@@ -65,13 +66,13 @@
         "owner": "owned",
         "geology": "Limestone",
         "products": [
-          "Concrete Sand",
-          "#9 stone",
-          "#8 stone",
-          "#57 stone",
-          "#67 stone",
-          "304 base",
-          "411 base"
+          "#57 Stone",
+          "#8 Stone",
+          "#9 Stone",
+          "Manufactured Sand",
+          "411 Base",
+          "304 Base",
+          "Crusher Fines"
         ]
       }
     },
@@ -90,11 +91,13 @@
         "owner": "competitor",
         "geology": "Hard Rock",
         "products": [
-          "#8 stone",
-          "#57 stone",
-          "#67 stone",
-          "304 base",
-          "411 base"
+          "#57 Stone",
+          "#8 Stone",
+          "#9 Stone",
+          "Manufactured Sand",
+          "411 Base",
+          "304 Base",
+          "Crusher Fines"
         ]
       }
     },
@@ -113,11 +116,13 @@
         "owner": "competitor",
         "geology": "Sand & Gravel",
         "products": [
-          "Concrete Sand",
-          "#8 gravel",
-          "#9 gravel",
-          "#67 gravel 100% crush",
-          "304 base"
+          "#57 Gravel",
+          "#67 Gravel",
+          "#8 Gravel",
+          "#9 Gravel",
+          "Sand",
+          "411 Base",
+          "304 Base"
         ]
       }
     },
@@ -136,12 +141,13 @@
         "owner": "competitor",
         "geology": "Limestone",
         "products": [
-          "Concrete Sand",
-          "#9 stone",
-          "#8 stone",
-          "#57 stone",
-          "304 base",
-          "411 base"
+          "#57 Stone",
+          "#8 Stone",
+          "#9 Stone",
+          "Manufactured Sand",
+          "411 Base",
+          "304 Base",
+          "Crusher Fines"
         ]
       }
     }
